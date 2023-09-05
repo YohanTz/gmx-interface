@@ -1,0 +1,303 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import useSWR from "swr";
+import { ethers } from "ethers";
+import { useWeb3React } from "@web3-react/core";
+
+import { getContract } from "config/contracts";
+
+import Modal from "components/Modal/Modal";
+import Footer from "components/Footer/Footer";
+
+import Token from "abis/Token.json";
+import Vester from "abis/Vester.json";
+import RewardTracker from "abis/RewardTracker.json";
+import RewardRouter from "abis/RewardRouter.json";
+
+import { FaCheck, FaTimes } from "react-icons/fa";
+
+import "./BeginAccountTransfer.css";
+import { callContract, contractFetcher } from "lib/contracts";
+import { approveTokens } from "domain/tokens";
+import { useChainId } from "lib/chains";
+import Button from "components/Button/Button";
+
+function ValidationRow({ isValid, children }) {
+  return (
+    <div className="ValidationRow">
+      <div className="ValidationRow-icon-container">
+        {isValid && <FaCheck className="ValidationRow-icon" />}
+        {!isValid && <FaTimes className="ValidationRow-icon" />}
+      </div>
+      <div>{children}</div>
+    </div>
+  );
+}
+
+export default function BeginAccountTransfer(props) {
+  const { setPendingTxns } = props;
+  const { active, library, account } = useWeb3React();
+  const { chainId } = useChainId();
+
+  const [receiver, setReceiver] = useState("");
+  const [isTransferring, setIsTransferring] = useState(false);
+  const [isApproving, setIsApproving] = useState(false);
+  const [isTransferSubmittedModalVisible, setIsTransferSubmittedModalVisible] = useState(false);
+  let parsedReceiver = ethers.constants.AddressZero;
+  if (ethers.utils.isAddress(receiver)) {
+    parsedReceiver = receiver;
+  }
+
+  const gmxAddress = getContract(chainId, "GMX");
+  const gmxVesterAddress = getContract(chainId, "GmxVester");
+  const glpVesterAddress = getContract(chainId, "GlpVester");
+
+  const rewardRouterAddress = getContract(chainId, "RewardRouter");
+
+  const { data: gmxVesterBalance } = useSWR(active && [active, chainId, gmxVesterAddress, "balanceOf", account], {
+    fetcher: contractFetcher(library, Token),
+  });
+
+  const { data: glpVesterBalance } = useSWR(active && [active, chainId, glpVesterAddress, "balanceOf", account], {
+    fetcher: contractFetcher(library, Token),
+  });
+
+  const stakedGmxTrackerAddress = getContract(chainId, "StakedGmxTracker");
+  const { data: cumulativeGmxRewards } = useSWR(
+    [active, chainId, stakedGmxTrackerAddress, "cumulativeRewards", parsedReceiver],
+    {
+      fetcher: contractFetcher(library, RewardTracker),
+    }
+  );
+
+  const stakedGlpTrackerAddress = getContract(chainId, "StakedGlpTracker");
+  const { data: cumulativeGlpRewards } = useSWR(
+    [active, chainId, stakedGlpTrackerAddress, "cumulativeRewards", parsedReceiver],
+    {
+      fetcher: contractFetcher(library, RewardTracker),
+    }
+  );
+
+  const { data: transferredCumulativeGmxRewards } = useSWR(
+    [active, chainId, gmxVesterAddress, "transferredCumulativeRewards", parsedReceiver],
+    {
+      fetcher: contractFetcher(library, Vester),
+    }
+  );
+
+  const { data: transferredCumulativeGlpRewards } = useSWR(
+    [active, chainId, glpVesterAddress, "transferredCumulativeRewards", parsedReceiver],
+    {
+      fetcher: contractFetcher(library, Vester),
+    }
+  );
+
+  const { data: pendingReceiver } = useSWR(
+    active && [active, chainId, rewardRouterAddress, "pendingReceivers", account],
+    {
+      fetcher: contractFetcher(library, RewardRouter),
+    }
+  );
+
+  const { data: gmxAllowance } = useSWR(
+    active && [active, chainId, gmxAddress, "allowance", account, stakedGmxTrackerAddress],
+    {
+      fetcher: contractFetcher(library, Token),
+    }
+  );
+
+  const { data: gmxStaked } = useSWR(
+    active && [active, chainId, stakedGmxTrackerAddress, "depositBalances", account, gmxAddress],
+    {
+      fetcher: contractFetcher(library, RewardTracker),
+    }
+  );
+
+  const needApproval = gmxAllowance && gmxStaked && gmxStaked.gt(gmxAllowance);
+
+  const hasVestedGmx = gmxVesterBalance && gmxVesterBalance.gt(0);
+  const hasVestedGlp = glpVesterBalance && glpVesterBalance.gt(0);
+  const hasStakedGmx =
+    (cumulativeGmxRewards && cumulativeGmxRewards.gt(0)) ||
+    (transferredCumulativeGmxRewards && transferredCumulativeGmxRewards.gt(0));
+  const hasStakedGlp =
+    (cumulativeGlpRewards && cumulativeGlpRewards.gt(0)) ||
+    (transferredCumulativeGlpRewards && transferredCumulativeGlpRewards.gt(0));
+  const hasPendingReceiver = pendingReceiver && pendingReceiver !== ethers.constants.AddressZero;
+
+  const getError = () => {
+    if (!account) {
+      return `Wallet is not connected`;
+    }
+    if (hasVestedGmx) {
+      return `Vested GMX not withdrawn`;
+    }
+    if (hasVestedGlp) {
+      return `Vested GLP not withdrawn`;
+    }
+    if (!receiver || receiver.length === 0) {
+      return `Enter Receiver Address`;
+    }
+    if (!ethers.utils.isAddress(receiver)) {
+      return `Invalid Receiver Address`;
+    }
+    if (hasStakedGmx || hasStakedGlp) {
+      return `Invalid Receiver`;
+    }
+    if ((parsedReceiver || "").toString().toLowerCase() === (account || "").toString().toLowerCase()) {
+      return `Self-transfer not supported`;
+    }
+
+    if (
+      (parsedReceiver || "").length > 0 &&
+      (parsedReceiver || "").toString().toLowerCase() === (pendingReceiver || "").toString().toLowerCase()
+    ) {
+      return `Transfer already initiated`;
+    }
+  };
+
+  const isPrimaryEnabled = () => {
+    const error = getError();
+    if (error) {
+      return false;
+    }
+    if (isApproving) {
+      return false;
+    }
+    if (isTransferring) {
+      return false;
+    }
+    return true;
+  };
+
+  const getPrimaryText = () => {
+    const error = getError();
+    if (error) {
+      return error;
+    }
+    if (needApproval) {
+      return `Approve GMX`;
+    }
+    if (isApproving) {
+      return `Approving...`;
+    }
+    if (isTransferring) {
+      return `Transferring`;
+    }
+
+    return `Begin Transfer`;
+  };
+
+  const onClickPrimary = () => {
+    if (needApproval) {
+      approveTokens({
+        setIsApproving,
+        library,
+        tokenAddress: gmxAddress,
+        spender: stakedGmxTrackerAddress,
+        chainId,
+      });
+      return;
+    }
+
+    setIsTransferring(true);
+    const contract = new ethers.Contract(rewardRouterAddress, RewardRouter.abi, library.getSigner());
+
+    callContract(chainId, contract, "signalTransfer", [parsedReceiver], {
+      sentMsg: `Transfer submitted!`,
+      failMsg: `Transfer failed.`,
+      setPendingTxns,
+    })
+      .then(async (res) => {
+        setIsTransferSubmittedModalVisible(true);
+      })
+      .finally(() => {
+        setIsTransferring(false);
+      });
+  };
+
+  const completeTransferLink = `/complete_account_transfer/${account}/${parsedReceiver}`;
+  const pendingTransferLink = `/complete_account_transfer/${account}/${pendingReceiver}`;
+
+  return (
+    <div className="BeginAccountTransfer Page page-layout">
+      <Modal
+        isVisible={isTransferSubmittedModalVisible}
+        setIsVisible={setIsTransferSubmittedModalVisible}
+        label={`Transfer Submitted`}
+      >
+        <span>Your transfer has been initiated.</span>
+        <br />
+        <br />
+        <Link className="App-cta" to={completeTransferLink}>
+          <span>Continue</span>
+        </Link>
+      </Modal>
+      <div className="Page-title-section">
+        <div className="Page-title">
+          <span>Transfer Account</span>
+        </div>
+        <div className="Page-description">
+          <span>
+            Please only use this for full account transfers.
+            <br />
+            This will transfer all your GMX, esGMX, GLP and Multiplier Points to your new account.
+            <br />
+            Transfers are only supported if the receiving account has not staked GMX or GLP tokens before.
+            <br />
+            Transfers are one-way, you will not be able to transfer staked tokens back to the sending account.
+          </span>
+        </div>
+        {hasPendingReceiver && (
+          <div className="Page-description">
+            <span>
+              You have a <Link to={pendingTransferLink}>pending transfer</Link> to {pendingReceiver}.
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="Page-content">
+        <div className="input-form">
+          <div className="input-row">
+            <label className="input-label">
+              <span>Receiver Address</span>
+            </label>
+            <div>
+              <input
+                type="text"
+                value={receiver}
+                onChange={(e) => setReceiver(e.target.value)}
+                className="text-input"
+              />
+            </div>
+          </div>
+          <div className="BeginAccountTransfer-validations">
+            <ValidationRow isValid={!hasVestedGmx}>
+              <span>Sender has withdrawn all tokens from GMX Vesting Vault</span>
+            </ValidationRow>
+            <ValidationRow isValid={!hasVestedGlp}>
+              <span>Sender has withdrawn all tokens from GLP Vesting Vault</span>
+            </ValidationRow>
+            <ValidationRow isValid={!hasStakedGmx}>
+              <span>Receiver has not staked GMX tokens before</span>
+            </ValidationRow>
+            <ValidationRow isValid={!hasStakedGlp}>
+              <span>Receiver has not staked GLP tokens before</span>
+            </ValidationRow>
+          </div>
+          <div className="input-row">
+            <Button
+              variant="primary-action"
+              className="w-full"
+              disabled={!isPrimaryEnabled()}
+              onClick={() => onClickPrimary()}
+            >
+              {getPrimaryText()}
+            </Button>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+}

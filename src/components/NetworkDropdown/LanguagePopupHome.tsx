@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import ModalWithPortal from "../Modal/ModalWithPortal";
-import { t } from "@lingui/macro";
+
 import cx from "classnames";
 import "./NetworkDropdown.css";
 import language24Icon from "img/ic_language24.svg";
@@ -27,7 +27,7 @@ export default function LanguagePopupHome() {
         className="language-popup"
         isVisible={isLanguageModalOpen}
         setIsVisible={setIsLanguageModalOpen}
-        label={t`Select Language`}
+        label={`Select Language`}
       >
         <LanguageModalContent currentLanguage={currentLanguage} />
       </ModalWithPortal>

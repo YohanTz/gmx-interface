@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import Button from "components/Button/Button";
@@ -197,16 +196,16 @@ export function TradeBox(p: Props) {
 
   const tradeTypeLabels = useMemo(() => {
     return {
-      [TradeType.Long]: t`Long`,
-      [TradeType.Short]: t`Short`,
-      [TradeType.Swap]: t`Swap`,
+      [TradeType.Long]: `Long`,
+      [TradeType.Short]: `Short`,
+      [TradeType.Swap]: `Swap`,
     };
   }, []);
 
   const tradeModeLabels = {
-    [TradeMode.Market]: t`Market`,
-    [TradeMode.Limit]: t`Limit`,
-    [TradeMode.Trigger]: t`Trigger`,
+    [TradeMode.Market]: `Market`,
+    [TradeMode.Limit]: `Limit`,
+    [TradeMode.Trigger]: `Trigger`,
   };
 
   const { chainId } = useChainId();
@@ -755,14 +754,14 @@ export function TradeBox(p: Props) {
 
     if (isMarket) {
       if (isSwap) {
-        return t`Swap ${fromToken?.symbol}`;
+        return `Swap ${fromToken?.symbol}`;
       } else {
         return `${tradeTypeLabels[tradeType!]} ${toToken?.symbol}`;
       }
     } else if (isLimit) {
-      return t`Create Limit order`;
+      return `Create Limit order`;
     } else {
-      return t`Create Trigger order`;
+      return `Create Trigger order`;
     }
   }, [error, fromToken?.symbol, isLimit, isMarket, isSwap, toToken?.symbol, tradeType, tradeTypeLabels]);
 
@@ -945,9 +944,9 @@ export function TradeBox(p: Props) {
     return (
       <>
         <BuyInputSection
-          topLeftLabel={t`Pay`}
+          topLeftLabel={`Pay`}
           topLeftValue={fromUsd?.gt(0) ? formatUsd(isIncrease ? increaseAmounts?.initialCollateralUsd : fromUsd) : ""}
-          topRightLabel={t`Balance`}
+          topRightLabel={`Balance`}
           topRightValue={formatTokenAmount(fromToken?.balance, fromToken?.decimals, "", {
             useCommas: true,
           })}
@@ -962,7 +961,7 @@ export function TradeBox(p: Props) {
         >
           {fromTokenAddress && (
             <TokenSelector
-              label={t`Pay`}
+              label={`Pay`}
               chainId={chainId}
               tokenAddress={fromTokenAddress}
               onSelectToken={(token) => onSelectFromTokenAddress(token.address)}
@@ -984,9 +983,9 @@ export function TradeBox(p: Props) {
 
         {isSwap && (
           <BuyInputSection
-            topLeftLabel={t`Receive`}
+            topLeftLabel={`Receive`}
             topLeftValue={swapAmounts?.usdOut.gt(0) ? formatUsd(swapAmounts?.usdOut) : ""}
-            topRightLabel={t`Balance`}
+            topRightLabel={`Balance`}
             topRightValue={formatTokenAmount(toToken?.balance, toToken?.decimals, "", {
               useCommas: true,
             })}
@@ -999,7 +998,7 @@ export function TradeBox(p: Props) {
           >
             {toTokenAddress && (
               <TokenSelector
-                label={t`Receive`}
+                label={`Receive`}
                 chainId={chainId}
                 tokenAddress={toTokenAddress}
                 onSelectToken={(token) => onSelectToTokenAddress(token.address)}
@@ -1023,7 +1022,7 @@ export function TradeBox(p: Props) {
                 ? formatUsd(increaseAmounts?.sizeDeltaUsd, { fallbackToZero: true })
                 : ""
             }
-            topRightLabel={t`Leverage`}
+            topRightLabel={`Leverage`}
             topRightValue={formatLeverage(isLeverageEnabled ? leverage : increaseAmounts?.estimatedLeverage) || "-"}
             inputValue={toTokenInputValue}
             onInputValueChange={(e) => {
@@ -1056,7 +1055,7 @@ export function TradeBox(p: Props) {
   function renderDecreaseSizeInput() {
     return (
       <BuyInputSection
-        topLeftLabel={t`Close`}
+        topLeftLabel={`Close`}
         topRightLabel={existingPosition?.sizeInUsd ? `Max` : undefined}
         topRightValue={existingPosition?.sizeInUsd ? formatUsd(existingPosition.sizeInUsd) : undefined}
         inputValue={closeSizeInputValue}
@@ -1077,8 +1076,8 @@ export function TradeBox(p: Props) {
   function renderTriggerPriceInput() {
     return (
       <BuyInputSection
-        topLeftLabel={t`Price`}
-        topRightLabel={t`Mark`}
+        topLeftLabel={`Price`}
+        topRightLabel={`Mark`}
         topRightValue={formatUsd(markPrice, {
           displayDecimals: toToken?.priceDecimals,
         })}
@@ -1098,8 +1097,8 @@ export function TradeBox(p: Props) {
   function renderTriggerRatioInput() {
     return (
       <BuyInputSection
-        topLeftLabel={t`Price`}
-        topRightLabel={t`Mark`}
+        topLeftLabel={`Price`}
+        topRightLabel={`Mark`}
         topRightValue={formatAmount(markRatio?.ratio, USD_DECIMALS, 4)}
         onClickTopRightLabel={() => {
           setTriggerRatioInputValue(formatAmount(markRatio?.ratio, USD_DECIMALS, 10));
@@ -1131,7 +1130,7 @@ export function TradeBox(p: Props) {
               setIsChecked={setIsLeverageEnabled}
             >
               <span className="muted">
-                <Trans>Leverage slider</Trans>
+                <span>Leverage slider</span>
               </span>
             </ToggleSwitch>
 
@@ -1143,10 +1142,10 @@ export function TradeBox(p: Props) {
         {isTrigger && (
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={t`Market`}
+            label={`Market`}
             value={
               <MarketSelector
-                label={t`Market`}
+                label={`Market`}
                 className="SwapBox-info-dropdown"
                 selectedIndexName={toToken ? getMarketIndexName({ indexToken: toToken, isSpotOnly: false }) : undefined}
                 markets={sortedAllMarkets || []}
@@ -1181,7 +1180,7 @@ export function TradeBox(p: Props) {
         {isTrigger && existingPosition?.leverage && (
           <Checkbox asRow isChecked={keepLeverage} setIsChecked={setKeepLeverage}>
             <span className="muted font-sm">
-              <Trans>Keep leverage at {formatLeverage(existingPosition.leverage)} </Trans>
+              <span>Keep leverage at {formatLeverage(existingPosition.leverage)} </span>
             </span>
           </Checkbox>
         )}
@@ -1195,7 +1194,7 @@ export function TradeBox(p: Props) {
       <>
         <ExchangeInfoRow
           className="SwapBox-info-row"
-          label={t`Leverage`}
+          label={`Leverage`}
           value={
             nextPositionValues?.nextLeverage && increaseAmounts?.sizeDeltaUsd.gt(0) ? (
               <ValueTransition
@@ -1210,7 +1209,7 @@ export function TradeBox(p: Props) {
 
         <ExchangeInfoRow
           className="SwapBox-info-row"
-          label={t`Entry Price`}
+          label={`Entry Price`}
           value={
             nextPositionValues?.nextEntryPrice || existingPosition?.entryPrice ? (
               <ValueTransition
@@ -1232,7 +1231,7 @@ export function TradeBox(p: Props) {
         {isMarket && (
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={t`Price Impact`}
+            label={`Price Impact`}
             value={
               <span className={cx({ positive: increaseAmounts?.acceptablePriceDeltaBps?.gt(0) })}>
                 {formatPercentage(increaseAmounts?.acceptablePriceDeltaBps, { signed: true }) || "-"}
@@ -1244,7 +1243,7 @@ export function TradeBox(p: Props) {
         {isLimit && (
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={t`Acceptable Price Impact`}
+            label={`Acceptable Price Impact`}
             value={
               <span
                 className="TradeBox-acceptable-price-impact"
@@ -1261,7 +1260,7 @@ export function TradeBox(p: Props) {
 
         <ExchangeInfoRow
           className="SwapBox-info-row"
-          label={t`Acceptable Price`}
+          label={`Acceptable Price`}
           value={
             increaseAmounts?.sizeDeltaUsd.gt(0)
               ? formatAcceptablePrice(increaseAmounts.acceptablePrice, {
@@ -1273,7 +1272,7 @@ export function TradeBox(p: Props) {
 
         <ExchangeInfoRow
           className="SwapBox-info-row"
-          label={t`Liq. Price`}
+          label={`Liq. Price`}
           value={
             <ValueTransition
               from={
@@ -1307,7 +1306,7 @@ export function TradeBox(p: Props) {
         {existingPosition && (
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={t`Leverage`}
+            label={`Leverage`}
             value={
               existingPosition.sizeInUsd.eq(decreaseAmounts?.sizeDeltaUsd || 0) ? (
                 "-"
@@ -1324,7 +1323,7 @@ export function TradeBox(p: Props) {
         {existingPosition?.sizeInUsd.gt(0) && (
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={t`Size`}
+            label={`Size`}
             value={
               <ValueTransition
                 from={formatUsd(existingPosition.sizeInUsd)!}
@@ -1337,7 +1336,7 @@ export function TradeBox(p: Props) {
         {existingPosition && (
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={t`Collateral (${existingPosition?.collateralToken?.symbol})`}
+            label={`Collateral (${existingPosition?.collateralToken?.symbol})`}
             value={
               <ValueTransition
                 from={formatUsd(existingPosition.collateralUsd)}
@@ -1349,7 +1348,7 @@ export function TradeBox(p: Props) {
 
         <ExchangeInfoRow
           className="SwapBox-info-row"
-          label={t`Mark Price`}
+          label={`Mark Price`}
           value={
             formatUsd(markPrice, {
               displayDecimals: toToken?.priceDecimals,
@@ -1359,7 +1358,7 @@ export function TradeBox(p: Props) {
 
         <ExchangeInfoRow
           className="SwapBox-info-row"
-          label={t`Trigger Price`}
+          label={`Trigger Price`}
           value={`${decreaseAmounts?.triggerThresholdType || ""} ${
             formatUsd(decreaseAmounts?.triggerPrice, {
               displayDecimals: toToken?.priceDecimals,
@@ -1369,7 +1368,7 @@ export function TradeBox(p: Props) {
 
         <ExchangeInfoRow
           className="SwapBox-info-row"
-          label={t`Acceptable Price Impact`}
+          label={`Acceptable Price Impact`}
           value={
             decreaseAmounts?.triggerOrderType === OrderType.StopLossDecrease ? (
               "NA"
@@ -1389,7 +1388,7 @@ export function TradeBox(p: Props) {
 
         <ExchangeInfoRow
           className="SwapBox-info-row"
-          label={t`Acceptable Price`}
+          label={`Acceptable Price`}
           value={
             decreaseAmounts?.sizeDeltaUsd.gt(0)
               ? formatAcceptablePrice(decreaseAmounts?.acceptablePrice, {
@@ -1402,7 +1401,7 @@ export function TradeBox(p: Props) {
         {existingPosition && (
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={t`Liq. Price`}
+            label={`Liq. Price`}
             value={
               decreaseAmounts?.isFullClose ? (
                 "-"

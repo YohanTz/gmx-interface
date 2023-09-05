@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import Loader from "components/Common/Loader";
 import SEO from "components/Common/SEO";
@@ -61,8 +60,8 @@ function Referrals({ connectWallet, setPendingTxns, pendingTxns }) {
 
   function handleCreateReferralCode(referralCode) {
     return registerReferralCode(chainId, referralCode, library, {
-      sentMsg: t`Referral code submitted!`,
-      failMsg: t`Referral code creation failed.`,
+      sentMsg: `Referral code submitted!`,
+      failMsg: `Referral code creation failed.`,
       pendingTxns,
     });
   }
@@ -121,21 +120,21 @@ function Referrals({ connectWallet, setPendingTxns, pendingTxns }) {
       />
     );
   }
-  const TAB_OPTION_LABELS = { [TRADERS]: t`Traders`, [AFFILIATES]: t`Affiliates` };
+  const TAB_OPTION_LABELS = { [TRADERS]: `Traders`, [AFFILIATES]: `Affiliates` };
 
   return (
-    <SEO title={getPageTitle(t`Referrals`)}>
+    <SEO title={getPageTitle(`Referrals`)}>
       <div className="default-container page-layout Referrals">
         <PageTitle
           isTop
-          title={t`Referrals`}
+          title={`Referrals`}
           subtitle={
-            <Trans>
+            <span>
               Get fee discounts and earn rebates through the GMX referral program.
               <br />
               For more information, please read the{" "}
               <ExternalLink href="https://docs.gmx.io/docs/referrals">referral program details</ExternalLink>.
-            </Trans>
+            </span>
           }
         />
         <div className="referral-tab-container">

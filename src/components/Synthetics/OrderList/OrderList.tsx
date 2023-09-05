@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import Checkbox from "components/Checkbox/Checkbox";
 import { MarketsInfoData } from "domain/synthetics/markets";
@@ -66,7 +65,7 @@ export function OrderList(p: Props) {
     <>
       {orders.length === 0 && (
         <div className="Exchange-empty-positions-list-note App-card small">
-          {p.isLoading ? t`Loading...` : t`No open orders`}
+          {p.isLoading ? `Loading...` : `No open orders`}
         </div>
       )}
       <div className="Exchange-list Orders small">
@@ -107,28 +106,28 @@ export function OrderList(p: Props) {
 
             <th>
               <div>
-                <Trans>Type</Trans>
+                <span>Type</span>
               </div>
             </th>
             <th>
               <div>
-                <Trans>Order</Trans>
+                <span>Order</span>
               </div>
             </th>
             <th>
               <div>
-                <Trans>Trigger Price</Trans>
+                <span>Trigger Price</span>
               </div>
             </th>
             <th>
               <div>
-                <Trans>Mark Price</Trans>
+                <span>Mark Price</span>
               </div>
             </th>
           </tr>
           {orders.length === 0 && (
             <tr>
-              <td colSpan={5}>{p.isLoading ? t`Loading...` : t`No open orders`}</td>
+              <td colSpan={5}>{p.isLoading ? `Loading...` : `No open orders`}</td>
             </tr>
           )}
           {!p.isLoading &&

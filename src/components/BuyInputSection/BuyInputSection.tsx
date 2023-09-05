@@ -1,7 +1,7 @@
 import "./BuyInputSection.scss";
 import React, { useRef, ReactNode, ChangeEvent, useState } from "react";
 import cx from "classnames";
-import { Trans } from "@lingui/macro";
+
 import { PERCENTAGE_SUGGESTIONS } from "config/ui";
 
 type Props = {
@@ -100,7 +100,7 @@ export default function BuyInputSection(props: Props) {
             {staticInput && <div className="InputSection-static-input">{inputValue}</div>}
             {showMaxButton && (
               <button type="button" className="Exchange-swap-max" onClick={onClickMax}>
-                <Trans>MAX</Trans>
+                <span>MAX</span>
               </button>
             )}
           </div>

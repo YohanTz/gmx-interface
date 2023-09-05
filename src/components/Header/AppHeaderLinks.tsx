@@ -1,6 +1,6 @@
 import React from "react";
 import { FiX } from "react-icons/fi";
-import { Trans } from "@lingui/macro";
+
 import { Link } from "react-router-dom";
 
 import { HeaderLink } from "./HeaderLink";
@@ -45,17 +45,17 @@ export function AppHeaderLinks({
           redirectPopupTimestamp={redirectPopupTimestamp}
           showRedirectModal={showRedirectModal}
         >
-          <Trans>Dashboard</Trans>
+          <span>Dashboard</span>
         </HeaderLink>
       </div>
       <div className="App-header-link-container">
         <HeaderLink to="/earn" redirectPopupTimestamp={redirectPopupTimestamp} showRedirectModal={showRedirectModal}>
-          <Trans>Earn</Trans>
+          <span>Earn</span>
         </HeaderLink>
       </div>
       <div className="App-header-link-container">
         <HeaderLink to="/buy" redirectPopupTimestamp={redirectPopupTimestamp} showRedirectModal={showRedirectModal}>
-          <Trans>Buy</Trans>
+          <span>Buy</span>
         </HeaderLink>
       </div>
       <div className="App-header-link-container">
@@ -64,7 +64,7 @@ export function AppHeaderLinks({
           redirectPopupTimestamp={redirectPopupTimestamp}
           showRedirectModal={showRedirectModal}
         >
-          <Trans>Referrals</Trans>
+          <span>Referrals</span>
         </HeaderLink>
       </div>
       <div className="App-header-link-container">
@@ -73,19 +73,19 @@ export function AppHeaderLinks({
           redirectPopupTimestamp={redirectPopupTimestamp}
           showRedirectModal={showRedirectModal}
         >
-          <Trans>Ecosystem</Trans>
+          <span>Ecosystem</span>
         </HeaderLink>
       </div>
       <div className="App-header-link-container">
         <ExternalLink href="https://docs.gmx.io/">
-          <Trans>Docs</Trans>
+          <span>Docs</span>
         </ExternalLink>
       </div>
       {small && !isHomeSite() && (
         <div className="App-header-link-container">
           {/* eslint-disable-next-line */}
           <a href="#" onClick={openSettings}>
-            <Trans>Settings</Trans>
+            <span>Settings</span>
           </a>
         </div>
       )}

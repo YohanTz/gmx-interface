@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import Button from "components/Button/Button";
 import Modal from "components/Modal/Modal";
 import { helperToast } from "lib/helperToast";
@@ -20,13 +19,13 @@ export function AcceptbablePriceImpactEditor(p: Props) {
   function onSubmit() {
     const parsed = parseFloat(inputValue);
     if (isNaN(parsed)) {
-      helperToast.error(t`Invalid acceptable Price Impact value`);
+      helperToast.error(`Invalid acceptable Price Impact value`);
       return;
     }
 
     const bps = (parsed * BASIS_POINTS_DIVISOR) / 100;
     if (parseInt(bps.toString()) !== parseFloat(bps.toString())) {
-      helperToast.error(t`Max acceptable Price Impact precision is 0.01%`);
+      helperToast.error(`Max acceptable Price Impact precision is 0.01%`);
       return;
     }
 
@@ -35,10 +34,10 @@ export function AcceptbablePriceImpactEditor(p: Props) {
   }
 
   return (
-    <Modal className="App-settings" isVisible={p.isVisible} setIsVisible={p.onClose} label={t`Edit`}>
+    <Modal className="App-settings" isVisible={p.isVisible} setIsVisible={p.onClose} label={`Edit`}>
       <div className="App-settings-row">
         <div>
-          <Trans>Acceptable Price Impact</Trans>
+          <span>Acceptable Price Impact</span>
         </div>
         <div className="App-slippage-tolerance-input-container">
           <input
@@ -52,7 +51,7 @@ export function AcceptbablePriceImpactEditor(p: Props) {
         </div>
       </div>
 
-      <Button className="w-full" variant="primary-action" onClick={onSubmit}>{t`Save`}</Button>
+      <Button className="w-full" variant="primary-action" onClick={onSubmit}>{`Save`}</Button>
     </Modal>
   );
 }

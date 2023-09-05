@@ -1,5 +1,5 @@
 import { Web3Provider } from "@ethersproject/providers";
-import { plural, t } from "@lingui/macro";
+
 import ExchangeRouter from "abis/ExchangeRouter.json";
 import { getContract } from "config/contracts";
 import { ethers } from "ethers";
@@ -27,9 +27,9 @@ export async function cancelOrdersTxn(chainId: number, library: Web3Provider, p:
   });
 
   return callContract(chainId, exchangeRouter, "multicall", [multicall], {
-    sentMsg: t`Canceling ${ordersText}`,
-    successMsg: t`${ordersText} canceled`,
-    failMsg: t`Failed to cancel ${ordersText}`,
+    sentMsg: `Canceling ${ordersText}`,
+    successMsg: `${ordersText} canceled`,
+    failMsg: `Failed to cancel ${ordersText}`,
     setPendingTxns: p.setPendingTxns,
   });
 }

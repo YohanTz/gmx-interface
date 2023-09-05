@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import cx from "classnames";
 import { MarketInfo, MarketsInfoData, getMarketIndexName, getMarketPoolName } from "domain/synthetics/markets";
 import { TokensData, convertToUsd } from "domain/synthetics/tokens";
@@ -124,7 +123,7 @@ export function PoolSelector({
             className="mt-md"
             value={searchKeyword}
             setValue={(e) => setSearchKeyword(e.target.value)}
-            placeholder={t`Search Pool`}
+            placeholder={`Search Pool`}
             onKeyDown={_handleKeyDown}
           />
         )}

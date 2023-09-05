@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import Button from "components/Button/Button";
 import ExchangeInfoRow from "components/Exchange/ExchangeInfoRow";
@@ -70,10 +69,10 @@ export function ClaimAffiliatesModal(p: Props) {
 
     return (
       <div key={marketInfo.marketTokenAddress} className="App-card-content">
-        <ExchangeInfoRow className="ClaimModal-row" label={t`Market`} value={marketInfo.name} />
+        <ExchangeInfoRow className="ClaimModal-row" label={`Market`} value={marketInfo.name} />
         <ExchangeInfoRow
           className="ClaimModal-row"
-          label={t`Rewards`}
+          label={`Rewards`}
           value={
             <Tooltip
               className="ClaimModal-row-tooltip"
@@ -134,11 +133,11 @@ export function ClaimAffiliatesModal(p: Props) {
   }
 
   return (
-    <Modal className="Confirmation-box ClaimableModal" isVisible={true} setIsVisible={onClose} label={t`Confirm Claim`}>
+    <Modal className="Confirmation-box ClaimableModal" isVisible={true} setIsVisible={onClose} label={`Confirm Claim`}>
       <div className="ConfirmationBox-main text-center">Claim {formatUsd(totalClaimableFundingUsd)}</div>
       <div className="ClaimModal-content">{rewards.map(renderRewardSection)}</div>
       <Button className="w-full" variant="primary-action" onClick={onSubmit} disabled={isSubmitting}>
-        {isSubmitting ? t`Claiming...` : t`Claim`}
+        {isSubmitting ? `Claiming...` : `Claim`}
       </Button>
     </Modal>
   );

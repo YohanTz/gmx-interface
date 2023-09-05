@@ -16,7 +16,7 @@ import { bigNumberify, expandDecimals, formatAmount } from "./numbers";
 import { isValidToken } from "config/tokens";
 import { useChainId } from "./chains";
 import { isValidTimestamp } from "./dates";
-import { t } from "@lingui/macro";
+
 import { isLocal } from "config/env";
 import { BASIS_POINTS_DIVISOR } from "config/factors";
 
@@ -84,7 +84,7 @@ export function deserialize(data) {
 }
 
 export function isHomeSite() {
-  return process.env.REACT_APP_IS_HOME_SITE === "true";
+  return false;
 }
 
 export function getMarginFee(sizeDelta) {
@@ -1213,7 +1213,7 @@ export function getProcessedData(
 }
 
 export function getPageTitle(data) {
-  const title = t`Decentralized Perpetual Exchange | GMX`;
+  const title = `Decentralized Perpetual Exchange | GMX`;
   return `${data} | ${title}`;
 }
 
@@ -1259,13 +1259,14 @@ export function getTradePageUrl() {
 export function importImage(name) {
   let tokenImage = "";
 
-  try {
-    tokenImage = require("img/" + name);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
-  }
+  // try {
+  //   tokenImage = require("img/" + name);
+  // } catch (error) {
+  //   // eslint-disable-next-line no-console
+  //   console.error(error);
+  // }
 
+  // TODO @YohanTz: Fix this
   return tokenImage;
 }
 
@@ -1299,18 +1300,18 @@ export function getOrderError(account, order, positionsMap, position) {
   const positionForOrder = position ? position : getPositionForOrder(account, order, positionsMap);
 
   if (!positionForOrder) {
-    return t`No open position, order cannot be executed unless a position is opened`;
+    return `No open position, order cannot be executed unless a position is opened`;
   }
   if (positionForOrder.size.lt(order.sizeDelta)) {
-    return t`Order size is bigger than position, will only be executable if position increases`;
+    return `Order size is bigger than position, will only be executable if position increases`;
   }
 
   if (positionForOrder.size.gt(order.sizeDelta)) {
     if (positionForOrder.size.sub(order.sizeDelta).lt(positionForOrder.collateral.sub(order.collateralDelta))) {
-      return t`Order cannot be executed as it would reduce the position's leverage below 1`;
+      return `Order cannot be executed as it would reduce the position's leverage below 1`;
     }
     if (positionForOrder.size.sub(order.sizeDelta).lt(expandDecimals(5, USD_DECIMALS))) {
-      return t`Order cannot be executed as the remaining position would be smaller than $5.00`;
+      return `Order cannot be executed as the remaining position would be smaller than $5.00`;
     }
   }
 }

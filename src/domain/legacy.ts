@@ -28,7 +28,7 @@ import { getUsd } from "./tokens/utils";
 import { getProvider } from "lib/rpc";
 import { bigNumberify, expandDecimals, parseValue } from "lib/numbers";
 import { getTokenBySymbol } from "config/tokens";
-import { t } from "@lingui/macro";
+
 import { REQUIRED_UI_VERSION_KEY } from "config/localStorage";
 import { useWeb3React } from "@web3-react/core";
 
@@ -831,9 +831,9 @@ export function handleCancelOrder(chainId, library, order, opts) {
   }
 
   return func(chainId, library, order.index, {
-    successMsg: t`Order cancelled.`,
-    failMsg: t`Cancel failed.`,
-    sentMsg: t`Cancel submitted.`,
+    successMsg: `Order cancelled.`,
+    failMsg: `Cancel failed.`,
+    sentMsg: `Cancel submitted.`,
     pendingTxns: opts.pendingTxns,
     setPendingTxns: opts.setPendingTxns,
   });

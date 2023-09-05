@@ -1,5 +1,5 @@
 import Helmat from "react-helmet";
-import { Plural, Trans, t } from "@lingui/macro";
+
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import Checkbox from "components/Checkbox/Checkbox";
@@ -253,7 +253,7 @@ export function SyntheticsPage(p: Props) {
   function onSelectPositionClick(key: string, tradeMode?: TradeMode) {
     const position = getByKey(positionsInfoData, key);
     setActivePosition(getByKey(positionsInfoData, key), tradeMode);
-    const message = t`${position?.isLong ? "Long" : "Short"} ${position?.marketInfo.name} market selected`;
+    const message = `${position?.isLong ? "Long" : "Short"} ${position?.marketInfo.name} market selected`;
     helperToast.success(message);
   }
 
@@ -286,10 +286,10 @@ export function SyntheticsPage(p: Props) {
               <Tab
                 options={Object.keys(ListSection)}
                 optionLabels={{
-                  [ListSection.Positions]: t`Positions${positionsCount ? ` (${positionsCount})` : ""}`,
-                  [ListSection.Orders]: t`Orders${ordersCount ? ` (${ordersCount})` : ""}`,
-                  [ListSection.Trades]: t`Trades`,
-                  [ListSection.Claims]: t`Claims`,
+                  [ListSection.Positions]: `Positions${positionsCount ? ` (${positionsCount})` : ""}`,
+                  [ListSection.Orders]: `Orders${ordersCount ? ` (${ordersCount})` : ""}`,
+                  [ListSection.Trades]: `Trades`,
+                  [ListSection.Claims]: `Claims`,
                 }}
                 option={listSection}
                 onChange={(section) => setListSection(section)}
@@ -313,7 +313,7 @@ export function SyntheticsPage(p: Props) {
                   className={cx("muted chart-positions", { active: savedShouldShowPositionLines })}
                 >
                   <span>
-                    <Trans>Chart positions</Trans>
+                    <span>Chart positions</span>
                   </span>
                 </Checkbox>
               </div>
@@ -412,10 +412,10 @@ export function SyntheticsPage(p: Props) {
             <Tab
               options={Object.keys(ListSection)}
               optionLabels={{
-                [ListSection.Positions]: t`Positions${positionsCount ? ` (${positionsCount})` : ""}`,
-                [ListSection.Orders]: t`Orders${ordersCount ? ` (${ordersCount})` : ""}`,
-                [ListSection.Trades]: t`Trades`,
-                [ListSection.Claims]: t`Claims`,
+                [ListSection.Positions]: `Positions${positionsCount ? ` (${positionsCount})` : ""}`,
+                [ListSection.Orders]: `Orders${ordersCount ? ` (${ordersCount})` : ""}`,
+                [ListSection.Trades]: `Trades`,
+                [ListSection.Claims]: `Claims`,
               }}
               option={listSection}
               onChange={(section) => setListSection(section)}

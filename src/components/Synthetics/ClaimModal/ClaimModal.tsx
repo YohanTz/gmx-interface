@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import Modal from "components/Modal/Modal";
 import { MarketInfo, MarketsInfoData, getTotalClaimableFundingUsd } from "domain/synthetics/markets";
@@ -62,10 +61,10 @@ export function ClaimModal(p: Props) {
 
     return (
       <div key={market.marketTokenAddress} className="App-card-content">
-        <ExchangeInfoRow className="ClaimModal-row" label={t`Market`} value={marketName} />
+        <ExchangeInfoRow className="ClaimModal-row" label={`Market`} value={marketName} />
         <ExchangeInfoRow
           className="ClaimModal-row"
-          label={t`Funding fee`}
+          label={`Funding fee`}
           value={
             <Tooltip
               className="ClaimModal-row-tooltip"
@@ -124,12 +123,12 @@ export function ClaimModal(p: Props) {
       className="Confirmation-box ClaimableModal"
       isVisible={p.isVisible}
       setIsVisible={onClose}
-      label={t`Confirm Claim`}
+      label={`Confirm Claim`}
     >
       <div className="ConfirmationBox-main text-center">Claim {formatUsd(totalClaimableFundingUsd)}</div>
       <div className="ClaimModal-content">{markets.map(renderMarketSection)}</div>
       <Button className="w-full" variant="primary-action" onClick={onSubmit} disabled={isSubmitting}>
-        {isSubmitting ? t`Claiming...` : t`Claim`}
+        {isSubmitting ? `Claiming...` : `Claim`}
       </Button>
     </Modal>
   );

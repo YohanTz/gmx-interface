@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import Footer from "components/Footer/Footer";
 import "./BuyGMX.css";
 import { useWeb3React } from "@web3-react/core";
-import { Trans, t } from "@lingui/macro";
+
 import Button from "components/Button/Button";
 import { ARBITRUM, AVALANCHE, getChainName, getConstant } from "config/chains";
 import { switchNetwork } from "lib/wallets";
@@ -50,16 +50,16 @@ export default function BuyGMX() {
         <div className="section-title-block">
           <div className="section-title-content">
             <div className="Page-title">
-              <Trans>Buy GMX on {chainName}</Trans>
+              <span>Buy GMX on {chainName}</span>
               <img className="ml-xs Page-title-icon" src={icons.network} alt={chainName} />
             </div>
             <div className="Page-description">
-              <Trans>Choose to buy from decentralized or centralized exchanges.</Trans>
+              <span>Choose to buy from decentralized or centralized exchanges.</span>
               <br />
-              <Trans>
+              <span>
                 To purchase GMX on the {isArbitrum ? "Avalanche" : "Arbitrum"} blockchain, please{" "}
                 <span onClick={() => onNetworkSelect(isArbitrum ? AVALANCHE : ARBITRUM)}>change your network</span>.
-              </Trans>
+              </span>
             </div>
           </div>
         </div>
@@ -72,11 +72,11 @@ export default function BuyGMX() {
           <div className="section-title-block mt-top">
             <div className="section-title-content">
               <div className="Page-title">
-                <Trans>Buy or Transfer ETH to Arbitrum</Trans>
+                <span>Buy or Transfer ETH to Arbitrum</span>
                 <img className="ml-xs Page-title-icon" src={icons.network} alt={chainName} />
               </div>
               <div className="Page-description">
-                <Trans>Buy ETH directly on Arbitrum or transfer it there.</Trans>
+                <span>Buy ETH directly on Arbitrum or transfer it there.</span>
               </div>
             </div>
           </div>
@@ -84,30 +84,30 @@ export default function BuyGMX() {
           <div className="section-title-block mt-top">
             <div className="section-title-content">
               <div className="Page-title">
-                <Trans>Buy or Transfer AVAX to Avalanche</Trans>
+                <span>Buy or Transfer AVAX to Avalanche</span>
                 <img className="ml-xs Page-title-icon" src={icons.network} alt={chainName} />
               </div>
               <div className="Page-description">
-                <Trans>Buy AVAX directly to Avalanche or transfer it there.</Trans>
+                <span>Buy AVAX directly to Avalanche or transfer it there.</span>
               </div>
             </div>
           </div>
         )}
 
         <div className="cards-row">
-          <Card title={t`Buy ${nativeTokenSymbol}`}>
+          <Card title={`Buy ${nativeTokenSymbol}`}>
             <div className="App-card-content">
               <div className="BuyGMXGLP-description">
                 {isArbitrum ? (
-                  <Trans>
+                  <span>
                     You can buy ETH directly on{" "}
                     <ExternalLink href={externalLinks.networkWebsite}>Arbitrum</ExternalLink> using these options:
-                  </Trans>
+                  </span>
                 ) : (
-                  <Trans>
+                  <span>
                     You can buy AVAX directly on{" "}
                     <ExternalLink href={externalLinks.networkWebsite}>Avalanche</ExternalLink> using these options:
-                  </Trans>
+                  </span>
                 )}
               </div>
               <div className="buttons-group">
@@ -130,15 +130,15 @@ export default function BuyGMX() {
               </div>
             </div>
           </Card>
-          <Card title={t`Transfer ${nativeTokenSymbol}`}>
+          <Card title={`Transfer ${nativeTokenSymbol}`}>
             <div className="App-card-content">
               {isArbitrum ? (
                 <div className="BuyGMXGLP-description">
-                  <Trans>You can transfer ETH from other networks to Arbitrum using any of the below options:</Trans>
+                  <span>You can transfer ETH from other networks to Arbitrum using any of the below options:</span>
                 </div>
               ) : (
                 <div className="BuyGMXGLP-description">
-                  <Trans>You can transfer AVAX from other networks to Avalanche using any of the below options:</Trans>
+                  <span>You can transfer AVAX from other networks to Avalanche using any of the below options:</span>
                 </div>
               )}
               <div className="buttons-group">
@@ -171,12 +171,12 @@ export default function BuyGMX() {
 function DecentralisedExchanges({ chainId, externalLinks }) {
   const isArbitrum = chainId === ARBITRUM;
   return (
-    <Card title={t`Buy GMX from decentralized exchanges`}>
+    <Card title={`Buy GMX from decentralized exchanges`}>
       <div className="App-card-content">
         {isArbitrum ? (
           <div className="exchange-info-group">
             <div className="BuyGMXGLP-description">
-              <Trans>Buy GMX from Uniswap (make sure to select Arbitrum):</Trans>
+              <span>Buy GMX from Uniswap (make sure to select Arbitrum):</span>
             </div>
             <div className="buttons-group col-1">
               <Button
@@ -193,7 +193,7 @@ function DecentralisedExchanges({ chainId, externalLinks }) {
         ) : (
           <div className="exchange-info-group">
             <div className="BuyGMXGLP-description">
-              <Trans>Buy GMX from Traderjoe:</Trans>
+              <span>Buy GMX from Traderjoe:</span>
             </div>
             <div className="buttons-group col-1">
               <Button
@@ -210,7 +210,7 @@ function DecentralisedExchanges({ chainId, externalLinks }) {
         )}
         <div className="exchange-info-group">
           <div className="BuyGMXGLP-description">
-            <Trans>Buy GMX using Decentralized Exchange Aggregators:</Trans>
+            <span>Buy GMX using Decentralized Exchange Aggregators:</span>
           </div>
           <div className="buttons-group">
             {DECENTRALISED_AGGRIGATORS.filter((e) => chainId in e.links).map((exchange) => {
@@ -233,7 +233,7 @@ function DecentralisedExchanges({ chainId, externalLinks }) {
         </div>
         <div className="exchange-info-group">
           <div className="BuyGMXGLP-description">
-            <Trans>Buy GMX using any token from any network:</Trans>
+            <span>Buy GMX using any token from any network:</span>
           </div>
           <div className="buttons-group">
             {GMX_FROM_ANY_NETWORKS.filter((e) => chainId in e.links).map((exchange) => {
@@ -257,7 +257,7 @@ function DecentralisedExchanges({ chainId, externalLinks }) {
         {isArbitrum && (
           <div className="exchange-info-group">
             <div className="BuyGMXGLP-description">
-              <Trans>GMX bonds can be bought on Bond Protocol with a discount and a small vesting period:</Trans>
+              <span>GMX bonds can be bought on Bond Protocol with a discount and a small vesting period:</span>
             </div>
             <div className="buttons-group col-1">
               <Button
@@ -279,11 +279,11 @@ function DecentralisedExchanges({ chainId, externalLinks }) {
 
 function CentralisedExchanges({ chainId }) {
   return (
-    <Card title={t`Buy GMX from centralized services`}>
+    <Card title={`Buy GMX from centralized services`}>
       <div className="App-card-content">
         <div className="exchange-info-group">
           <div className="BuyGMXGLP-description">
-            <Trans>Buy GMX from centralized exchanges:</Trans>
+            <span>Buy GMX from centralized exchanges:</span>
           </div>
           <div className="buttons-group">
             {CENTRALISED_EXCHANGES.filter((e) => chainId in e.links).map((exchange) => {
@@ -307,7 +307,7 @@ function CentralisedExchanges({ chainId }) {
 
         <div className="exchange-info-group">
           <div className="BuyGMXGLP-description">
-            <Trans>Buy GMX using FIAT gateways:</Trans>
+            <span>Buy GMX using FIAT gateways:</span>
           </div>
           <div className="buttons-group col-2">
             {FIAT_GATEWAYS.filter((e) => chainId in e.links).map((exchange) => {

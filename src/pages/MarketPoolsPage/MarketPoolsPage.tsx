@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/macro";
 import SEO from "components/Common/SEO";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import Footer from "components/Footer/Footer";
@@ -60,10 +59,10 @@ export function MarketPoolsPage(p: Props) {
           title="V2 Pools"
           isTop
           subtitle={
-            <Trans>
+            <span>
               Purchase <ExternalLink href="https://docs.gmx.io/docs/providing-liquidity/v2">GM Tokens</ExternalLink> to
               earn fees from swaps and leverage trading.
-            </Trans>
+            </span>
           }
         />
         <div className="MarketPoolsPage-content">
@@ -89,7 +88,7 @@ export function MarketPoolsPage(p: Props) {
 
         <div className="Tab-title-section">
           <div className="Page-title">
-            <Trans>Select a Market</Trans>
+            <span>Select a Market</span>
           </div>
         </div>
         <GmList

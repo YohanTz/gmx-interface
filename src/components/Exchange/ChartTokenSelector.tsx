@@ -11,7 +11,6 @@ import { getUsd } from "domain/tokens";
 import { BigNumberish } from "ethers";
 import SearchInput from "components/SearchInput/SearchInput";
 import TokenIcon from "components/TokenIcon/TokenIcon";
-import { t } from "@lingui/macro";
 
 type ChartToken = Token & {
   maxInUsd?: BigNumberish;
@@ -140,8 +139,8 @@ export default function ChartTokenSelector(props: Props) {
                       <thead className="table-head">
                         <tr>
                           <th>Market</th>
-                          <th>{isSwap ? t`Max In` : t`Long Liquidity`}</th>
-                          <th>{isSwap ? t`Max Out` : t`Short Liquidity`}</th>
+                          <th>{isSwap ? `Max In` : `Long Liquidity`}</th>
+                          <th>{isSwap ? `Max Out` : `Short Liquidity`}</th>
                         </tr>
                       </thead>
                     )}

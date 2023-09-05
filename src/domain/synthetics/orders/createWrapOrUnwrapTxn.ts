@@ -3,7 +3,7 @@ import { NATIVE_TOKEN_ADDRESS, getToken, getWrappedToken } from "config/tokens";
 import { callContract } from "lib/contracts";
 import WETH from "abis/WETH.json";
 import { BigNumber, ethers } from "ethers";
-import { t } from "@lingui/macro";
+
 import { formatTokenAmount } from "lib/numbers";
 
 type WrapOrUnwrapParams = {
@@ -21,24 +21,24 @@ export function createWrapOrUnwrapTxn(chainId: number, library: Web3Provider, p:
   if (p.isWrap) {
     return callContract(chainId, contract, "deposit", [], {
       value: p.amount,
-      sentMsg: t`Swap submitted.`,
-      successMsg: t`Swapped ${formatTokenAmount(
+      sentMsg: `Swap submitted.`,
+      successMsg: `Swapped ${formatTokenAmount(
         p.amount,
         nativeToken.decimals,
         nativeToken.symbol
       )} for ${formatTokenAmount(p.amount, wrappedToken.decimals, wrappedToken.symbol)}`,
-      failMsg: t`Swap failed.`,
+      failMsg: `Swap failed.`,
       setPendingTxns: p.setPendingTxns,
     });
   } else {
     return callContract(chainId, contract, "withdraw", [p.amount], {
-      sentMsg: t`Swap submitted.`,
-      successMsg: t`Swapped ${formatTokenAmount(
+      sentMsg: `Swap submitted.`,
+      successMsg: `Swapped ${formatTokenAmount(
         p.amount,
         wrappedToken.decimals,
         wrappedToken.symbol
       )} for ${formatTokenAmount(p.amount, nativeToken.decimals, nativeToken.symbol)}`,
-      failMsg: t`Swap failed.`,
+      failMsg: `Swap failed.`,
       setPendingTxns: p.setPendingTxns,
     });
   }

@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import Token from "abis/Token.json";
 import { ApproveTokenButton } from "components/ApproveTokenButton/ApproveTokenButton";
@@ -278,11 +277,11 @@ export function PositionEditor(p: Props) {
     }
 
     if (needCollateralApproval) {
-      return t`Pending ${collateralToken?.symbol} approval`;
+      return `Pending ${collateralToken?.symbol} approval`;
     }
 
     if (isSubmitting) {
-      return t`Creating Order...`;
+      return `Creating Order...`;
     }
   }, [
     account,
@@ -414,8 +413,8 @@ export function PositionEditor(p: Props) {
   );
 
   const operationLabels = {
-    [Operation.Deposit]: t`Deposit`,
-    [Operation.Withdraw]: t`Withdraw`,
+    [Operation.Deposit]: `Deposit`,
+    [Operation.Withdraw]: `Withdraw`,
   };
 
   return (
@@ -425,9 +424,9 @@ export function PositionEditor(p: Props) {
         isVisible={position}
         setIsVisible={onClose}
         label={
-          <Trans>
-            Edit {position?.isLong ? t`Long` : t`Short`} {position?.indexToken?.symbol}
-          </Trans>
+          <span>
+            Edit {position?.isLong ? `Long` : `Short`} {position?.indexToken?.symbol}
+          </span>
         }
         allowContentTouchMove
       >
@@ -444,7 +443,7 @@ export function PositionEditor(p: Props) {
             <BuyInputSection
               topLeftLabel={operationLabels[operation]}
               topLeftValue={formatUsd(collateralDeltaUsd)}
-              topRightLabel={t`Max`}
+              topRightLabel={`Max`}
               topRightValue={
                 isDeposit
                   ? formatTokenAmount(collateralToken?.balance, collateralToken?.decimals, "", {
@@ -507,22 +506,22 @@ export function PositionEditor(p: Props) {
 
             <div className="PositionEditor-info-box">
               <ExchangeInfoRow
-                label={t`Leverage`}
+                label={`Leverage`}
                 value={<ValueTransition from={formatLeverage(position?.leverage)} to={formatLeverage(nextLeverage)} />}
               />
 
               <ExchangeInfoRow
                 isTop
-                label={t`Entry Price`}
+                label={`Entry Price`}
                 value={formatUsd(position.entryPrice, { displayDecimals: indexPriceDecimals })}
               />
               <ExchangeInfoRow
-                label={t`Mark Price`}
+                label={`Mark Price`}
                 value={formatUsd(position.markPrice, { displayDecimals: indexPriceDecimals })}
               />
 
               <ExchangeInfoRow
-                label={t`Liq Price`}
+                label={`Liq Price`}
                 value={
                   <ValueTransition
                     from={formatLiquidationPrice(position.liquidationPrice, { displayDecimals: indexPriceDecimals })}
@@ -535,19 +534,19 @@ export function PositionEditor(p: Props) {
                 }
               />
 
-              <ExchangeInfoRow isTop label={t`Size`} value={formatUsd(position.sizeInUsd)} />
+              <ExchangeInfoRow isTop label={`Size`} value={formatUsd(position.sizeInUsd)} />
 
               <div className="Exchange-info-row">
                 <div>
                   <Tooltip
                     handle={
                       <span className="Exchange-info-label">
-                        <Trans>Collateral ({position?.collateralToken?.symbol})</Trans>
+                        <span>Collateral ({position?.collateralToken?.symbol})</span>
                       </span>
                     }
                     position="left-top"
                     renderContent={() => {
-                      return <Trans>Initial Collateral (Collateral excluding Borrow and Funding Fee).</Trans>;
+                      return <span>Initial Collateral (Collateral excluding Borrow and Funding Fee).</span>;
                     }}
                   />
                 </div>
@@ -563,7 +562,7 @@ export function PositionEditor(p: Props) {
 
               {!isDeposit && (
                 <ExchangeInfoRow
-                  label={t`Receive`}
+                  label={`Receive`}
                   value={formatTokenAmountWithUsd(
                     receiveAmount,
                     receiveUsd,

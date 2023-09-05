@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import { getWrappedToken } from "config/tokens";
 import { approveTokens } from "domain/tokens";
@@ -44,7 +43,7 @@ export function ApproveTokenButton(p: Props) {
   return (
     <div className="ApproveTokenButton Checkbox fullRow" onClick={onApprove}>
       <span className="text-warning">
-        <Trans>Allow {p.tokenSymbol} to be spent</Trans>
+        <span>Allow {p.tokenSymbol} to be spent</span>
       </span>
 
       <div className="ApproveTokenButton-checkbox">

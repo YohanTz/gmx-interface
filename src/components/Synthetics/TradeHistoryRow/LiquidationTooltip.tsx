@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 import Tooltip from "components/Tooltip/Tooltip";
 import { convertToUsd } from "domain/synthetics/tokens";
@@ -43,14 +42,14 @@ export function LiquidationTooltip(p: Props) {
   return (
     <Tooltip
       position="left-top"
-      handle={t`Liquidated`}
+      handle={`Liquidated`}
       renderContent={() => (
         <>
-          <Trans>This position was liquidated as the max leverage of {maxLeverageText} was exceeded.</Trans>
+          <span>This position was liquidated as the max leverage of {maxLeverageText} was exceeded.</span>
           <br />
           <br />
           <StatsTooltipRow
-            label={t`Initial collateral`}
+            label={`Initial collateral`}
             showDollar={false}
             value={formatTokenAmountWithUsd(
               initialCollateralDeltaAmount,
@@ -59,12 +58,12 @@ export function LiquidationTooltip(p: Props) {
               initialCollateralToken?.decimals
             )}
           />
-          <StatsTooltipRow label={t`Min required collateral`} showDollar={false} value={formatUsd(minCollateralUsd)} />
-          <StatsTooltipRow label={t`Borrow Fee`} showDollar={false} value={formatUsd(borrowingFeeUsd)} />
-          <StatsTooltipRow label={t`Funding Fee`} showDollar={false} value={formatUsd(fundingFeeUsd)} />
-          <StatsTooltipRow label={t`Position Fee`} showDollar={false} value={formatUsd(positionFeeUsd)} />
-          <StatsTooltipRow label={t`Price Impact`} showDollar={false} value={formatUsd(priceImpactDiffUsd)} />
-          <StatsTooltipRow label={t`PnL`} showDollar={false} value={formatUsd(pnlUsd)} />
+          <StatsTooltipRow label={`Min required collateral`} showDollar={false} value={formatUsd(minCollateralUsd)} />
+          <StatsTooltipRow label={`Borrow Fee`} showDollar={false} value={formatUsd(borrowingFeeUsd)} />
+          <StatsTooltipRow label={`Funding Fee`} showDollar={false} value={formatUsd(fundingFeeUsd)} />
+          <StatsTooltipRow label={`Position Fee`} showDollar={false} value={formatUsd(positionFeeUsd)} />
+          <StatsTooltipRow label={`Price Impact`} showDollar={false} value={formatUsd(priceImpactDiffUsd)} />
+          <StatsTooltipRow label={`PnL`} showDollar={false} value={formatUsd(pnlUsd)} />
         </>
       )}
     />

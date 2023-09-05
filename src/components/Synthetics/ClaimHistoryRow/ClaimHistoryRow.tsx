@@ -1,4 +1,3 @@
-import { plural, t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 import Tooltip from "components/Tooltip/Tooltip";
@@ -22,8 +21,8 @@ export function ClaimHistoryRow(p: Props) {
   const marketsCount = claimAction.claimItems.length;
 
   const eventTitle = {
-    [ClaimType.ClaimFunding]: t`Claim Funding Fees`,
-    [ClaimType.ClaimPriceImpact]: t`Claim Price Impact`,
+    [ClaimType.ClaimFunding]: `Claim Funding Fees`,
+    [ClaimType.ClaimPriceImpact]: `Claim Price Impact`,
   }[claimAction.eventName];
 
   const tokensMsg = useMemo(() => {

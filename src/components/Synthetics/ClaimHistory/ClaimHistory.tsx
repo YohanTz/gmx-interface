@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/macro";
 import { useChainId } from "lib/chains";
 import { useState } from "react";
 import { useClaimCollateralHistory } from "domain/synthetics/claimHistory";
@@ -32,12 +31,12 @@ export function ClaimHistory(p: Props) {
     <div className="TradeHistory">
       {isLoading && (
         <div className="TradeHistoryRow App-box">
-          <Trans>Loading...</Trans>
+          <span>Loading...</span>
         </div>
       )}
       {isEmpty && (
         <div className="TradeHistoryRow App-box">
-          <Trans>No claims yet</Trans>
+          <span>No claims yet</span>
         </div>
       )}
       {claimActions?.map((claimAction) => (
@@ -47,12 +46,12 @@ export function ClaimHistory(p: Props) {
         <div>
           {pageIndex > 0 && (
             <button className="App-button-option App-card-option" onClick={() => setPageIndex((old) => old - 1)}>
-              <Trans>Prev</Trans>
+              <span>Prev</span>
             </button>
           )}
           {claimActions && claimActions.length >= PAGE_SIZE && (
             <button className="App-button-option App-card-option" onClick={() => setPageIndex((old) => old + 1)}>
-              <Trans>Next</Trans>
+              <span>Next</span>
             </button>
           )}
         </div>

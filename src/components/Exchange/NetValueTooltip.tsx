@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 import Tooltip from "components/Tooltip/Tooltip";
 import { Position } from "domain/positions/types";
@@ -19,32 +18,32 @@ export default function NetValueTooltip({ position, isMobile }: Props) {
       renderContent={() => {
         return (
           <>
-            <Trans>Net Value: Initial Collateral + PnL - Borrow Fee - Close Fee</Trans>
+            <span>Net Value: Initial Collateral + PnL - Borrow Fee - Close Fee</span>
             <br />
             <br />
             <StatsTooltipRow
-              label={t`Initial Collateral`}
+              label={`Initial Collateral`}
               value={formatAmount(position.collateral, USD_DECIMALS, 2, true)}
             />
-            <StatsTooltipRow label={t`PnL`} value={position.deltaBeforeFeesStr} showDollar={false} />
+            <StatsTooltipRow label={`PnL`} value={position.deltaBeforeFeesStr} showDollar={false} />
             <StatsTooltipRow
-              label={t`Borrow Fee`}
+              label={`Borrow Fee`}
               showDollar={false}
               value={`-$${formatAmount(position.fundingFee, USD_DECIMALS, 2, true)}`}
             />
             <StatsTooltipRow
-              label={t`Open Fee`}
+              label={`Open Fee`}
               showDollar={false}
               value={`-$${formatAmount(position.closingFee, USD_DECIMALS, 2, true)}`}
             />
             <StatsTooltipRow
-              label={t`Close Fee`}
+              label={`Close Fee`}
               showDollar={false}
               value={`-$${formatAmount(position.closingFee, USD_DECIMALS, 2, true)}`}
             />
             <br />
             <StatsTooltipRow
-              label={t`PnL After Fees`}
+              label={`PnL After Fees`}
               value={[position.deltaAfterFeesStr, `(${position.deltaAfterFeesPercentageStr})`]}
               showDollar={false}
             />

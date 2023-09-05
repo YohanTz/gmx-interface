@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { PositionItem } from "components/Synthetics/PositionItem/PositionItem";
 import { OrdersInfoData, PositionOrderInfo, isOrderForPosition } from "domain/synthetics/orders";
 import { PositionsInfoData } from "domain/synthetics/positions";
@@ -30,7 +29,7 @@ export function PositionList(p: Props) {
     <div>
       {positions.length === 0 && (
         <div className="Exchange-empty-positions-list-note App-card small">
-          {p.isLoading ? t`Loading...` : t`No open positions`}
+          {p.isLoading ? `Loading...` : `No open positions`}
         </div>
       )}
       <div className="Exchange-list small">
@@ -59,32 +58,32 @@ export function PositionList(p: Props) {
         <tbody>
           <tr className="Exchange-list-header">
             <th>
-              <Trans>Position</Trans>
+              <span>Position</span>
             </th>
             <th>
-              <Trans>Net Value</Trans>
+              <span>Net Value</span>
             </th>
             <th>
-              <Trans>Size</Trans>
+              <span>Size</span>
             </th>
             <th>
-              <Trans>Collateral</Trans>
+              <span>Collateral</span>
             </th>
             <th>
-              <Trans>Entry Price</Trans>
+              <span>Entry Price</span>
             </th>
             <th>
-              <Trans>Mark Price</Trans>
+              <span>Mark Price</span>
             </th>
             <th>
-              <Trans>Liq Price</Trans>
+              <span>Liq Price</span>
             </th>
           </tr>
           {positions.length === 0 && (
             <tr>
               <td colSpan={15}>
                 <div className="Exchange-empty-positions-list-note">
-                  {p.isLoading ? t`Loading...` : t`No open positions`}
+                  {p.isLoading ? `Loading...` : `No open positions`}
                 </div>
               </td>
             </tr>

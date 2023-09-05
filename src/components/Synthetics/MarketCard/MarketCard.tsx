@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 import Tooltip from "components/Tooltip/Tooltip";
@@ -30,7 +29,7 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
   const entryPrice = isLong ? indexToken?.prices?.maxPrice : indexToken?.prices?.minPrice;
   const exitPrice = isLong ? indexToken?.prices?.minPrice : indexToken?.prices?.maxPrice;
 
-  const longShortText = isLong ? t`Long` : t`Short`;
+  const longShortText = isLong ? `Long` : `Short`;
 
   const { liquidity, maxReservedUsd, reservedUsd, borrowingRate, fundingRate, totalInterestUsd, priceDecimals } =
     useMemo(() => {
@@ -54,15 +53,15 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
       </div>
       <div className="App-card-divider" />
       <div>
-        <ExchangeInfoRow label={t`Market`} value={marketInfo?.name || "..."} />
+        <ExchangeInfoRow label={`Market`} value={marketInfo?.name || "..."} />
         <ExchangeInfoRow
-          label={t`Entry Price`}
+          label={`Entry Price`}
           value={
             <Tooltip
               handle={formatUsd(entryPrice, { displayDecimals: priceDecimals }) || "..."}
               position="right-bottom"
               renderContent={() => (
-                <Trans>
+                <span>
                   The position will be opened at a reference price of{" "}
                   {formatUsd(entryPrice, { displayDecimals: priceDecimals })}, not accounting for price impact, with a
                   max slippage of {allowedSlippage ? (allowedSlippage / 100.0).toFixed(2) : "..."}%.
@@ -73,14 +72,14 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
                   <br />
                   <br />
                   <ExternalLink href="https://docs.gmx.io/docs/trading/v2#opening-a-position">More Info</ExternalLink>
-                </Trans>
+                </span>
               )}
             />
           }
         />
 
         <ExchangeInfoRow
-          label={t`Exit Price`}
+          label={`Exit Price`}
           value={
             <Tooltip
               handle={
@@ -90,7 +89,7 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
               }
               position="right-bottom"
               renderContent={() => (
-                <Trans>
+                <span>
                   If you have an existing position, the position will be closed at a reference price of{" "}
                   {formatUsd(entryPrice)}, not accounting for price impact.
                   <br />
@@ -99,19 +98,19 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
                   <br />
                   <br />
                   <ExternalLink href="https://docs.gmx.io/docs/trading/v2#opening-a-position">More Info</ExternalLink>
-                </Trans>
+                </span>
               )}
             />
           }
         />
 
         <ExchangeInfoRow
-          label={t`Borrow Fee`}
+          label={`Borrow Fee`}
           value={borrowingRate ? `-${formatAmount(borrowingRate, 30, 4)}% / 1h` : "..."}
         />
 
         <ExchangeInfoRow
-          label={t`Funding Fee`}
+          label={`Funding Fee`}
           value={
             <Tooltip
               className="al-swap"
@@ -121,10 +120,10 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
               position="right-bottom"
               renderContent={() => (
                 <div>
-                  <Trans>
-                    {longShortText} positions {fundingRate.gt(0) ? t`earn` : t`pay`} a funding fee of{" "}
+                  <span>
+                    {longShortText} positions {fundingRate.gt(0) ? `earn` : `pay`} a funding fee of{" "}
                     {formatAmount(fundingRate.abs(), 30, 4)}% per hour.
-                  </Trans>
+                  </span>
                 </div>
               )}
             />
@@ -132,7 +131,7 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
         />
 
         <ExchangeInfoRow
-          label={t`Available Liquidity`}
+          label={`Available Liquidity`}
           value={
             <Tooltip
               className="al-swap"
@@ -141,13 +140,13 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
               renderContent={() => (
                 <div>
                   <StatsTooltipRow
-                    label={t`Max ${indexToken?.symbol} ${longShortText} capacity`}
+                    label={`Max ${indexToken?.symbol} ${longShortText} capacity`}
                     value={formatUsd(maxReservedUsd, { displayDecimals: 0 }) || "..."}
                     showDollar={false}
                   />
 
                   <StatsTooltipRow
-                    label={t`Current ${indexToken?.symbol} ${longShortText}`}
+                    label={`Current ${indexToken?.symbol} ${longShortText}`}
                     value={formatUsd(reservedUsd, { displayDecimals: 0 }) || "..."}
                     showDollar={false}
                   />
@@ -155,7 +154,7 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
                   {isLong && (
                     <>
                       <br />
-                      <Trans>"Current {indexToken?.symbol} Long" takes into account PnL of open positions.</Trans>
+                      <span>"Current {indexToken?.symbol} Long" takes into account PnL of open positions.</span>
                     </>
                   )}
                 </div>
@@ -165,7 +164,7 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
         />
 
         <ExchangeInfoRow
-          label={t`Open Interest Balance`}
+          label={`Open Interest Balance`}
           value={
             <div className="MarketCard-pool-balance">
               <Tooltip
@@ -186,7 +185,7 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
                     {marketInfo && totalInterestUsd && (
                       <>
                         <StatsTooltipRow
-                          label={t`Long Open Interest`}
+                          label={`Long Open Interest`}
                           value={
                             <span>
                               {formatUsd(marketInfo.longInterestUsd, { displayDecimals: 0 })} <br />
@@ -198,7 +197,7 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
                         />
                         <br />
                         <StatsTooltipRow
-                          label={t`Short Open Interest`}
+                          label={`Short Open Interest`}
                           value={
                             <span>
                               {formatUsd(marketInfo.shortInterestUsd, { displayDecimals: 0 })} <br />

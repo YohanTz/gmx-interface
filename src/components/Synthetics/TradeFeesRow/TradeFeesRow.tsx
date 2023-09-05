@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import cx from "classnames";
 import ExchangeInfoRow from "components/Exchange/ExchangeInfoRow";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
@@ -45,7 +44,7 @@ export function TradeFeesRow(p: Props) {
           id: "positionPriceImpact",
           label: (
             <>
-              <div>{t`Position Price Impact`}:</div>
+              <div>{`Position Price Impact`}:</div>
               <div>({formatPercentage(p.positionPriceImpact.bps.abs())} of position size)</div>
             </>
           ),
@@ -58,7 +57,7 @@ export function TradeFeesRow(p: Props) {
           id: "swapPriceImpact",
           label: (
             <>
-              <div>{t`Swap Price Impact`}:</div>
+              <div>{`Swap Price Impact`}:</div>
               <div>({formatPercentage(p.swapPriceImpact.bps.abs())} of swap amount)</div>
             </>
           ),
@@ -72,7 +71,7 @@ export function TradeFeesRow(p: Props) {
         label: (
           <>
             <div>
-              {t`Swap ${getToken(chainId, swap.tokenInAddress).symbol} to ${
+              {`Swap ${getToken(chainId, swap.tokenInAddress).symbol} to ${
                 getToken(chainId, swap.tokenOutAddress).symbol
               }`}
               :
@@ -88,7 +87,7 @@ export function TradeFeesRow(p: Props) {
           id: "swapProfitFee",
           label: (
             <>
-              <div>{t`Swap Profit Fee`}:</div>
+              <div>{`Swap Profit Fee`}:</div>
               <div>({formatPercentage(p.swapProfitFee.bps.abs())} of collateral)</div>
             </>
           ),
@@ -101,7 +100,7 @@ export function TradeFeesRow(p: Props) {
           id: "positionFee",
           label: (
             <>
-              <div>{p.feesType === "increase" ? t`Open Fee` : t`Close Fee`}:</div>
+              <div>{p.feesType === "increase" ? `Open Fee` : `Close Fee`}:</div>
               <div>({formatPercentage(p.positionFee.bps.abs())} of position size)</div>
             </>
           ),
@@ -112,7 +111,7 @@ export function TradeFeesRow(p: Props) {
     const feeDiscountRow = p.feeDiscountUsd?.gt(0)
       ? {
           id: "feeDiscount",
-          label: t`Referral Discount`,
+          label: `Referral Discount`,
           value: formatDeltaUsd(p.feeDiscountUsd),
         }
       : undefined;
@@ -122,7 +121,7 @@ export function TradeFeesRow(p: Props) {
           id: "borrowFee",
           label: (
             <>
-              <div>{t`Borrow Fee`}:</div>
+              <div>{`Borrow Fee`}:</div>
               <div>({formatPercentage(p.borrowFee.bps.abs())} of collateral)</div>
             </>
           ),
@@ -135,7 +134,7 @@ export function TradeFeesRow(p: Props) {
           id: "fundingFee",
           label: (
             <>
-              <div>{t`Funding Fee`}:</div>
+              <div>{`Funding Fee`}:</div>
               <div>({formatPercentage(p.fundingFee.bps.abs())} of collateral)</div>
             </>
           ),
@@ -144,16 +143,16 @@ export function TradeFeesRow(p: Props) {
       : undefined;
 
     const borrowFeeRateRow = p.borrowFeeRateStr
-      ? { id: "borrowFeeRate", label: t`Borrow Fee Rate`, value: p.borrowFeeRateStr }
+      ? { id: "borrowFeeRate", label: `Borrow Fee Rate`, value: p.borrowFeeRateStr }
       : undefined;
 
     const fundingFeeRateRow = p.fundingFeeRateStr
-      ? { id: "fundingFeeRate", label: t`Funding Fee Rate`, value: p.fundingFeeRateStr }
+      ? { id: "fundingFeeRate", label: `Funding Fee Rate`, value: p.fundingFeeRateStr }
       : undefined;
 
     const executionFeeRow = p.executionFee?.feeTokenAmount.gt(0)
       ? {
-          label: t`Max Execution Fee`,
+          label: `Max Execution Fee`,
           value: formatTokenAmountWithUsd(
             p.executionFee.feeTokenAmount.mul(-1),
             p.executionFee.feeUsd.mul(-1),
@@ -221,7 +220,7 @@ export function TradeFeesRow(p: Props) {
     return p.totalFees?.deltaUsd.sub(p.executionFee?.feeUsd || 0);
   }, [p.executionFee, p.totalFees]);
 
-  const title = p.feesType === "edit" ? t`Fees` : t`Fees and Price Impact`;
+  const title = p.feesType === "edit" ? `Fees` : `Fees and Price Impact`;
 
   return (
     <ExchangeInfoRow

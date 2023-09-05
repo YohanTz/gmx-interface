@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/macro";
 import { useTradeHistory } from "domain/synthetics/tradeHistory";
 import { useChainId } from "lib/chains";
 import { TradeHistoryRow } from "../TradeHistoryRow/TradeHistoryRow";
@@ -40,12 +39,12 @@ export function TradeHistory(p: Props) {
     <div className="TradeHistory">
       {isLoading && (
         <div className="TradeHistoryRow App-box">
-          <Trans>Loading...</Trans>
+          <span>Loading...</span>
         </div>
       )}
       {isEmpty && (
         <div className="TradeHistoryRow App-box">
-          <Trans>No trades yet</Trans>
+          <span>No trades yet</span>
         </div>
       )}
       {!isLoading &&
@@ -61,12 +60,12 @@ export function TradeHistory(p: Props) {
         <div>
           {pageIndex > 0 && (
             <button className="App-button-option App-card-option" onClick={() => setPageIndex((old) => old - 1)}>
-              <Trans>Prev</Trans>
+              <span>Prev</span>
             </button>
           )}
           {tradeActions && tradeActions.length >= PAGE_SIZE && (
             <button className="App-button-option App-card-option" onClick={() => setPageIndex((old) => old + 1)}>
-              <Trans>Next</Trans>
+              <span>Next</span>
             </button>
           )}
         </div>

@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import { Token } from "domain/tokens";
 import { BigNumber } from "ethers";
 import { formatTokenAmount, formatUsd } from "lib/numbers";
@@ -81,7 +80,7 @@ export function getSwapOrderTitle(p: {
 
   const toTokenText = formatTokenAmount(minOutputAmount, targetCollateralToken.decimals, targetCollateralToken.symbol);
 
-  return t`Swap ${fromTokenText} for ${toTokenText}`;
+  return `Swap ${fromTokenText} for ${toTokenText}`;
 }
 
 export function getPositionOrderTitle(p: {
@@ -92,23 +91,23 @@ export function getPositionOrderTitle(p: {
 }) {
   const { orderType, isLong, indexToken, sizeDeltaUsd } = p;
 
-  const longShortText = isLong ? t`Long` : t`Short`;
+  const longShortText = isLong ? `Long` : `Short`;
   const tokenText = `${indexToken.symbol} ${longShortText}`;
   const sizeText = formatUsd(sizeDeltaUsd);
-  const increaseOrDecreaseText = isIncreaseOrderType(orderType) ? t`Increase` : t`Decrease`;
+  const increaseOrDecreaseText = isIncreaseOrderType(orderType) ? `Increase` : `Decrease`;
 
-  return t`${increaseOrDecreaseText} ${tokenText} by ${sizeText}`;
+  return `${increaseOrDecreaseText} ${tokenText} by ${sizeText}`;
 }
 
 export function getOrderTypeLabel(orderType: OrderType) {
   const orderTypeLabels = {
-    [OrderType.MarketSwap]: t`Market Swap`,
-    [OrderType.LimitSwap]: t`Limit Swap`,
-    [OrderType.MarketIncrease]: t`Market Increase`,
-    [OrderType.LimitIncrease]: t`Limit Increase`,
-    [OrderType.MarketDecrease]: t`Market Decrease`,
-    [OrderType.LimitDecrease]: t`Limit Decrease`,
-    [OrderType.StopLossDecrease]: t`Stop Loss Decrease`,
+    [OrderType.MarketSwap]: `Market Swap`,
+    [OrderType.LimitSwap]: `Limit Swap`,
+    [OrderType.MarketIncrease]: `Market Increase`,
+    [OrderType.LimitIncrease]: `Limit Increase`,
+    [OrderType.MarketDecrease]: `Market Decrease`,
+    [OrderType.LimitDecrease]: `Limit Decrease`,
+    [OrderType.StopLossDecrease]: `Stop Loss Decrease`,
   };
 
   return orderTypeLabels[orderType];
@@ -256,7 +255,7 @@ export function getOrderError(order: OrderInfo, position?: PositionInfo) {
     order.initialCollateralTokenAddress,
     order.isLong
   );
-  const errorMessage = t`Order Trigger Price is beyond position's Liquidation Price.`;
+  const errorMessage = `Order Trigger Price is beyond position's Liquidation Price.`;
 
   if (isOrderForPosition(order, positionKey) && isDecreaseOrderType(order.orderType)) {
     if (position?.isLong) {

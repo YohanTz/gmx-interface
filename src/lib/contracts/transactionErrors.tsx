@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import { ToastifyDebug } from "components/ToastifyDebug/ToastifyDebug";
 import { getChainName } from "config/chains";
@@ -73,30 +72,30 @@ export function getErrorMessage(chainId: number, ex: TxError, txnMessage?: strin
   switch (type) {
     case NOT_ENOUGH_FUNDS:
       failMsg = (
-        <Trans>
+        <span>
           There is not enough ETH in your account on Arbitrum to send this transaction.
           <br />
           <br />
           <ExternalLink href="https://arbitrum.io/bridge-tutorial/">Bridge ETH to Arbitrum</ExternalLink>
-        </Trans>
+        </span>
       );
       break;
     case NETWORK_CHANGED:
       failMsg = (
-        <Trans>
+        <span>
           <div>Your wallet is not connected to {getChainName(chainId)}.</div>
           <br />
           <div className="clickable underline" onClick={() => switchNetwork(chainId, true)}>
             Switch to {getChainName(chainId)}
           </div>
-        </Trans>
+        </span>
       );
       break;
     case USER_DENIED:
-      failMsg = t`Transaction was cancelled.`;
+      failMsg = `Transaction was cancelled.`;
       break;
     case SLIPPAGE:
-      failMsg = t`The mark price has changed, consider increasing your Allowed Slippage by clicking on the "..." icon next to your address.`;
+      failMsg = `The mark price has changed, consider increasing your Allowed Slippage by clicking on the "..." icon next to your address.`;
       break;
     case RPC_ERROR:
       autoCloseToast = false;
@@ -105,13 +104,13 @@ export function getErrorMessage(chainId: number, ex: TxError, txnMessage?: strin
 
       failMsg = (
         <div>
-          <Trans>
+          <span>
             Transaction failed due to RPC error.
             <br />
             <br />
             Please try changing the RPC url in your wallet settings.{" "}
             <ExternalLink href="https://docs.gmx.io/docs/trading/v1#rpc-urls">More info</ExternalLink>
-          </Trans>
+          </span>
           <br />
           {originalError && <ToastifyDebug>{originalError}</ToastifyDebug>}
         </div>
@@ -122,7 +121,7 @@ export function getErrorMessage(chainId: number, ex: TxError, txnMessage?: strin
 
       failMsg = (
         <div>
-          {txnMessage || t`Transaction failed`}
+          {txnMessage || `Transaction failed`}
           <br />
           {message && <ToastifyDebug>{message}</ToastifyDebug>}
         </div>

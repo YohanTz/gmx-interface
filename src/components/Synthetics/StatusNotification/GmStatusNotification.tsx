@@ -1,5 +1,4 @@
-import { t } from "@lingui/macro";
-import { TransactionStatus, TransactionStatusType } from "components/TransactionStatus/TransactionStatus";
+import { TransactionStatusactionStatusType } from "components/TransactionStatus/TransactionStatus";
 import { convertTokenAddress } from "config/tokens";
 import { TOAST_AUTO_CLOSE_TIME } from "config/ui";
 import cx from "classnames";
@@ -63,7 +62,7 @@ export function GmStatusNotification({
   const title = useMemo(() => {
     if (isDeposit) {
       if (!pendingDepositData) {
-        return t`Unknown buy GM order`;
+        return `Unknown buy GM order`;
       }
 
       let longToken: TokenData | undefined;
@@ -98,16 +97,16 @@ export function GmStatusNotification({
 
       const marketInfo = getByKey(marketsInfoData, pendingDepositData.marketAddress);
       const indexName = marketInfo ? getMarketIndexName(marketInfo) : "";
-      return t`Buying GM (${indexName}) with ${tokensText}`;
+      return `Buying GM (${indexName}) with ${tokensText}`;
     } else {
       if (!pendingWithdrawalData) {
-        return t`Unknown sell GM order`;
+        return `Unknown sell GM order`;
       }
 
       const marketInfo = getByKey(marketsInfoData, pendingWithdrawalData.marketAddress);
       const indexName = marketInfo ? getMarketIndexName(marketInfo) : "";
 
-      return t`Selling GM (${indexName})`;
+      return `Selling GM (${indexName})`;
     }
   }, [chainId, isDeposit, marketsInfoData, pendingDepositData, pendingWithdrawalData, tokensData]);
 
@@ -117,18 +116,18 @@ export function GmStatusNotification({
     let createdTxnHash: string | undefined;
 
     if (isDeposit) {
-      text = t`Sending Buy request`;
+      text = `Sending Buy request`;
 
       if (depositStatus?.createdTxnHash) {
-        text = t`Buy request sent`;
+        text = `Buy request sent`;
         status = "success";
         createdTxnHash = depositStatus?.createdTxnHash;
       }
     } else {
-      text = t`Sending Sell request`;
+      text = `Sending Sell request`;
 
       if (withdrawalStatus?.createdTxnHash) {
-        text = t`Sell request sent`;
+        text = `Sell request sent`;
         status = "success";
         createdTxnHash = withdrawalStatus?.createdTxnHash;
       }
@@ -143,38 +142,38 @@ export function GmStatusNotification({
     let txnHash: string | undefined;
 
     if (isDeposit) {
-      text = t`Fulfilling Buy request`;
+      text = `Fulfilling Buy request`;
 
       if (depositStatus?.createdTxnHash) {
         status = "loading";
       }
 
       if (depositStatus?.executedTxnHash) {
-        text = t`Buy order executed`;
+        text = `Buy order executed`;
         status = "success";
         txnHash = depositStatus?.executedTxnHash;
       }
 
       if (depositStatus?.cancelledTxnHash) {
-        text = t`Buy order cancelled`;
+        text = `Buy order cancelled`;
         status = "error";
         txnHash = depositStatus?.cancelledTxnHash;
       }
     } else {
-      text = t`Fulfilling Sell request`;
+      text = `Fulfilling Sell request`;
 
       if (withdrawalStatus?.createdTxnHash) {
         status = "loading";
       }
 
       if (withdrawalStatus?.executedTxnHash) {
-        text = t`Sell order executed`;
+        text = `Sell order executed`;
         status = "success";
         txnHash = withdrawalStatus?.executedTxnHash;
       }
 
       if (withdrawalStatus?.cancelledTxnHash) {
-        text = t`Sell order cancelled`;
+        text = `Sell order cancelled`;
         status = "error";
         txnHash = withdrawalStatus?.cancelledTxnHash;
       }
