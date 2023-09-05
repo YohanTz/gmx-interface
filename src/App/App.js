@@ -1,4 +1,5 @@
 import { Web3Provider } from "@ethersproject/providers";
+import { StarknetConfig, InjectedConnector } from "@starknet-react/core";
 import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
 import { ethers } from "ethers";
 import useScrollToTop from "lib/useScrollToTop";
@@ -106,6 +107,7 @@ import SyntheticsActions from "pages/SyntheticsActions/SyntheticsActions";
 import { SyntheticsFallbackPage } from "pages/SyntheticsFallbackPage/SyntheticsFallbackPage";
 import { SyntheticsPage } from "pages/SyntheticsPage/SyntheticsPage";
 import { SyntheticsStats } from "pages/SyntheticsStats/SyntheticsStats";
+import { ConnectWalletModal } from "components/ConnectWalletModal/ConnectWalletModal";
 
 if (window?.ethereum?.autoRefreshOnNetworkChange) {
   window.ethereum.autoRefreshOnNetworkChange = false;
@@ -681,31 +683,7 @@ function FullApp() {
         setShouldHideRedirectModal={setShouldHideRedirectModal}
         shouldHideRedirectModal={shouldHideRedirectModal}
       />
-      <Modal
-        className="Connect-wallet-modal"
-        isVisible={walletModalVisible}
-        setIsVisible={setWalletModalVisible}
-        label={t`Connect Wallet`}
-      >
-        <button className="Wallet-btn MetaMask-btn" onClick={activateMetaMask}>
-          <img src={metamaskImg} alt="MetaMask" />
-          <div>
-            <Trans>MetaMask</Trans>
-          </div>
-        </button>
-        <button className="Wallet-btn CoinbaseWallet-btn" onClick={activateCoinBase}>
-          <img src={coinbaseImg} alt="Coinbase Wallet" />
-          <div>
-            <Trans>Coinbase Wallet</Trans>
-          </div>
-        </button>
-        <button className="Wallet-btn WalletConnect-btn" onClick={activateWalletConnect}>
-          <img src={walletConnectImg} alt="WalletConnect" />
-          <div>
-            <Trans>WalletConnect</Trans>
-          </div>
-        </button>
-      </Modal>
+      <ConnectWalletModal walletModalVisible={walletModalVisible} setWalletModalVisible={setWalletModalVisible} />
       <Modal
         className="App-settings"
         isVisible={isSettingsVisible}
@@ -809,6 +787,11 @@ function FullApp() {
   );
 }
 
+const connectors = [
+  new InjectedConnector({ options: { id: "braavos" } }),
+  new InjectedConnector({ options: { id: "argentX" } }),
+];
+
 function App() {
   useScrollToTop();
   useEffect(() => {
@@ -818,17 +801,19 @@ function App() {
   return (
     <SWRConfig value={{ refreshInterval: 5000 }}>
       <Web3ReactProvider getLibrary={getLibrary}>
-        <SettingsContextProvider>
-          <SyntheticsEventsProvider>
-            <SEO>
-              <Router>
-                <I18nProvider i18n={i18n}>
-                  <FullApp />
-                </I18nProvider>
-              </Router>
-            </SEO>
-          </SyntheticsEventsProvider>
-        </SettingsContextProvider>
+        <StarknetConfig connectors={connectors}>
+          <SettingsContextProvider>
+            <SyntheticsEventsProvider>
+              <SEO>
+                <Router>
+                  <I18nProvider i18n={i18n}>
+                    <FullApp />
+                  </I18nProvider>
+                </Router>
+              </SEO>
+            </SyntheticsEventsProvider>
+          </SettingsContextProvider>
+        </StarknetConfig>
       </Web3ReactProvider>
     </SWRConfig>
   );
