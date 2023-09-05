@@ -49,7 +49,6 @@
     "react-icons": "4.3.1",
     "react-remove-scroll": "2.5.5",
     "react-router-dom": "5.3.0",
-    "react-scripts": "5.0.1",
     "react-select": "5.2.1",
     "react-tabs": "3.2.3",
     "react-toastify": "6.0.9",
@@ -60,21 +59,16 @@
     "swr": "0.4.2",
     "typescript": "4.7.4",
     "viem": "1.1.4",
+    "vite-tsconfig-paths": "^4.2.0",
     "web-vitals": "1.1.2"
   },
   "resolutions": {
     "react-error-overlay": "6.0.9"
   },
   "scripts": {
-    "start": "PORT=3010 react-app-rewired start",
-    "start-home": "yarn lingui:prepare && PORT=3010 env-cmd -e development-home react-app-rewired start",
-    "start-app": "yarn lingui:prepare && PORT=3011 env-cmd -e development-app react-app-rewired start",
-    "start-win": "set PORT=3010&react-app-rewired start",
-    "build": "INLINE_RUNTIME_CHUNK=false react-app-rewired build",
-    "build-home": "INLINE_RUNTIME_CHUNK=false env-cmd -e production-home react-app-rewired build",
-    "build-app": "INLINE_RUNTIME_CHUNK=false env-cmd -e production-app react-app-rewired build",
-    "test": "react-app-rewired test",
-    "test:ci": "react-app-rewired test --watchAll=false",
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
     "eject": "react-scripts eject",
     "lint": "node node_modules/.bin/eslint src",
     "pre-commit": "npm run test -- --watchAll=false && npm run lint",
@@ -119,13 +113,14 @@
     "@lingui/cli": "3.13.3",
     "@lingui/loader": "3.13.3",
     "@lingui/macro": "3.13.3",
+    "@vitejs/plugin-react": "^4.0.4",
     "buffer": "6.0.3",
     "eslint": "^8.41.0",
     "eslint-config-react-app": "^7.0.1",
     "husky": "7.0.4",
     "lint-staged": "12.3.4",
     "prettier": "2.5.1",
-    "react-app-rewired": "2.2.1"
+    "vite": "^4.4.9"
   },
   "lint-staged": {
     "src/**/*.{js,ts,jsx,tsx}": [
