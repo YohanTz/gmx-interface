@@ -8,8 +8,6 @@
     "@ethersproject/providers": "5.5.1",
     "@ethersproject/units": "5.5.0",
     "@headlessui/react": "1.6.1",
-    "@lingui/core": "3.13.3",
-    "@lingui/react": "3.13.3",
     "@starknet-react/core": "1.0.4",
     "@testing-library/jest-dom": "5.16.1",
     "@testing-library/react": "11.2.7",
@@ -72,11 +70,7 @@
     "eject": "react-scripts eject",
     "lint": "node node_modules/.bin/eslint src",
     "pre-commit": "npm run test -- --watchAll=false && npm run lint",
-    "prepare": "husky install && yarn lingui:prepare",
-    "extract": "NODE_ENV=development lingui extract --clean",
-    "compile": "lingui compile",
-    "lingui:prepare": "NODE_ENV=development yarn extract && yarn compile",
-    "lingui:generate": "NODE_ENV=development lingui extract --overwrite",
+    "prepare": "husky install",
     "tscheck": "tsc -p tsconfig.json --noEmit"
   },
   "eslintConfig": {
@@ -110,9 +104,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
-    "@lingui/cli": "3.13.3",
-    "@lingui/loader": "3.13.3",
-    "@lingui/macro": "3.13.3",
     "@vitejs/plugin-react": "^4.0.4",
     "buffer": "6.0.3",
     "eslint": "^8.41.0",
