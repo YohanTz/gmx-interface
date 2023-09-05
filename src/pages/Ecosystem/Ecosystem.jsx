@@ -497,7 +497,7 @@ export default function Ecosystem() {
     <SEO title={getPageTitle(t`Ecosystem Projects`)}>
       <div className="default-container page-layout">
         <div>
-          <PageTitle showNetworkIcon={false} isTop title={t`GMX Pages`} subtitle={t`GMX ecosystem pages.`} />
+          <PageTitle showNetworkIcon={false} isTop title={`GMX Pages`} subtitle={`GMX ecosystem pages.`} />
           <div className="Ecosystem-projects">
             {gmxPages.map((item) => {
               const linkLabel = item.linkLabel ? item.linkLabel : item.link;
@@ -515,7 +515,7 @@ export default function Ecosystem() {
                   <div className="App-card-content">
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Link</Trans>
+                        <span>Link</span>
                       </div>
                       <div>
                         <ExternalLink href={item.link}>{linkLabel}</ExternalLink>
@@ -523,7 +523,7 @@ export default function Ecosystem() {
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>About</Trans>
+                        <span>About</span>
                       </div>
                       <div>{item.about}</div>
                     </div>
@@ -535,13 +535,13 @@ export default function Ecosystem() {
 
           <PageTitle
             showNetworkIcon={false}
-            title={t`Community Projects`}
+            title={`Community Projects`}
             subtitle={
-              <Trans>
+              <span>
                 Projects developed by the GMX community. <br />
                 Please exercise caution when interacting with any app, apps are fully maintained by community
                 developers.
-              </Trans>
+              </span>
             }
           />
           <div className="Ecosystem-projects">
@@ -561,7 +561,7 @@ export default function Ecosystem() {
                   <div className="App-card-content">
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Link</Trans>
+                        <span>Link</span>
                       </div>
                       <div>
                         <ExternalLink href={item.link}>{linkLabel}</ExternalLink>
@@ -569,13 +569,13 @@ export default function Ecosystem() {
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>About</Trans>
+                        <span>About</span>
                       </div>
                       <div>{item.about}</div>
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Creator</Trans>
+                        <span>Creator</span>
                       </div>
                       <div>
                         <ExternalLink href={item.creatorLink}>{item.creatorLabel}</ExternalLink>
@@ -586,7 +586,7 @@ export default function Ecosystem() {
               );
             })}
           </div>
-          <PageTitle showNetworkIcon={false} title={t`Dashboards`} subtitle={t`GMX dashboards and analytics.`} />
+          <PageTitle showNetworkIcon={false} title={`Dashboards`} subtitle={`GMX dashboards and analytics.`} />
           <div className="Ecosystem-projects">
             {dashboardProjects.map((item) => {
               const linkLabel = item.linkLabel ? item.linkLabel : item.link;
@@ -605,7 +605,7 @@ export default function Ecosystem() {
                   <div className="App-card-content">
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Link</Trans>
+                        <span>Link</span>
                       </div>
                       <div>
                         <ExternalLink href={item.link}>{linkLabel}</ExternalLink>
@@ -613,13 +613,13 @@ export default function Ecosystem() {
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>About</Trans>
+                        <span>About</span>
                       </div>
                       <div>{item.about}</div>
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Creator</Trans>
+                        <span>Creator</span>
                       </div>
                       <div>
                         <ExternalLink href={item.creatorLink}>{item.creatorLabel}</ExternalLink>
@@ -632,8 +632,8 @@ export default function Ecosystem() {
           </div>
           <PageTitle
             showNetworkIcon={false}
-            title={t`Partnerships and Integrations`}
-            subtitle={t`Projects integrated with GMX.`}
+            title={`Partnerships and Integrations`}
+            subtitle={`Projects integrated with GMX.`}
           />
           <div className="Ecosystem-projects">
             {integrations.map((item) => {
@@ -652,7 +652,7 @@ export default function Ecosystem() {
                   <div className="App-card-content">
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Link</Trans>
+                        <span>Link</span>
                       </div>
                       <div>
                         <ExternalLink href={item.link}>{linkLabel}</ExternalLink>
@@ -660,7 +660,7 @@ export default function Ecosystem() {
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>About</Trans>
+                        <span>About</span>
                       </div>
                       <div>{item.about}</div>
                     </div>
@@ -669,7 +669,7 @@ export default function Ecosystem() {
               );
             })}
           </div>
-          <PageTitle showNetworkIcon={false} title={t`Telegram Groups`} subtitle={t`Community-led Telegram groups.`} />
+          <PageTitle showNetworkIcon={false} title={`Telegram Groups`} subtitle={`Community-led Telegram groups.`} />
           <div className="Ecosystem-projects">
             {telegramGroups.map((item) => {
               const linkLabel = item.linkLabel ? item.linkLabel : item.link;
@@ -680,7 +680,7 @@ export default function Ecosystem() {
                   <div className="App-card-content">
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Link</Trans>
+                        <span>Link</span>
                       </div>
                       <div>
                         <ExternalLink href={item.link}>{linkLabel}</ExternalLink>
@@ -688,7 +688,7 @@ export default function Ecosystem() {
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>About</Trans>
+                        <span>About</span>
                       </div>
                       <div>{item.about}</div>
                     </div>

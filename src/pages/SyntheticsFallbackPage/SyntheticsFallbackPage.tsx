@@ -23,14 +23,14 @@ export function SyntheticsFallbackPage() {
       <div className="page-not-found-container">
         <div className="page-not-found">
           <h2>
-            <Trans>V2 doesn't currently support this network</Trans>
+            <span>V2 doesn't currently support this network</span>
           </h2>
 
           <p className="go-back">
             <div>
-              <Trans>
+              <span>
                 <span>Switch to:</span>
-              </Trans>
+              </span>
             </div>
 
             <br />

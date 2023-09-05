@@ -5,7 +5,7 @@ import { useWeb3React } from "@web3-react/core";
 import ERC721 from "abis/ERC721.json";
 
 import "./NftWallet.css";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import { callContract } from "lib/contracts";
 import { useChainId } from "lib/chains";
 
@@ -69,13 +69,13 @@ export default function NftWallet() {
     <div className="NftWallet Page page-layout">
       <div className="Page-title-section">
         <div className="Page-title">
-          <Trans>NFT Wallet</Trans>
+          <span>NFT Wallet</span>
         </div>
       </div>
       <div className="NftWallet-content">
         <div className="NftWallet-row">
           <label>
-            <Trans>Receiver Address</Trans>
+            <span>Receiver Address</span>
           </label>
           <div>
             <input type="text" value={receiver} onChange={(e) => setReceiver(e.target.value)} />
@@ -83,7 +83,7 @@ export default function NftWallet() {
         </div>
         <div className="NftWallet-row">
           <label>
-            <Trans>NFT Address</Trans>
+            <span>NFT Address</span>
           </label>
           <div>
             <input type="text" value={nftAddress} onChange={(e) => setNftAddress(e.target.value)} />
@@ -91,7 +91,7 @@ export default function NftWallet() {
         </div>
         <div className="NftWallet-row">
           <label>
-            <Trans>NFT ID</Trans>
+            <span>NFT ID</span>
           </label>
           <div>
             <input type="number" value={nftId} onChange={(e) => setNftId(e.target.value)} />

@@ -90,17 +90,17 @@ export default function Actions({ savedIsPnlInLeverage, savedShowPnlAfterFees })
     <div className="Actions">
       {checkSummedAccount.length > 0 && (
         <div className="Actions-section">
-          <Trans>Account</Trans>: {checkSummedAccount}
+          <span>Account</span>: {checkSummedAccount}
         </div>
       )}
       {shouldShowPnl && (
         <div className="Actions-section">
           <div className="Actions-title">
-            <Trans>PnL</Trans>
+            <span>PnL</span>
           </div>
           {(!pnlData || pnlData.length === 0) && (
             <div>
-              <Trans>No PnLs found</Trans>
+              <span>No PnLs found</span>
             </div>
           )}
           {pnlData &&
@@ -110,11 +110,11 @@ export default function Actions({ savedIsPnlInLeverage, savedShowPnlAfterFees })
               return (
                 <div className="TradeHistory-row App-box App-box-border" key={index}>
                   <div>
-                    {token.symbol} {pnlRow.data.isLong ? t`Long` : t`Short`} <Trans>Profit</Trans>:{" "}
+                    {token.symbol} {pnlRow.data.isLong ? t`Long` : t`Short`} <span>Profit</span>:{" "}
                     {formatAmount(pnlRow.data.profit, USD_DECIMALS, 2, true)} USD
                   </div>
                   <div>
-                    {token.symbol} {pnlRow.data.isLong ? t`Long` : t`Short`} <Trans>Loss</Trans>:{" "}
+                    {token.symbol} {pnlRow.data.isLong ? t`Long` : t`Short`} <span>Loss</span>:{" "}
                     {formatAmount(pnlRow.data.loss, USD_DECIMALS, 2, true)} USD
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function Actions({ savedIsPnlInLeverage, savedShowPnlAfterFees })
       {checkSummedAccount.length > 0 && (
         <div className="Actions-section">
           <div className="Actions-title">
-            <Trans>Positions</Trans>
+            <span>Positions</span>
           </div>
           <PositionsList
             positions={positions}
@@ -147,7 +147,7 @@ export default function Actions({ savedIsPnlInLeverage, savedShowPnlAfterFees })
       {flagOrdersEnabled && checkSummedAccount.length > 0 && (
         <div className="Actions-section">
           <div className="Actions-title">
-            <Trans>Orders</Trans>
+            <span>Orders</span>
           </div>
           <OrdersList
             account={checkSummedAccount}
@@ -162,7 +162,7 @@ export default function Actions({ savedIsPnlInLeverage, savedShowPnlAfterFees })
       )}
       <div className="Actions-section">
         <div className="Actions-title">
-          <Trans>Actions</Trans>
+          <span>Actions</span>
         </div>
         <TradeHistory
           account={checkSummedAccount}

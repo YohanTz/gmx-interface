@@ -797,10 +797,10 @@ export default function PositionSeller(props) {
     if (receiveSpreadInfo && receiveSpreadInfo.isHigh) {
       return (
         <div className="Confirmation-box-warning">
-          <Trans>
+          <span>
             Transacting with a depegged stable coin is subject to spreads reflecting the worse of current market price
             or $1.00, with transactions involving multiple stablecoins may have multiple spreads.
-          </Trans>
+          </span>
         </div>
       );
     }
@@ -950,11 +950,11 @@ export default function PositionSeller(props) {
     const prefix = existingOrder.triggerAboveThreshold ? TRIGGER_PREFIX_ABOVE : TRIGGER_PREFIX_BELOW;
     return (
       <div className="Confirmation-box-warning">
-        <Trans>
+        <span>
           You have an active order to decrease {longOrShortText} {sizeInToken} {indexToken.symbol} ($
           {formatAmount(existingOrder.sizeDelta, USD_DECIMALS, 2, true)}) at {prefix}{" "}
           {formatAmount(existingOrder.triggerPrice, USD_DECIMALS, 2, true)}
-        </Trans>
+        </span>
       </div>
     );
   }, [existingOrder, infoTokens, longOrShortText]);
@@ -975,30 +975,30 @@ export default function PositionSeller(props) {
 
   const ERROR_TOOLTIP_MSG = {
     [ErrorCode.InsufficientReceiveToken]: (
-      <Trans>
+      <span>
         Swap amount from {position.collateralToken.symbol} to {receiveToken.symbol} exceeds {receiveToken.symbol}{" "}
         available liquidity. Choose a different "Receive" token.
-      </Trans>
+      </span>
     ),
     [ErrorCode.ReceiveCollateralTokenOnly]: (
-      <Trans>
+      <span>
         Swap amount from {position.collateralToken.symbol} to {receiveToken.symbol} exceeds{" "}
         {position.collateralToken.symbol} acceptable amount. Can only receive {position.collateralToken.symbol}.
-      </Trans>
+      </span>
     ),
     [ErrorCode.KeepLeverageNotPossible]: (
-      <Trans>Please uncheck "Keep Leverage", or close a larger position amount.</Trans>
+      <span>Please uncheck "Keep Leverage", or close a larger position amount.</span>
     ),
     [ErrorCode.FeesHigherThanCollateral]: (
-      <Trans>
+      <span>
         Collateral is not enough to cover pending Fees. Please uncheck "Keep Leverage" to pay the Fees with the realized
         PnL.
-      </Trans>
+      </span>
     ),
     [ErrorCode.NegativeNextCollateral]: (
-      <Trans>
+      <span>
         Neither Collateral nor realized PnL is enough to cover pending Fees. Please close a larger position amount.
-      </Trans>
+      </span>
     ),
   };
 
@@ -1044,11 +1044,11 @@ export default function PositionSeller(props) {
             <BuyInputSection
               inputValue={fromValue}
               onInputValueChange={(e) => setFromValue(e.target.value)}
-              topLeftLabel={t`Close`}
+              topLeftLabel={`Close`}
               topLeftValue={
                 convertedAmountFormatted ? `${convertedAmountFormatted} ${position.collateralToken.symbol}` : ""
               }
-              topRightLabel={t`Max`}
+              topRightLabel={`Max`}
               topRightValue={maxAmount && maxAmountFormatted}
               onClickTopRightLabel={() => setFromValue(maxAmountFormattedFree)}
               onClickMax={() => setFromValue(maxAmountFormattedFree)}
@@ -1065,8 +1065,8 @@ export default function PositionSeller(props) {
             <BuyInputSection
               inputValue={triggerPriceValue}
               onInputValueChange={onTriggerPriceChange}
-              topLeftLabel={t`Price`}
-              topRightLabel={t`Mark`}
+              topLeftLabel={`Price`}
+              topRightLabel={`Mark`}
               topRightValue={
                 position.markPrice && formatAmount(position.markPrice, USD_DECIMALS, positionPriceDecimal, true)
               }
@@ -1093,7 +1093,7 @@ export default function PositionSeller(props) {
             <div className="PositionEditor-keep-leverage-settings">
               <ToggleSwitch isChecked={keepLeverage} setIsChecked={setKeepLeverage}>
                 <span className="text-gray font-sm">
-                  <Trans>Keep leverage at {formatAmount(position.leverage, 4, 2)}x</Trans>
+                  <span>Keep leverage at {formatAmount(position.leverage, 4, 2)}x</span>
                 </span>
               </ToggleSwitch>
             </div>
@@ -1102,19 +1102,19 @@ export default function PositionSeller(props) {
                 <ExchangeInfoRow
                   label={
                     <TooltipWithPortal
-                      handle={t`Allowed Slippage`}
+                      handle={`Allowed Slippage`}
                       position="left-top"
                       renderContent={() => {
                         return (
                           <div className="text-white">
-                            <Trans>
+                            <span>
                               You can change this in the settings menu on the top right of the page.
                               <br />
                               <br />
                               Note that a low allowed slippage, e.g. less than{" "}
                               {formatPercentage(bigNumberify(DEFAULT_SLIPPAGE_AMOUNT), { signed: false })}, may result
                               in failed orders if prices are volatile.
-                            </Trans>
+                            </span>
                           </div>
                         );
                       }}
@@ -1128,7 +1128,7 @@ export default function PositionSeller(props) {
             {orderOption === STOP && (
               <div className="Exchange-info-row">
                 <div className="Exchange-info-label">
-                  <Trans>Trigger Price</Trans>
+                  <span>Trigger Price</span>
                 </div>
                 <div className="align-right">
                   {!triggerPriceUsd && "-"}
@@ -1139,7 +1139,7 @@ export default function PositionSeller(props) {
             )}
             <div className="Exchange-info-row top-line">
               <div className="Exchange-info-label">
-                <Trans>Mark Price</Trans>
+                <span>Mark Price</span>
               </div>
               <div className="align-right">
                 ${formatAmount(position.markPrice, USD_DECIMALS, positionPriceDecimal, true)}
@@ -1147,7 +1147,7 @@ export default function PositionSeller(props) {
             </div>
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>Entry Price</Trans>
+                <span>Entry Price</span>
               </div>
               <div className="align-right">
                 ${formatAmount(position.averagePrice, USD_DECIMALS, positionPriceDecimal, true)}
@@ -1155,7 +1155,7 @@ export default function PositionSeller(props) {
             </div>
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>Liq. Price</Trans>
+                <span>Liq. Price</span>
               </div>
               <div className="align-right">
                 {isClosing && orderOption !== STOP && "-"}
@@ -1179,7 +1179,7 @@ export default function PositionSeller(props) {
             </div>
             <div className="Exchange-info-row top-line">
               <div className="Exchange-info-label">
-                <Trans>Size</Trans>
+                <span>Size</span>
               </div>
               <div className="align-right">
                 {position && position.size && fromAmount && (
@@ -1201,12 +1201,12 @@ export default function PositionSeller(props) {
                 <Tooltip
                   handle={
                     <span className="Exchange-info-label">
-                      <Trans>Collateral ({collateralToken.symbol})</Trans>
+                      <span>Collateral ({collateralToken.symbol})</span>
                     </span>
                   }
                   position="left-top"
                   renderContent={() => {
-                    return <Trans>Initial Collateral (Collateral excluding Borrow Fee).</Trans>;
+                    return <span>Initial Collateral (Collateral excluding Borrow Fee).</span>;
                   }}
                 />
               </div>
@@ -1228,7 +1228,7 @@ export default function PositionSeller(props) {
             {!keepLeverage && (
               <div className="Exchange-info-row">
                 <div className="Exchange-info-label">
-                  <Trans>Leverage</Trans>
+                  <span>Leverage</span>
                 </div>
                 <div className="align-right">
                   {isClosing && "-"}
@@ -1251,7 +1251,7 @@ export default function PositionSeller(props) {
             )}
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>PnL</Trans>
+                <span>PnL</span>
               </div>
               <div className="align-right">
                 {deltaStr} ({deltaPercentageStr})
@@ -1260,7 +1260,7 @@ export default function PositionSeller(props) {
 
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>Fees</Trans>
+                <span>Fees</span>
               </div>
               <div className="align-right">
                 <FeesTooltip
@@ -1276,13 +1276,13 @@ export default function PositionSeller(props) {
               </div>
             </div>
             {showReceiveSpread && (
-              <ExchangeInfoRow label={t`Spread`} isWarning={receiveSpreadInfo.isHigh} isTop>
+              <ExchangeInfoRow label={`Spread`} isWarning={receiveSpreadInfo.isHigh} isTop>
                 {formatAmount(receiveSpreadInfo.value.mul(100), USD_DECIMALS, 2, true)}%
               </ExchangeInfoRow>
             )}
             <div className={["Exchange-info-row PositionSeller-receive-row", !showReceiveSpread ? "top-line" : ""]}>
               <div className="Exchange-info-label">
-                <Trans>Receive</Trans>
+                <span>Receive</span>
               </div>
 
               {!isSwapAllowed && receiveToken && (
@@ -1299,7 +1299,7 @@ export default function PositionSeller(props) {
                     className={cx("PositionSeller-token-selector", {
                       warning: isNotEnoughReceiveTokenLiquidity || isCollateralPoolCapacityExceeded,
                     })}
-                    label={t`Receive`}
+                    label={`Receive`}
                     showBalances={false}
                     chainId={chainId}
                     tokenAddress={receiveToken.address}
@@ -1336,11 +1336,11 @@ export default function PositionSeller(props) {
                           disabled: true,
                           message: (
                             <div>
-                              <Trans>Insufficient Available Liquidity to swap to {tokenOptionInfo.symbol}:</Trans>
+                              <span>Insufficient Available Liquidity to swap to {tokenOptionInfo.symbol}:</span>
                               <br />
                               <br />
                               <StatsTooltipRow
-                                label={t`Max ${collateralInfo.symbol} in`}
+                                label={`Max ${collateralInfo.symbol} in`}
                                 value={[
                                   `${formatAmount(maxIn, collateralInfo.decimals, 0, true)} ${collateralInfo.symbol}`,
                                   `($${formatAmount(maxInUsd, USD_DECIMALS, 0, true)})`,
@@ -1348,7 +1348,7 @@ export default function PositionSeller(props) {
                               />
                               <br />
                               <StatsTooltipRow
-                                label={t`Max ${tokenOptionInfo.symbol} out`}
+                                label={`Max ${tokenOptionInfo.symbol} out`}
                                 value={[
                                   `${formatAmount(maxOut, tokenOptionInfo.decimals, 2, true)} ${
                                     tokenOptionInfo.symbol

@@ -1,4 +1,4 @@
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import cx from "classnames";
 import ExchangeInfoRow from "components/Exchange/ExchangeInfoRow";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
@@ -20,7 +20,7 @@ export function GmFees(p: Props) {
 
   return (
     <ExchangeInfoRow
-      label={<Trans>Fees and Price Impact</Trans>}
+      label={<span>Fees and Price Impact</span>}
       value={
         <>
           {!p.totalFees?.deltaUsd && "-"}
@@ -33,7 +33,7 @@ export function GmFees(p: Props) {
                 <div>
                   {p.swapPriceImpact?.deltaUsd.abs().gt(0) && (
                     <StatsTooltipRow
-                      label={t`Price Impact`}
+                      label={`Price Impact`}
                       value={formatDeltaUsd(p.swapPriceImpact.deltaUsd, p.swapPriceImpact.bps)!}
                       showDollar={false}
                     />
@@ -51,7 +51,7 @@ export function GmFees(p: Props) {
 
                   {p.executionFee && (
                     <StatsTooltipRow
-                      label={t`Max Execution Fee`}
+                      label={`Max Execution Fee`}
                       value={formatTokenAmountWithUsd(
                         p.executionFee.feeTokenAmount.mul(-1),
                         p.executionFee.feeUsd.mul(-1),

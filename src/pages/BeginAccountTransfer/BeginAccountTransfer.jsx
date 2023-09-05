@@ -226,21 +226,21 @@ export default function BeginAccountTransfer(props) {
       <Modal
         isVisible={isTransferSubmittedModalVisible}
         setIsVisible={setIsTransferSubmittedModalVisible}
-        label={t`Transfer Submitted`}
+        label={`Transfer Submitted`}
       >
-        <Trans>Your transfer has been initiated.</Trans>
+        <span>Your transfer has been initiated.</span>
         <br />
         <br />
         <Link className="App-cta" to={completeTransferLink}>
-          <Trans>Continue</Trans>
+          <span>Continue</span>
         </Link>
       </Modal>
       <div className="Page-title-section">
         <div className="Page-title">
-          <Trans>Transfer Account</Trans>
+          <span>Transfer Account</span>
         </div>
         <div className="Page-description">
-          <Trans>
+          <span>
             Please only use this for full account transfers.
             <br />
             This will transfer all your GMX, esGMX, GLP and Multiplier Points to your new account.
@@ -248,13 +248,13 @@ export default function BeginAccountTransfer(props) {
             Transfers are only supported if the receiving account has not staked GMX or GLP tokens before.
             <br />
             Transfers are one-way, you will not be able to transfer staked tokens back to the sending account.
-          </Trans>
+          </span>
         </div>
         {hasPendingReceiver && (
           <div className="Page-description">
-            <Trans>
+            <span>
               You have a <Link to={pendingTransferLink}>pending transfer</Link> to {pendingReceiver}.
-            </Trans>
+            </span>
           </div>
         )}
       </div>
@@ -262,7 +262,7 @@ export default function BeginAccountTransfer(props) {
         <div className="input-form">
           <div className="input-row">
             <label className="input-label">
-              <Trans>Receiver Address</Trans>
+              <span>Receiver Address</span>
             </label>
             <div>
               <input
@@ -275,16 +275,16 @@ export default function BeginAccountTransfer(props) {
           </div>
           <div className="BeginAccountTransfer-validations">
             <ValidationRow isValid={!hasVestedGmx}>
-              <Trans>Sender has withdrawn all tokens from GMX Vesting Vault</Trans>
+              <span>Sender has withdrawn all tokens from GMX Vesting Vault</span>
             </ValidationRow>
             <ValidationRow isValid={!hasVestedGlp}>
-              <Trans>Sender has withdrawn all tokens from GLP Vesting Vault</Trans>
+              <span>Sender has withdrawn all tokens from GLP Vesting Vault</span>
             </ValidationRow>
             <ValidationRow isValid={!hasStakedGmx}>
-              <Trans>Receiver has not staked GMX tokens before</Trans>
+              <span>Receiver has not staked GMX tokens before</span>
             </ValidationRow>
             <ValidationRow isValid={!hasStakedGlp}>
-              <Trans>Receiver has not staked GLP tokens before</Trans>
+              <span>Receiver has not staked GLP tokens before</span>
             </ValidationRow>
           </div>
           <div className="input-row">

@@ -35,7 +35,10 @@ export function isTestLanguage(locale: string) {
 }
 
 export async function dynamicActivate(locale: string) {
-  const { messages } = await import(`@lingui/loader!locales/${locale}/messages.po`);
+  const { messages } = await import(
+    /* @vite-ignore */
+    `@lingui/loader!locales/${locale}/messages.po`
+  );
   if (!isTestLanguage(locale)) {
     localStorage.setItem(LANGUAGE_LOCALSTORAGE_KEY, locale);
   }

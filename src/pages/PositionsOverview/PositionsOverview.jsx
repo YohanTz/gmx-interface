@@ -19,29 +19,29 @@ export default function PositionsOverview() {
   return (
     <div className="Positions-overview">
       <p>
-        <Trans>
+        <span>
           Open positions: {positions.length}
           <br />
           Under risk: {positions.filter((p) => p.danger).length}
-        </Trans>
+        </span>
       </p>
       <table className="Positions-overview-table">
         <thead>
           <tr>
             <th>
-              <Trans>account</Trans>
+              <span>account</span>
             </th>
             <th>
-              <Trans>size</Trans>
+              <span>size</span>
             </th>
             <th>
-              <Trans>collateral</Trans>
+              <span>collateral</span>
             </th>
             <th>
-              <Trans>fee</Trans>
+              <span>fee</span>
             </th>
             <th>
-              <Trans>time to liq</Trans>
+              <span>time to liq</span>
             </th>
           </tr>
         </thead>

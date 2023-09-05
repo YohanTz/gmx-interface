@@ -7,7 +7,7 @@ import nansenPortfolioIcon from "img/nansen_portfolio.svg";
 import { FiChevronDown } from "react-icons/fi";
 import "./AssetDropdown.css";
 
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import { getIcon } from "config/icons";
 import { getTokenBySymbol } from "config/tokens";
@@ -52,7 +52,7 @@ function AssetDropdown({ assetSymbol, token: propsToken, tooltipPosition = "righ
                 <ExternalLink href={token.reservesUrl} className="asset-item">
                   <img className="asset-item-icon" src={nansenPortfolioIcon} alt="Proof of Reserves" />
                   <p>
-                    <Trans>Proof of Reserves</Trans>
+                    <span>Proof of Reserves</span>
                   </p>
                 </ExternalLink>
               )}
@@ -64,7 +64,7 @@ function AssetDropdown({ assetSymbol, token: propsToken, tooltipPosition = "righ
                 <ExternalLink href={token.coingeckoUrl} className="asset-item">
                   <img className="asset-item-icon" src={coingeckoIcon} alt="Open in Coingecko" />
                   <p>
-                    <Trans>Open in Coingecko</Trans>
+                    <span>Open in Coingecko</span>
                   </p>
                 </ExternalLink>
               )}
@@ -76,7 +76,7 @@ function AssetDropdown({ assetSymbol, token: propsToken, tooltipPosition = "righ
                 <ExternalLink href={token.explorerUrl} className="asset-item">
                   <img className="asset-item-icon" src={chainIcon} alt="Open in explorer" />
                   <p>
-                    <Trans>Open in Explorer</Trans>
+                    <span>Open in Explorer</span>
                   </p>
                 </ExternalLink>
               )}
@@ -91,9 +91,9 @@ function AssetDropdown({ assetSymbol, token: propsToken, tooltipPosition = "righ
                   }}
                   className="asset-item"
                 >
-                  <img className="asset-item-icon" src={metamaskIcon} alt={t`Add to Metamask`} />
+                  <img className="asset-item-icon" src={metamaskIcon} alt={`Add to Metamask`} />
                   <p>
-                    <Trans>Add to Metamask</Trans>
+                    <span>Add to Metamask</span>
                   </p>
                 </div>
               )}

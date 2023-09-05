@@ -52,7 +52,7 @@ export async function callContract(
         <div>
           {sentMsg}{" "}
           <ExternalLink href={txUrl}>
-            <Trans>View status.</Trans>
+            <span>View status.</span>
           </ExternalLink>
           <br />
         </div>

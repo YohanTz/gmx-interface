@@ -170,10 +170,10 @@ function getPositionOrderMessage(tradeAction: PositionTradeAction, minCollateral
       <>
         <LiquidationTooltip tradeAction={tradeAction} minCollateralUsd={minCollateralUsd} />
         {" "}
-        <Trans>
+        <span>
           {positionText} {sizeDeltaText}, Price: {formatUsd(executionPrice, { displayDecimals: priceDecimals })},
           Market: {tradeAction.marketInfo.name}
-        </Trans>
+        </span>
       </>
     );
   }

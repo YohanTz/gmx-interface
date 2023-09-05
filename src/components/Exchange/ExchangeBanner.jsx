@@ -10,7 +10,7 @@ export default function ExchangeBanner(props) {
   return (
     <div className="ExchangeBanner">
       <p className="ExchangeBanner-text">
-        <Trans>
+        <span>
           Trade on GMX and win <span className="ExchangeBanner-price">$250.000</span> in prizes! Live until November
           30th,{" "}
           <ExternalLink
@@ -20,7 +20,7 @@ export default function ExchangeBanner(props) {
             click here
           </ExternalLink>{" "}
           to learn more.
-        </Trans>
+        </span>
       </p>
       <span
         className="ExchangeBanner-close"

@@ -62,10 +62,10 @@ export function ClaimModal(p: Props) {
 
     return (
       <div key={market.marketTokenAddress} className="App-card-content">
-        <ExchangeInfoRow className="ClaimModal-row" label={t`Market`} value={marketName} />
+        <ExchangeInfoRow className="ClaimModal-row" label={`Market`} value={marketName} />
         <ExchangeInfoRow
           className="ClaimModal-row"
-          label={t`Funding fee`}
+          label={`Funding fee`}
           value={
             <Tooltip
               className="ClaimModal-row-tooltip"
@@ -124,7 +124,7 @@ export function ClaimModal(p: Props) {
       className="Confirmation-box ClaimableModal"
       isVisible={p.isVisible}
       setIsVisible={onClose}
-      label={t`Confirm Claim`}
+      label={`Confirm Claim`}
     >
       <div className="ConfirmationBox-main text-center">Claim {formatUsd(totalClaimableFundingUsd)}</div>
       <div className="ClaimModal-content">{markets.map(renderMarketSection)}</div>

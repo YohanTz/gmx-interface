@@ -788,7 +788,7 @@ export function GmSwapBox(p: Props) {
           <BuyInputSection
             topLeftLabel={isDeposit ? t`Pay` : t`Receive`}
             topLeftValue={formatUsd(firstTokenUsd)}
-            topRightLabel={t`Balance`}
+            topRightLabel={`Balance`}
             topRightValue={formatTokenAmount(firstToken?.balance, firstToken?.decimals, "", {
               useCommas: true,
             })}
@@ -829,7 +829,7 @@ export function GmSwapBox(p: Props) {
           >
             {firstTokenAddress && isSingle ? (
               <TokenSelector
-                label={t`Pay`}
+                label={`Pay`}
                 chainId={chainId}
                 tokenAddress={firstTokenAddress}
                 onSelectToken={(token) => setFirstTokenAddress(token.address)}
@@ -850,7 +850,7 @@ export function GmSwapBox(p: Props) {
             <BuyInputSection
               topLeftLabel={isDeposit ? t`Pay` : t`Receive`}
               topLeftValue={formatUsd(secondTokenUsd)}
-              topRightLabel={t`Balance`}
+              topRightLabel={`Balance`}
               topRightValue={formatTokenAmount(secondToken?.balance, secondToken?.decimals, "", {
                 useCommas: true,
               })}
@@ -903,7 +903,7 @@ export function GmSwapBox(p: Props) {
           <BuyInputSection
             topLeftLabel={isWithdrawal ? t`Pay` : t`Receive`}
             topLeftValue={marketTokenUsd?.gt(0) ? formatUsd(marketTokenUsd) : ""}
-            topRightLabel={t`Balance`}
+            topRightLabel={`Balance`}
             topRightValue={formatTokenAmount(marketToken?.balance, marketToken?.decimals, "", {
               useCommas: true,
             })}
@@ -942,10 +942,10 @@ export function GmSwapBox(p: Props) {
         <div className="GmSwapBox-info-section">
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={t`Market`}
+            label={`Market`}
             value={
               <MarketSelector
-                label={t`Market`}
+                label={`Market`}
                 className="SwapBox-info-dropdown"
                 selectedIndexName={indexName}
                 markets={markets}
@@ -963,10 +963,10 @@ export function GmSwapBox(p: Props) {
 
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={t`Pool`}
+            label={`Pool`}
             value={
               <PoolSelector
-                label={t`Pool`}
+                label={`Pool`}
                 className="SwapBox-info-dropdown"
                 selectedIndexName={indexName}
                 selectedMarketAddress={marketAddress}
@@ -1006,15 +1006,15 @@ export function GmSwapBox(p: Props) {
               {isSingle ? (
                 <Tooltip
                   className="warning-tooltip"
-                  handle={<Trans>Acknowledge high Price Impact</Trans>}
+                  handle={<span>Acknowledge high Price Impact</span>}
                   position="left-top"
                   renderContent={() => (
-                    <div>{t`Consider selecting and using the "Pair" option to reduce the Price Impact.`}</div>
+                    <div>{`Consider selecting and using the "Pair" option to reduce the Price Impact.`}</div>
                   )}
                 />
               ) : (
                 <span className="muted font-sm">
-                  <Trans>Acknowledge high Price Impact</Trans>
+                  <span>Acknowledge high Price Impact</span>
                 </span>
               )}
             </Checkbox>

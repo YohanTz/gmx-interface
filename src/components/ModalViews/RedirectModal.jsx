@@ -1,7 +1,7 @@
 import "./RedirectModal.css";
 import Modal from "../Modal/Modal";
 import Checkbox from "../Checkbox/Checkbox";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import Button from "components/Button/Button";
 
@@ -24,19 +24,19 @@ export function RedirectPopupModal({
       className="RedirectModal"
       isVisible={redirectModalVisible}
       setIsVisible={setRedirectModalVisible}
-      label={t`Launch App`}
+      label={`Launch App`}
     >
-      <Trans>You are leaving GMX.io and will be redirected to a third party, independent website.</Trans>
+      <span>You are leaving GMX.io and will be redirected to a third party, independent website.</span>
       <br />
       <br />
-      <Trans>
+      <span>
         The website is a community deployed and maintained instance of the open source{" "}
         <ExternalLink href="https://github.com/gmx-io/gmx-interface">GMX front end</ExternalLink>, hosted and served on
         the distributed, peer-to-peer <ExternalLink href="https://ipfs.io/">IPFS network</ExternalLink>.
-      </Trans>
+      </span>
       <br />
       <br />
-      <Trans>
+      <span>
         Alternative links can be found in the{" "}
         <ExternalLink href="https://docs.gmx.io/docs/community/frontends">docs</ExternalLink>.
         <br />
@@ -47,14 +47,14 @@ export function RedirectPopupModal({
         and <ExternalLink href="https://gmx.io/#/referral-terms">Referral T&Cs</ExternalLink>.
         <br />
         <br />
-      </Trans>
+      </span>
       <div className="mb-sm">
         <Checkbox isChecked={shouldHideRedirectModal} setIsChecked={setShouldHideRedirectModal}>
-          <Trans>Don't show this message again for 30 days.</Trans>
+          <span>Don't show this message again for 30 days.</span>
         </Checkbox>
       </div>
       <Button variant="primary-action" className="w-full" to={appRedirectUrl} onClick={onClickAgree}>
-        <Trans>Agree</Trans>
+        <span>Agree</span>
       </Button>
     </Modal>
   );

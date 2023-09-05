@@ -32,7 +32,7 @@ function PositionDropdown(p) {
             <div className="menu-item" onClick={handleEditCollateral}>
               <AiOutlineEdit fontSize={16} />
               <p>
-                <Trans>Edit Collateral</Trans>
+                <span>Edit Collateral</span>
               </p>
             </div>
           </Menu.Item>
@@ -40,7 +40,7 @@ function PositionDropdown(p) {
             <div className="menu-item" onClick={handleMarketSelect}>
               <BiSelectMultiple fontSize={16} />
               <p>
-                <Trans>Select Market</Trans>
+                <span>Select Market</span>
               </p>
             </div>
           </Menu.Item>
@@ -49,7 +49,7 @@ function PositionDropdown(p) {
               <div className="menu-item" onClick={handleShare}>
                 <RiShareBoxFill fontSize={16} />
                 <p>
-                  <Trans>Share Position</Trans>
+                  <span>Share Position</span>
                 </p>
               </div>
             </Menu.Item>
@@ -59,7 +59,7 @@ function PositionDropdown(p) {
               <div className="menu-item" onClick={handleMarketIncreaseSize}>
                 <img src={increaseMarket} alt="Increase Limit" height={16} />
                 <p>
-                  <Trans>Increase Size (Market)</Trans>
+                  <span>Increase Size (Market)</span>
                 </p>
               </div>
             </Menu.Item>
@@ -69,7 +69,7 @@ function PositionDropdown(p) {
               <div className="menu-item" onClick={handleLimitIncreaseSize}>
                 <img src={increaseLimit} alt="Increase Limit" height={16} />
                 <p>
-                  <Trans>Increase Size (Limit)</Trans>
+                  <span>Increase Size (Limit)</span>
                 </p>
               </div>
             </Menu.Item>
@@ -79,7 +79,7 @@ function PositionDropdown(p) {
               <div className="menu-item" onClick={handleTriggerClose}>
                 <img src={triggerClose} alt="Increase Limit" height={16} />
                 <p>
-                  <Trans>Trigger Close</Trans>
+                  <span>Trigger Close</span>
                 </p>
               </div>
             </Menu.Item>

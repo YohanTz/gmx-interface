@@ -1,4 +1,4 @@
-import { Plural, Trans, t } from "@lingui/macro";
+import { Plural, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import { ethers } from "ethers";
@@ -74,7 +74,7 @@ function pushSuccessNotification(chainId, message, e) {
     <div>
       {message}{" "}
       <ExternalLink href={txUrl}>
-        <Trans>View</Trans>
+        <span>View</span>
       </ExternalLink>
     </div>
   );
@@ -94,7 +94,7 @@ function pushErrorNotification(chainId, message, e) {
     <div>
       {message}{" "}
       <ExternalLink href={txUrl}>
-        <Trans>View</Trans>
+        <span>View</span>
       </ExternalLink>
     </div>
   );
@@ -837,7 +837,7 @@ export const Exchange = forwardRef((props, ref) => {
               className={cx("muted chart-positions", { active: savedShouldShowPositionLines })}
             >
               <span>
-                <Trans>Chart positions</Trans>
+                <span>Chart positions</span>
               </span>
             </Checkbox>
           </div>

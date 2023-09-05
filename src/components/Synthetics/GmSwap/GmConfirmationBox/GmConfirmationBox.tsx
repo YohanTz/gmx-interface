@@ -297,7 +297,7 @@ export function GmConfirmationBox({
 
   return (
     <div className="Confirmation-box GmConfirmationBox">
-      <Modal isVisible={isVisible} setIsVisible={onClose} label={t`Confirm ${operationText}`} allowContentTouchMove>
+      <Modal isVisible={isVisible} setIsVisible={onClose} label={`Confirm ${operationText}`} allowContentTouchMove>
         {isVisible && (
           <>
             <div className={cx("Confirmation-box-main GmConfirmationBox-main")}>
@@ -305,24 +305,24 @@ export function GmConfirmationBox({
                 <>
                   {[longTokenText, shortTokenText].filter(Boolean).map((text) => (
                     <div key={text}>
-                      <Trans>Pay</Trans> {text}
+                      <span>Pay</span> {text}
                     </div>
                   ))}
                   <div className="Confirmation-box-main-icon"></div>
                   <div>
-                    <Trans>Receive</Trans> {marketTokenText}
+                    <span>Receive</span> {marketTokenText}
                   </div>
                 </>
               )}
               {!isDeposit && (
                 <>
                   <div>
-                    <Trans>Pay</Trans>&nbsp;{marketTokenText}
+                    <span>Pay</span>&nbsp;{marketTokenText}
                   </div>
                   <div className="Confirmation-box-main-icon"></div>
                   {[longTokenText, shortTokenText].filter(Boolean).map((text) => (
                     <div key={text}>
-                      <Trans>Receive</Trans>&nbsp;{text}
+                      <span>Receive</span>&nbsp;{text}
                     </div>
                   ))}
                 </>

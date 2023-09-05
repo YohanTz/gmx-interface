@@ -1,6 +1,6 @@
 import Davatar from "@davatar/react";
 import { Menu } from "@headlessui/react";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import { ETH_MAINNET } from "config/chains";
 import copy from "img/ic_copy_16.svg";
 import externalLink from "img/ic_new_link_16.svg";
@@ -49,7 +49,7 @@ function AddressDropdown({ account, accountUrl, disconnectAccountAndCloseSetting
             >
               <img src={copy} alt="Copy user address" />
               <p>
-                <Trans>Copy Address</Trans>
+                <span>Copy Address</span>
               </p>
             </div>
           </Menu.Item>
@@ -57,7 +57,7 @@ function AddressDropdown({ account, accountUrl, disconnectAccountAndCloseSetting
             <ExternalLink href={accountUrl} className="menu-item">
               <img src={externalLink} alt="Open address in explorer" />
               <p>
-                <Trans>View in Explorer</Trans>
+                <span>View in Explorer</span>
               </p>
             </ExternalLink>
           </Menu.Item>
@@ -65,7 +65,7 @@ function AddressDropdown({ account, accountUrl, disconnectAccountAndCloseSetting
             <div className="menu-item" onClick={disconnectAccountAndCloseSettings}>
               <img src={disconnect} alt="Disconnect the wallet" />
               <p>
-                <Trans>Disconnect</Trans>
+                <span>Disconnect</span>
               </p>
             </div>
           </Menu.Item>

@@ -41,7 +41,7 @@ export function CollateralSelectorRow(p: Props) {
     ) {
       return (
         <div className="MarketSelector-tooltip-row">
-          <Trans>
+          <span>
             You have an existing position with {collateralWithPosition.symbol} as collateral.{" "}
             <div
               className="MarketSelector-tooltip-row-action clickable underline muted"
@@ -51,7 +51,7 @@ export function CollateralSelectorRow(p: Props) {
             >
               Switch to {collateralWithPosition.symbol} collateral.
             </div>{" "}
-          </Trans>
+          </span>
         </div>
       );
     }
@@ -67,7 +67,7 @@ export function CollateralSelectorRow(p: Props) {
     ) {
       return (
         <div className="MarketSelector-tooltip-row">
-          <Trans>
+          <span>
             You have an existing order with {collateralWithOrder.symbol} as collateral.{" "}
             <div
               className="MarketSelector-tooltip-row-action clickable underline muted"
@@ -77,7 +77,7 @@ export function CollateralSelectorRow(p: Props) {
             >
               Switch to {collateralWithOrder.symbol} collateral.
             </div>{" "}
-          </Trans>
+          </span>
         </div>
       );
     }
@@ -100,7 +100,7 @@ export function CollateralSelectorRow(p: Props) {
       label={
         message ? (
           <Tooltip
-            handle={t`Collateral In`}
+            handle={`Collateral In`}
             position="left-bottom"
             className="MarketSelector-tooltip"
             renderContent={() => <div className="MarketSelector-tooltip-content">{message}</div>}
@@ -114,7 +114,7 @@ export function CollateralSelectorRow(p: Props) {
         selectedCollateralAddress &&
         availableCollaterals && (
           <TokenSelector
-            label={t`Collateral In`}
+            label={`Collateral In`}
             className="GlpSwap-from-token SwapBox-info-dropdown"
             chainId={chainId}
             tokenAddress={selectedCollateralAddress}

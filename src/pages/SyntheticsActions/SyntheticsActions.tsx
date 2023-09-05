@@ -47,14 +47,14 @@ export default function SyntheticsActions({
     <div className="Actions">
       {checkSummedAccount && (
         <div className="Actions-section">
-          <Trans>Account</Trans>: {checkSummedAccount}
+          <span>Account</span>: {checkSummedAccount}
         </div>
       )}
 
       {checkSummedAccount && (
         <div className="Actions-section">
           <div className="Actions-title">
-            <Trans>Positions</Trans>
+            <span>Positions</span>
           </div>
           <PositionList
             positionsData={positionsInfoData}
@@ -75,7 +75,7 @@ export default function SyntheticsActions({
       {checkSummedAccount && (
         <div className="Actions-section">
           <div className="Actions-title">
-            <Trans>Orders</Trans>
+            <span>Orders</span>
           </div>
           <OrderList
             marketsInfoData={marketsInfoData}
@@ -91,7 +91,7 @@ export default function SyntheticsActions({
       )}
       <div className="Actions-section">
         <div className="Actions-title">
-          <Trans>Actions</Trans>
+          <span>Actions</span>
         </div>
         <TradeHistory
           account={checkSummedAccount}

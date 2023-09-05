@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 
 import {
   SWAP,
@@ -103,22 +103,22 @@ export default function OrdersList(props) {
 
         <th>
           <div>
-            <Trans>Type</Trans>
+            <span>Type</span>
           </div>
         </th>
         <th>
           <div>
-            <Trans>Order</Trans>
+            <span>Order</span>
           </div>
         </th>
         <th>
           <div>
-            <Trans>Price</Trans>
+            <span>Price</span>
           </div>
         </th>
         <th>
           <div>
-            <Trans>Mark Price</Trans>
+            <span>Mark Price</span>
           </div>
         </th>
       </tr>
@@ -133,7 +133,7 @@ export default function OrdersList(props) {
     return (
       <tr>
         <td colSpan="5">
-          <Trans>No open orders</Trans>
+          <span>No open orders</span>
         </td>
       </tr>
     );
@@ -145,12 +145,12 @@ export default function OrdersList(props) {
         <>
           <td>
             <button className="Exchange-list-action" onClick={() => onEditClick(order)}>
-              <Trans>Edit</Trans>
+              <span>Edit</span>
             </button>
           </td>
           <td>
             <button className="Exchange-list-action" onClick={() => onCancelClick(order)}>
-              <Trans>Cancel</Trans>
+              <span>Cancel</span>
             </button>
           </td>
         </>
@@ -178,7 +178,7 @@ export default function OrdersList(props) {
         const orderId = `${order.type}-${order.index}`;
         const titleText = (
           <span>
-            <Trans>Swap</Trans>{" "}
+            <span>Swap</span>{" "}
             {formatAmount(
               order.amountIn,
               fromTokenInfo.decimals,
@@ -212,7 +212,7 @@ export default function OrdersList(props) {
               </td>
             )}
             <td className="Exchange-list-item-type">
-              <Trans>Limit</Trans>
+              <span>Limit</span>
             </td>
             <td className="inline-flex">
               <Tooltip
@@ -222,7 +222,7 @@ export default function OrdersList(props) {
                 renderContent={() => {
                   return (
                     <StatsTooltipRow
-                      label={t`Collateral`}
+                      label={`Collateral`}
                       value={`${formatAmount(collateralUSD, USD_DECIMALS, 2, true)} (${formatAmount(
                         order.amountIn,
                         fromTokenInfo.decimals,
@@ -326,7 +326,7 @@ export default function OrdersList(props) {
                   const collateralUSD = getUsd(order.purchaseTokenAmount, order.purchaseToken, false, infoTokens);
                   return (
                     <StatsTooltipRow
-                      label={t`Collateral`}
+                      label={`Collateral`}
                       value={`${formatAmount(collateralUSD, USD_DECIMALS, 2, true)} (${formatAmount(
                         order.purchaseTokenAmount,
                         collateralTokenInfo.decimals,
@@ -349,7 +349,7 @@ export default function OrdersList(props) {
               position="right-bottom"
               renderContent={() => {
                 return (
-                  <Trans>
+                  <span>
                     <p>
                       The price that orders can be executed at may differ slightly from the chart price, as market
                       orders update oracle prices, while limit/trigger orders do not.
@@ -361,7 +361,7 @@ export default function OrdersList(props) {
                       </ExternalLink>
                       .
                     </p>
-                  </Trans>
+                  </span>
                 );
               }}
             />
@@ -414,7 +414,7 @@ export default function OrdersList(props) {
               <div className="App-card-divider"></div>
               <div className="App-card-row">
                 <div className="label">
-                  <Trans>Price</Trans>
+                  <span>Price</span>
                 </div>
                 <div>
                   <Tooltip
@@ -435,13 +435,13 @@ export default function OrdersList(props) {
               </div>
               <div className="App-card-row">
                 <div className="label">
-                  <Trans>Mark Price</Trans>
+                  <span>Mark Price</span>
                 </div>
                 <div>{getExchangeRateDisplay(markExchangeRate, fromTokenInfo, toTokenInfo)}</div>
               </div>
               <div className="App-card-row">
                 <div className="label">
-                  <Trans>Collateral</Trans>
+                  <span>Collateral</span>
                 </div>
                 <div>
                   ${formatAmount(collateralUSD, USD_DECIMALS, 2, true)} (
@@ -456,10 +456,10 @@ export default function OrdersList(props) {
                   <div className="App-card-divider"></div>
                   <div className="remove-top-margin">
                     <Button variant="secondary" className="mr-md mt-md" onClick={() => onEditClick(order)}>
-                      <Trans>Edit</Trans>
+                      <span>Edit</span>
                     </Button>
                     <Button variant="secondary" className="mt-md" onClick={() => onCancelClick(order)}>
-                      <Trans>Cancel</Trans>
+                      <span>Cancel</span>
                     </Button>
                   </div>
                 </>
@@ -500,7 +500,7 @@ export default function OrdersList(props) {
             <div className="App-card-divider"></div>
             <div className="App-card-row">
               <div className="label">
-                <Trans>Price</Trans>
+                <span>Price</span>
               </div>
               <div>
                 {triggerPricePrefix} {formatAmount(order.triggerPrice, USD_DECIMALS, 2, true)}
@@ -508,7 +508,7 @@ export default function OrdersList(props) {
             </div>
             <div className="App-card-row">
               <div className="label">
-                <Trans>Mark Price</Trans>
+                <span>Mark Price</span>
               </div>
               <div>
                 <Tooltip
@@ -516,10 +516,10 @@ export default function OrdersList(props) {
                   position="right-bottom"
                   renderContent={() => {
                     return (
-                      <Trans>
+                      <span>
                         The price that the order can be executed at may differ slightly from the chart price as market
                         orders can change the price while limit / trigger orders cannot.
-                      </Trans>
+                      </span>
                     );
                   }}
                 />
@@ -528,7 +528,7 @@ export default function OrdersList(props) {
             {order.type === INCREASE && (
               <div className="App-card-row">
                 <div className="label">
-                  <Trans>Collateral</Trans>
+                  <span>Collateral</span>
                 </div>
                 <div>
                   ${formatAmount(collateralUSD, USD_DECIMALS, 2, true)} (
@@ -544,10 +544,10 @@ export default function OrdersList(props) {
                 <div className="App-card-divider"></div>
                 <div className="remove-top-margin">
                   <Button variant="secondary" className="mr-md mt-md" onClick={() => onEditClick(order)}>
-                    <Trans>Edit</Trans>
+                    <span>Edit</span>
                   </Button>
                   <Button variant="secondary" className="mt-md" onClick={() => onCancelClick(order)}>
-                    <Trans>Cancel</Trans>
+                    <span>Cancel</span>
                   </Button>
                 </div>
               </>
@@ -569,7 +569,7 @@ export default function OrdersList(props) {
       </table>
       {(!orders || orders.length === 0) && (
         <div className="Exchange-empty-positions-list-note small App-card">
-          <Trans>No open orders</Trans>
+          <span>No open orders</span>
         </div>
       )}
       <div className="Exchange-list Orders small">{renderSmallList()}</div>

@@ -35,10 +35,10 @@ export function AcceptbablePriceImpactEditor(p: Props) {
   }
 
   return (
-    <Modal className="App-settings" isVisible={p.isVisible} setIsVisible={p.onClose} label={t`Edit`}>
+    <Modal className="App-settings" isVisible={p.isVisible} setIsVisible={p.onClose} label={`Edit`}>
       <div className="App-settings-row">
         <div>
-          <Trans>Acceptable Price Impact</Trans>
+          <span>Acceptable Price Impact</span>
         </div>
         <div className="App-slippage-tolerance-input-container">
           <input
@@ -52,7 +52,7 @@ export function AcceptbablePriceImpactEditor(p: Props) {
         </div>
       </div>
 
-      <Button className="w-full" variant="primary-action" onClick={onSubmit}>{t`Save`}</Button>
+      <Button className="w-full" variant="primary-action" onClick={onSubmit}>{`Save`}</Button>
     </Modal>
   );
 }

@@ -15,13 +15,13 @@ function PageNotFound() {
         <div className="page-not-found-container">
           <div className="page-not-found">
             <h2>
-              <Trans>Page not found</Trans>
+              <span>Page not found</span>
             </h2>
             <p className="go-back">
-              <Trans>
+              <span>
                 <span>Return to </span>
                 <a href={homeUrl}>Homepage</a> <span>or </span> <a href={tradePageUrl}>Trade</a>
-              </Trans>
+              </span>
             </p>
           </div>
         </div>

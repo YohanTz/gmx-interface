@@ -216,7 +216,7 @@ export default function PositionsList(props) {
         <>
           {positions.length === 0 && (
             <div className="Exchange-empty-positions-list-note small App-card">
-              {positionsDataIsLoading ? <Trans>Loading...</Trans> : <Trans>No open positions</Trans>}
+              {positionsDataIsLoading ? <span>Loading...</span> : <span>No open positions</span>}
             </div>
           )}
           <div className="Exchange-list small">
@@ -275,7 +275,7 @@ export default function PositionsList(props) {
                     <div className="App-card-content">
                       <div className="App-card-row">
                         <div className="label">
-                          <Trans>Net Value</Trans>
+                          <span>Net Value</span>
                         </div>
                         <div>
                           <NetValueTooltip isMobile position={position} />
@@ -283,7 +283,7 @@ export default function PositionsList(props) {
                       </div>
                       <div className="App-card-row">
                         <div className="label">
-                          <Trans>PnL</Trans>
+                          <span>PnL</span>
                         </div>
                         <div>
                           <span
@@ -300,13 +300,13 @@ export default function PositionsList(props) {
                       </div>
                       <div className="App-card-row">
                         <div className="label">
-                          <Trans>Size</Trans>
+                          <span>Size</span>
                         </div>
                         <div>${formatAmount(position.size, USD_DECIMALS, 2, true)}</div>
                       </div>
                       <div className="App-card-row">
                         <div className="label">
-                          <Trans>Collateral</Trans>
+                          <span>Collateral</span>
                         </div>
                         <div className="position-list-collateral">
                           <Tooltip
@@ -318,31 +318,31 @@ export default function PositionsList(props) {
                                 <>
                                   {position.hasLowCollateral && (
                                     <div>
-                                      <Trans>
+                                      <span>
                                         WARNING: This position has a low amount of collateral after deducting borrowing
                                         fees, deposit more collateral to reduce the position's liquidation risk.
-                                      </Trans>
+                                      </span>
                                       <br />
                                       <br />
                                     </div>
                                   )}
                                   <StatsTooltipRow
-                                    label={t`Initial Collateral`}
+                                    label={`Initial Collateral`}
                                     value={formatAmount(position.collateral, USD_DECIMALS, 2, true)}
                                   />
                                   <StatsTooltipRow
-                                    label={t`Borrow Fee`}
+                                    label={`Borrow Fee`}
                                     value={formatAmount(position.fundingFee, USD_DECIMALS, 2, true)}
                                   />
                                   <StatsTooltipRow
                                     showDollar={false}
-                                    label={t`Borrow Fee / Day`}
+                                    label={`Borrow Fee / Day`}
                                     value={`-$${borrowFeeUSD}`}
                                   />
 
                                   {!hideActions && (
                                     <span>
-                                      <Trans>Use the Edit Collateral icon to deposit or withdraw collateral.</Trans>
+                                      <span>Use the Edit Collateral icon to deposit or withdraw collateral.</span>
                                     </span>
                                   )}
                                 </>
@@ -361,19 +361,19 @@ export default function PositionsList(props) {
                     <div className="App-card-content">
                       <div className="App-card-row">
                         <div className="label">
-                          <Trans>Entry Price</Trans>
+                          <span>Entry Price</span>
                         </div>
                         <div>${formatAmount(position.averagePrice, USD_DECIMALS, positionPriceDecimal, true)}</div>
                       </div>
                       <div className="App-card-row">
                         <div className="label">
-                          <Trans>Mark Price</Trans>
+                          <span>Mark Price</span>
                         </div>
                         <div>${formatAmount(position.markPrice, USD_DECIMALS, positionPriceDecimal, true)}</div>
                       </div>
                       <div className="App-card-row">
                         <div className="label">
-                          <Trans>Liq. Price</Trans>
+                          <span>Liq. Price</span>
                         </div>
                         <div>${formatAmount(liquidationPrice, USD_DECIMALS, positionPriceDecimal, true)}</div>
                       </div>
@@ -381,7 +381,7 @@ export default function PositionsList(props) {
                     <div className="App-card-divider" />
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Orders</Trans>
+                        <span>Orders</span>
                       </div>
                       <div>
                         {positionOrders.length === 0 && "None"}
@@ -425,7 +425,7 @@ export default function PositionsList(props) {
                           disabled={position.size.eq(0)}
                           onClick={() => sellPosition(position)}
                         >
-                          <Trans>Close</Trans>
+                          <span>Close</span>
                         </Button>
                         <Button
                           variant="secondary"
@@ -433,7 +433,7 @@ export default function PositionsList(props) {
                           disabled={position.size.eq(0)}
                           onClick={() => editPosition(position)}
                         >
-                          <Trans>Edit Collateral</Trans>
+                          <span>Edit Collateral</span>
                         </Button>
                         <Button
                           variant="secondary"
@@ -444,7 +444,7 @@ export default function PositionsList(props) {
                           }}
                           disabled={position.size.eq(0)}
                         >
-                          <Trans>Share</Trans>
+                          <span>Share</span>
                         </Button>
                       </div>
                     </div>
@@ -459,25 +459,25 @@ export default function PositionsList(props) {
         <tbody>
           <tr className="Exchange-list-header">
             <th>
-              <Trans>Position</Trans>
+              <span>Position</span>
             </th>
             <th>
-              <Trans>Net Value</Trans>
+              <span>Net Value</span>
             </th>
             <th>
-              <Trans>Size</Trans>
+              <span>Size</span>
             </th>
             <th>
-              <Trans>Collateral</Trans>
+              <span>Collateral</span>
             </th>
             <th>
-              <Trans>Entry Price</Trans>
+              <span>Entry Price</span>
             </th>
             <th>
-              <Trans>Mark Price</Trans>
+              <span>Mark Price</span>
             </th>
             <th>
-              <Trans>Liq. Price</Trans>
+              <span>Liq. Price</span>
             </th>
             {!hideActions && (
               <>
@@ -490,7 +490,7 @@ export default function PositionsList(props) {
             <tr>
               <td colSpan="15">
                 <div className="Exchange-empty-positions-list-note">
-                  {positionsDataIsLoading ? <Trans>Loading...</Trans> : <Trans>No open positions</Trans>}
+                  {positionsDataIsLoading ? <span>Loading...</span> : <span>No open positions</span>}
                 </div>
               </td>
             </tr>
@@ -543,16 +543,16 @@ export default function PositionsList(props) {
                         renderContent={() => {
                           return (
                             <div>
-                              <Trans>
+                              <span>
                                 Click on a row to select the position's market, then use the trade box to increase your
                                 position size if needed.
-                              </Trans>
+                              </span>
                               <br />
                               <br />
-                              <Trans>
+                              <span>
                                 Use the "Close" button to reduce your position size, or to set stop-loss / take-profit
                                 orders.
-                              </Trans>
+                              </span>
                             </div>
                           );
                         }}
@@ -608,7 +608,7 @@ export default function PositionsList(props) {
                   {positionOrders.length > 0 && (
                     <div onClick={() => setListSection && setListSection("Orders")}>
                       <Tooltip
-                        handle={t`Orders (${positionOrders.length})`}
+                        handle={`Orders (${positionOrders.length})`}
                         position="left-bottom"
                         handleClassName={cx(
                           ["Exchange-list-info-label", "Exchange-position-list-orders", "plain", "clickable"],
@@ -618,7 +618,7 @@ export default function PositionsList(props) {
                           return (
                             <>
                               <strong>
-                                <Trans>Active Orders</Trans>
+                                <span>Active Orders</span>
                               </strong>
                               {positionOrders.map((order) => {
                                 const priceDecimal = getPriceDecimals(chainId, order.indexToken.symbol);
@@ -652,33 +652,33 @@ export default function PositionsList(props) {
                           <>
                             {position.hasLowCollateral && (
                               <div>
-                                <Trans>
+                                <span>
                                   WARNING: This position has a low amount of collateral after deducting borrowing fees,
                                   deposit more collateral to reduce the position's liquidation risk.
-                                </Trans>
+                                </span>
                                 <br />
                                 <br />
                               </div>
                             )}
 
                             <StatsTooltipRow
-                              label={t`Initial Collateral`}
+                              label={`Initial Collateral`}
                               value={formatAmount(position.collateral, USD_DECIMALS, 2, true)}
                             />
                             <StatsTooltipRow
-                              label={t`Borrow Fee`}
+                              label={`Borrow Fee`}
                               showDollar={false}
                               value={`-$${formatAmount(position.fundingFee, USD_DECIMALS, 2, true)}`}
                             />
                             <StatsTooltipRow
                               showDollar={false}
-                              label={t`Borrow Fee / Day`}
+                              label={`Borrow Fee / Day`}
                               value={`-$${borrowFeeUSD}`}
                             />
                             {!hideActions && (
                               <>
                                 <br />
-                                <Trans>Use the Edit Collateral icon to deposit or withdraw collateral.</Trans>
+                                <span>Use the Edit Collateral icon to deposit or withdraw collateral.</span>
                               </>
                             )}
                           </>
@@ -708,7 +708,7 @@ export default function PositionsList(props) {
                     onClick={() => sellPosition(position)}
                     disabled={position.size.eq(0)}
                   >
-                    <Trans>Close</Trans>
+                    <span>Close</span>
                   </button>
                 </td>
                 {!hideActions && (

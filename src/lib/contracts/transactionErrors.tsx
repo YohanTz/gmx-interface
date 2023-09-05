@@ -73,23 +73,23 @@ export function getErrorMessage(chainId: number, ex: TxError, txnMessage?: strin
   switch (type) {
     case NOT_ENOUGH_FUNDS:
       failMsg = (
-        <Trans>
+        <span>
           There is not enough ETH in your account on Arbitrum to send this transaction.
           <br />
           <br />
           <ExternalLink href="https://arbitrum.io/bridge-tutorial/">Bridge ETH to Arbitrum</ExternalLink>
-        </Trans>
+        </span>
       );
       break;
     case NETWORK_CHANGED:
       failMsg = (
-        <Trans>
+        <span>
           <div>Your wallet is not connected to {getChainName(chainId)}.</div>
           <br />
           <div className="clickable underline" onClick={() => switchNetwork(chainId, true)}>
             Switch to {getChainName(chainId)}
           </div>
-        </Trans>
+        </span>
       );
       break;
     case USER_DENIED:
@@ -105,13 +105,13 @@ export function getErrorMessage(chainId: number, ex: TxError, txnMessage?: strin
 
       failMsg = (
         <div>
-          <Trans>
+          <span>
             Transaction failed due to RPC error.
             <br />
             <br />
             Please try changing the RPC url in your wallet settings.{" "}
             <ExternalLink href="https://docs.gmx.io/docs/trading/v1#rpc-urls">More info</ExternalLink>
-          </Trans>
+          </span>
           <br />
           {originalError && <ToastifyDebug>{originalError}</ToastifyDebug>}
         </div>

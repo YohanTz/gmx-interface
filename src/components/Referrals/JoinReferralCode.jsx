@@ -10,17 +10,17 @@ function JoinReferralCode({ setPendingTxns, pendingTxns, active, connectWallet }
   return (
     <div className="referral-card section-center mt-medium">
       <h2 className="title">
-        <Trans>Enter Referral Code</Trans>
+        <span>Enter Referral Code</span>
       </h2>
       <p className="sub-title">
-        <Trans>Please input a referral code to benefit from fee discounts.</Trans>
+        <span>Please input a referral code to benefit from fee discounts.</span>
       </p>
       <div className="card-action">
         {active ? (
           <ReferralCodeForm setPendingTxns={setPendingTxns} pendingTxns={pendingTxns} />
         ) : (
           <Button variant="primary-action" className="w-full" type="submit" onClick={connectWallet}>
-            <Trans>Connect Wallet</Trans>
+            <span>Connect Wallet</span>
           </Button>
         )}
       </div>

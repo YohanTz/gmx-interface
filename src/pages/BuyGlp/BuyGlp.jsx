@@ -26,22 +26,22 @@ export default function BuyGlp(props) {
   return (
     <div className="default-container page-layout">
       <PageTitle
-        title={t`Buy / Sell GLP`}
+        title={`Buy / Sell GLP`}
         isTop
         subtitle={
           <div>
-            <Trans>
+            <span>
               Purchase <ExternalLink href="https://docs.gmx.io/docs/providing-liquidity/v1">GLP tokens</ExternalLink> to
               earn {nativeTokenSymbol} fees from swaps and leverage trading.
-            </Trans>
+            </span>
             <br />
-            <Trans>
+            <span>
               View{" "}
               <Link className="link-underline" to="/earn">
                 staking
               </Link>{" "}
               page.
-            </Trans>
+            </span>
           </div>
         }
       />

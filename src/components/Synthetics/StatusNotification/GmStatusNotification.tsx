@@ -1,5 +1,5 @@
 import { t } from "@lingui/macro";
-import { TransactionStatus, TransactionStatusType } from "components/TransactionStatus/TransactionStatus";
+import { TransactionStatusactionStatusType } from "components/TransactionStatus/TransactionStatus";
 import { convertTokenAddress } from "config/tokens";
 import { TOAST_AUTO_CLOSE_TIME } from "config/ui";
 import cx from "classnames";

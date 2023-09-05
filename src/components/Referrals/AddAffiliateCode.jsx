@@ -18,12 +18,12 @@ function AddAffiliateCode({
   return (
     <div className="referral-card section-center mt-medium">
       <h2 className="title">
-        <Trans>Generate Referral Code</Trans>
+        <span>Generate Referral Code</span>
       </h2>
       <p className="sub-title">
-        <Trans>
+        <span>
           Looks like you don't have a referral code to share. <br /> Create one now and start earning rebates!
-        </Trans>
+        </span>
       </p>
       <div className="card-action">
         {active ? (
@@ -34,7 +34,7 @@ function AddAffiliateCode({
           />
         ) : (
           <Button variant="primary-action" className="w-full" onClick={connectWallet}>
-            <Trans>Connect Wallet</Trans>
+            <span>Connect Wallet</span>
           </Button>
         )}
       </div>
@@ -161,7 +161,7 @@ export function AffiliateCodeForm({
         value={referralCode}
         disabled={isProcessing}
         className={cx("text-input", { "mb-sm": !error })}
-        placeholder={t`Enter a code`}
+        placeholder={`Enter a code`}
         onChange={({ target }) => {
           const { value } = target;
           setReferralCode(value);

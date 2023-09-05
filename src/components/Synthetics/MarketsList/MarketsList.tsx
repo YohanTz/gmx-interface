@@ -143,26 +143,26 @@ export function MarketsList() {
       {!isMobile && (
         <div className="token-table-wrapper App-card">
           <div className="App-card-title">
-            <Trans>GM Pools</Trans> <img src={getIcon(chainId, "network")} width="16" alt="Network Icon" />
+            <span>GM Pools</span> <img src={getIcon(chainId, "network")} width="16" alt="Network Icon" />
           </div>
           <div className="App-card-divider"></div>
           <table className="token-table">
             <thead>
               <tr>
                 <th>
-                  <Trans>TOKEN</Trans>
+                  <span>TOKEN</span>
                 </th>
                 <th>
-                  <Trans>PRICE</Trans>
+                  <span>PRICE</span>
                 </th>
                 <th>
-                  <Trans>POOLS VALUE</Trans>
+                  <span>POOLS VALUE</span>
                 </th>
                 <th>
-                  <Trans>FUNDING RATE / 1h</Trans>
+                  <span>FUNDING RATE / 1h</span>
                 </th>
                 <th>
-                  <Trans>UTILIZATION</Trans>
+                  <span>UTILIZATION</span>
                 </th>
               </tr>
             </thead>
@@ -247,7 +247,7 @@ export function MarketsList() {
 
       {isMobile && (
         <>
-          <PageTitle title={t`GM Pools`} />
+          <PageTitle title={`GM Pools`} />
           <div className="token-grid">
             {indexTokensStats.map((stats) => (
               <div className="App-card" key={stats.token.symbol}>
@@ -268,13 +268,13 @@ export function MarketsList() {
                 <div className="App-card-content">
                   <div className="App-card-row">
                     <div className="label">
-                      <Trans>Price</Trans>
+                      <span>Price</span>
                     </div>
                     <div>{formatUsd(stats.token.prices?.minPrice)}</div>
                   </div>
                   <div className="App-card-row">
                     <div className="label">
-                      <Trans>Pools Value</Trans>
+                      <span>Pools Value</span>
                     </div>
                     <div>
                       <Tooltip
@@ -297,7 +297,7 @@ export function MarketsList() {
                   </div>
                   <div className="App-card-row">
                     <div className="label">
-                      <Trans>Funding Rate / 1h</Trans>
+                      <span>Funding Rate / 1h</span>
                     </div>
                     <div>
                       <Tooltip
@@ -327,7 +327,7 @@ export function MarketsList() {
                   </div>
                   <div className="App-card-row">
                     <div className="label">
-                      <Trans>Utilization</Trans>
+                      <span>Utilization</span>
                     </div>
                     <div>{formatAmount(stats.totalUtilization, 2, 2, false)}%</div>
                   </div>

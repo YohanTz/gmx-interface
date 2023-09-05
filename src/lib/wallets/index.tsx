@@ -21,7 +21,7 @@ import {
   WALLET_LINK_LOCALSTORAGE_PREFIX,
 } from "config/localStorage";
 import { helperToast } from "../helperToast";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 
 import { Web3ReactManagerFunctions } from "@web3-react/core/dist/types";
 import { UserRejectedRequestError, WalletConnectConnector } from "./WalletConnectConnector";
@@ -343,13 +343,13 @@ export function showUnsupportedNetworkToast() {
 
   helperToast.error(
     <div>
-      <Trans>
+      <span>
         <div>Your wallet is not connected to {getChainName(chainId)}.</div>
         <br />
         <div className="clickable underline" onClick={() => switchNetwork(chainId, true)}>
           Switch to {getChainName(chainId)}
         </div>
-      </Trans>
+      </span>
     </div>
   );
 }

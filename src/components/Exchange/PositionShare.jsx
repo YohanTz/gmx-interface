@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import { toJpeg } from "html-to-image";
 import { BiCopy } from "react-icons/bi";
 import { RiFileDownloadLine } from "react-icons/ri";
@@ -86,7 +86,7 @@ function PositionShare({ setIsPositionShareModalOpen, isPositionShareModalOpen, 
       className="position-share-modal"
       isVisible={isPositionShareModalOpen}
       setIsVisible={setIsPositionShareModalOpen}
-      label={t`Share Position`}
+      label={`Share Position`}
     >
       <PositionShareCard
         userAffiliateCode={userAffiliateCode}
@@ -103,15 +103,15 @@ function PositionShare({ setIsPositionShareModalOpen, isPositionShareModalOpen, 
       <div className="actions">
         <Button variant="secondary" disabled={!uploadedImageInfo} className="mr-md" onClick={handleCopy}>
           <BiCopy className="icon" />
-          <Trans>Copy</Trans>
+          <span>Copy</span>
         </Button>
         <Button variant="secondary" disabled={!uploadedImageInfo} className="mr-md" onClick={handleDownload}>
           <RiFileDownloadLine className="icon" />
-          <Trans>Download</Trans>
+          <span>Download</span>
         </Button>
         <Button newTab variant="secondary" disabled={!uploadedImageInfo} className="mr-md" to={tweetLink}>
           <FiTwitter className="icon" />
-          <Trans>Tweet</Trans>
+          <span>Tweet</span>
         </Button>
       </div>
     </Modal>
@@ -174,7 +174,7 @@ function PositionShareCard({
           <div className="image-overlay">
             <SpinningLoader />
             <p className="loading-text">
-              <Trans>Generating shareable image...</Trans>
+              <span>Generating shareable image...</span>
             </p>
           </div>
         </div>

@@ -306,19 +306,19 @@ export default function DashboardV2() {
           return (
             <>
               <StatsTooltipRow
-                label={t`Current Weight`}
+                label={`Current Weight`}
                 value={`${formatAmount(currentWeightBps, 2, 2, false)}%`}
                 showDollar={false}
               />
               <StatsTooltipRow
-                label={t`Target Weight`}
+                label={`Target Weight`}
                 value={`${formatAmount(targetWeightBps, 2, 2, false)}%`}
                 showDollar={false}
               />
               <br />
               {currentWeightBps.lt(targetWeightBps) && (
                 <div className="text-white">
-                  <Trans>
+                  <span>
                     {tokenInfo.symbol} is below its target weight.
                     <br />
                     <br />
@@ -331,12 +331,12 @@ export default function DashboardV2() {
                       swap
                     </Link>{" "}
                     {tokenInfo.symbol} for other tokens.
-                  </Trans>
+                  </span>
                 </div>
               )}
               {currentWeightBps.gt(targetWeightBps) && (
                 <div className="text-white">
-                  <Trans>
+                  <span>
                     {tokenInfo.symbol} is above its target weight.
                     <br />
                     <br />
@@ -345,13 +345,13 @@ export default function DashboardV2() {
                       swap
                     </Link>{" "}
                     tokens for {tokenInfo.symbol}.
-                  </Trans>
+                  </span>
                 </div>
               )}
               <br />
               <div>
                 <ExternalLink href="https://docs.gmx.io/docs/providing-liquidity/v1">
-                  <Trans>More Info</Trans>
+                  <span>More Info</span>
                 </ExternalLink>
               </div>
             </>
@@ -468,13 +468,13 @@ export default function DashboardV2() {
     <SEO title={getPageTitle(t`Dashboard`)}>
       <div className="default-container DashboardV2 page-layout">
         <PageTitle
-          title={t`Stats`}
+          title={`Stats`}
           isTop
           subtitle={
             <div>
-              <Trans>
+              <span>
                 {chainName} Total Stats start from {totalStatsStartDate}.<br /> For detailed stats:
-              </Trans>{" "}
+              </span>{" "}
               {chainId === ARBITRUM && <ExternalLink href="https://stats.gmx.io">V1</ExternalLink>}
               {chainId === AVALANCHE && <ExternalLink href="https://stats.gmx.io/avalanche">V1</ExternalLink>} |{" "}
               <ExternalLink href="https://dune.com/gmx-io/gmx-analytics">V2</ExternalLink>.
@@ -485,47 +485,47 @@ export default function DashboardV2() {
           <div className="DashboardV2-cards">
             <div className="App-card">
               <div className="App-card-title">
-                <Trans>Overview</Trans>
+                <span>Overview</span>
               </div>
               <div className="App-card-divider"></div>
               <div className="App-card-content">
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>AUM</Trans>
+                    <span>AUM</span>
                   </div>
                   <div>
                     <TooltipComponent
                       handle={`$${formatAmount(tvl, USD_DECIMALS, 0, true)}`}
                       position="right-bottom"
                       renderContent={() => (
-                        <span>{t`Assets Under Management: GMX staked (All chains) + GLP pool (${chainName}).`}</span>
+                        <span>{`Assets Under Management: GMX staked (All chains) + GLP pool (${chainName}).`}</span>
                       )}
                     />
                   </div>
                 </div>
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>GLP Pool</Trans>
+                    <span>GLP Pool</span>
                   </div>
                   <div>
                     <TooltipComponent
                       handle={`$${formatAmount(aum, USD_DECIMALS, 0, true)}`}
                       position="right-bottom"
                       renderContent={() => (
-                        <Trans>
+                        <span>
                           <p>Total value of tokens in GLP pool ({chainName}).</p>
                           <p>
                             This value may be higher on other websites due to the collateral of positions being included
                             in the calculation.
                           </p>
-                        </Trans>
+                        </span>
                       )}
                     />
                   </div>
                 </div>
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>24h Volume</Trans>
+                    <span>24h Volume</span>
                   </div>
                   <div>
                     <TooltipComponent
@@ -534,7 +534,7 @@ export default function DashboardV2() {
                       handle={`$${formatAmount(currentVolumeInfo?.[chainId], USD_DECIMALS, 0, true)}`}
                       renderContent={() => (
                         <ChainsStatsTooltipRow
-                          title={t`Volume`}
+                          title={`Volume`}
                           arbitrumValue={currentVolumeInfo?.[ARBITRUM]}
                           avaxValue={currentVolumeInfo?.[AVALANCHE]}
                           total={currentVolumeInfo?.total}
@@ -545,7 +545,7 @@ export default function DashboardV2() {
                 </div>
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>Open Interest</Trans>
+                    <span>Open Interest</span>
                   </div>
                   <div>
                     <TooltipComponent
@@ -554,7 +554,7 @@ export default function DashboardV2() {
                       handle={`$${formatAmount(positionStatsInfo?.[chainId]?.openInterest, USD_DECIMALS, 0, true)}`}
                       renderContent={() => (
                         <ChainsStatsTooltipRow
-                          title={t`Open Interest`}
+                          title={`Open Interest`}
                           arbitrumValue={positionStatsInfo?.[ARBITRUM].openInterest}
                           avaxValue={positionStatsInfo?.[AVALANCHE].openInterest}
                           total={positionStatsInfo?.totalOpenInterest}
@@ -565,7 +565,7 @@ export default function DashboardV2() {
                 </div>
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>Long Positions</Trans>
+                    <span>Long Positions</span>
                   </div>
                   <div>
                     <TooltipComponent
@@ -579,7 +579,7 @@ export default function DashboardV2() {
                       )}`}
                       renderContent={() => (
                         <ChainsStatsTooltipRow
-                          title={t`Long Positions`}
+                          title={`Long Positions`}
                           arbitrumValue={positionStatsInfo?.[ARBITRUM].totalLongPositionSizes}
                           avaxValue={positionStatsInfo?.[AVALANCHE].totalLongPositionSizes}
                           total={positionStatsInfo?.totalLongPositionSizes}
@@ -590,7 +590,7 @@ export default function DashboardV2() {
                 </div>
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>Short Positions</Trans>
+                    <span>Short Positions</span>
                   </div>
                   <div>
                     <TooltipComponent
@@ -604,7 +604,7 @@ export default function DashboardV2() {
                       )}`}
                       renderContent={() => (
                         <ChainsStatsTooltipRow
-                          title={t`Short Positions`}
+                          title={`Short Positions`}
                           arbitrumValue={positionStatsInfo?.[ARBITRUM].totalShortPositionSizes}
                           avaxValue={positionStatsInfo?.[AVALANCHE].totalShortPositionSizes}
                           total={positionStatsInfo?.totalShortPositionSizes}
@@ -616,7 +616,7 @@ export default function DashboardV2() {
                 {feesSummary?.lastUpdatedAt ? (
                   <div className="App-card-row">
                     <div className="label">
-                      <Trans>Fees since</Trans> {formatDate(feesSummary.lastUpdatedAt)}
+                      <span>Fees since</span> {formatDate(feesSummary.lastUpdatedAt)}
                     </div>
                     <div>
                       <TooltipComponent
@@ -625,7 +625,7 @@ export default function DashboardV2() {
                         handle={`$${formatAmount(currentFees?.[chainId], USD_DECIMALS, 2, true)}`}
                         renderContent={() => (
                           <ChainsStatsTooltipRow
-                            title={t`Fees`}
+                            title={`Fees`}
                             arbitrumValue={currentFees?.[ARBITRUM]}
                             avaxValue={currentFees?.[AVALANCHE]}
                             total={currentFees?.total}
@@ -639,13 +639,13 @@ export default function DashboardV2() {
             </div>
             <div className="App-card">
               <div className="App-card-title">
-                <Trans>Total Stats</Trans>
+                <span>Total Stats</span>
               </div>
               <div className="App-card-divider"></div>
               <div className="App-card-content">
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>Total Fees</Trans>
+                    <span>Total Fees</span>
                   </div>
                   <div>
                     <TooltipComponent
@@ -654,7 +654,7 @@ export default function DashboardV2() {
                       handle={`$${numberWithCommas(totalFees?.[chainId])}`}
                       renderContent={() => (
                         <ChainsStatsTooltipRow
-                          title={t`Total Fees`}
+                          title={`Total Fees`}
                           arbitrumValue={totalFees?.[ARBITRUM]}
                           avaxValue={totalFees?.[AVALANCHE]}
                           total={totalFees?.total}
@@ -666,7 +666,7 @@ export default function DashboardV2() {
                 </div>
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>Total Volume</Trans>
+                    <span>Total Volume</span>
                   </div>
                   <div>
                     <TooltipComponent
@@ -675,7 +675,7 @@ export default function DashboardV2() {
                       handle={`$${formatAmount(totalVolume?.[chainId], USD_DECIMALS, 0, true)}`}
                       renderContent={() => (
                         <ChainsStatsTooltipRow
-                          title={t`Total Volume`}
+                          title={`Total Volume`}
                           arbitrumValue={totalVolume?.[ARBITRUM]}
                           avaxValue={totalVolume?.[AVALANCHE]}
                           total={totalVolume?.total}
@@ -686,7 +686,7 @@ export default function DashboardV2() {
                 </div>
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>Total Users</Trans>
+                    <span>Total Users</span>
                   </div>
                   <div>
                     <TooltipComponent
@@ -695,7 +695,7 @@ export default function DashboardV2() {
                       handle={formatAmount(uniqueUsers?.[chainId], 0, 0, true)}
                       renderContent={() => (
                         <ChainsStatsTooltipRow
-                          title={t`Total Users`}
+                          title={`Total Users`}
                           arbitrumValue={uniqueUsers?.[ARBITRUM]}
                           avaxValue={uniqueUsers?.[AVALANCHE]}
                           total={uniqueUsers?.total}
@@ -708,14 +708,14 @@ export default function DashboardV2() {
                 </div>
                 <div className="App-card-row">
                   <div className="label">
-                    <Trans>Floor Price Fund</Trans>
+                    <span>Floor Price Fund</span>
                   </div>
                   <div>${formatAmount(totalFloorPriceFundUsd, 30, 0, true)}</div>
                 </div>
               </div>
             </div>
           </div>
-          <PageTitle title={t`Tokens`} subtitle={t`Platform, GLP and GM tokens.`} />
+          <PageTitle title={`Tokens`} subtitle={`Platform, GLP and GM tokens.`} />
           <div className="DashboardV2-token-cards">
             <div className="stats-wrapper stats-wrapper--gmx">
               <div className="App-card">
@@ -738,7 +738,7 @@ export default function DashboardV2() {
                   <div className="App-card-content">
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Price</Trans>
+                        <span>Price</span>
                       </div>
                       <div>
                         {!gmxPrice && "..."}
@@ -750,12 +750,12 @@ export default function DashboardV2() {
                             renderContent={() => (
                               <>
                                 <StatsTooltipRow
-                                  label={t`Price on Arbitrum`}
+                                  label={`Price on Arbitrum`}
                                   value={formatAmount(gmxPriceFromArbitrum, USD_DECIMALS, 2, true)}
                                   showDollar={true}
                                 />
                                 <StatsTooltipRow
-                                  label={t`Price on Avalanche`}
+                                  label={`Price on Avalanche`}
                                   value={formatAmount(gmxPriceFromAvalanche, USD_DECIMALS, 2, true)}
                                   showDollar={true}
                                 />
@@ -767,13 +767,13 @@ export default function DashboardV2() {
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Supply</Trans>
+                        <span>Supply</span>
                       </div>
                       <div>{formatAmount(totalGmxSupply, GMX_DECIMALS, 0, true)} GMX</div>
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Total Staked</Trans>
+                        <span>Total Staked</span>
                       </div>
                       <div>
                         <TooltipComponent
@@ -782,7 +782,7 @@ export default function DashboardV2() {
                           handle={`$${formatAmount(stakedGmxSupplyUsd, USD_DECIMALS, 0, true)}`}
                           renderContent={() => (
                             <ChainsStatsTooltipRow
-                              title={t`Staked`}
+                              title={`Staked`}
                               arbitrumValue={arbitrumStakedGmx}
                               avaxValue={avaxStakedGmx}
                               total={totalStakedGmx}
@@ -795,7 +795,7 @@ export default function DashboardV2() {
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Market Cap</Trans>
+                        <span>Market Cap</span>
                       </div>
                       <div>${formatAmount(gmxMarketCap, USD_DECIMALS, 0, true)}</div>
                     </div>
@@ -836,7 +836,7 @@ export default function DashboardV2() {
                         ))}
                       </Pie>
                       <text x={"50%"} y={"50%"} fill="white" textAnchor="middle" dominantBaseline="middle">
-                        <Trans>Distribution</Trans>
+                        <span>Distribution</span>
                       </text>
                       <Tooltip content={<CustomTooltip />} />
                     </PieChart>
@@ -863,31 +863,31 @@ export default function DashboardV2() {
                   <div className="App-card-content">
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Price</Trans>
+                        <span>Price</span>
                       </div>
                       <div>${formatAmount(glpPrice, USD_DECIMALS, 3, true)}</div>
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Supply</Trans>
+                        <span>Supply</span>
                       </div>
                       <div>{formatAmount(glpSupply, GLP_DECIMALS, 0, true)} GLP</div>
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Total Staked</Trans>
+                        <span>Total Staked</span>
                       </div>
                       <div>${formatAmount(glpMarketCap, USD_DECIMALS, 0, true)}</div>
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Market Cap</Trans>
+                        <span>Market Cap</span>
                       </div>
                       <div>${formatAmount(glpMarketCap, USD_DECIMALS, 0, true)}</div>
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Stablecoin Percentage</Trans>
+                        <span>Stablecoin Percentage</span>
                       </div>
                       <div>{stablePercentage}%</div>
                     </div>
@@ -940,27 +940,26 @@ export default function DashboardV2() {
               <>
                 <div className="token-table-wrapper App-card">
                   <div className="App-card-title">
-                    <Trans>GLP Index Composition</Trans>{" "}
-                    <img src={currentIcons.network} width="16" alt="Network Icon" />
+                    <span>GLP Index Composition</span> <img src={currentIcons.network} width="16" alt="Network Icon" />
                   </div>
                   <div className="App-card-divider"></div>
                   <table className="token-table">
                     <thead>
                       <tr>
                         <th>
-                          <Trans>TOKEN</Trans>
+                          <span>TOKEN</span>
                         </th>
                         <th>
-                          <Trans>PRICE</Trans>
+                          <span>PRICE</span>
                         </th>
                         <th>
-                          <Trans>POOL</Trans>
+                          <span>POOL</span>
                         </th>
                         <th>
-                          <Trans>WEIGHT</Trans>
+                          <span>WEIGHT</span>
                         </th>
                         <th>
-                          <Trans>UTILIZATION</Trans>
+                          <span>UTILIZATION</span>
                         </th>
                       </tr>
                     </thead>
@@ -1009,7 +1008,7 @@ export default function DashboardV2() {
                                   return (
                                     <>
                                       <StatsTooltipRow
-                                        label={t`Pool Amount`}
+                                        label={`Pool Amount`}
                                         value={`${formatKeyAmount(
                                           tokenInfo,
                                           "managedAmount",
@@ -1020,7 +1019,7 @@ export default function DashboardV2() {
                                         showDollar={false}
                                       />
                                       <StatsTooltipRow
-                                        label={t`Target Min Amount`}
+                                        label={`Target Min Amount`}
                                         value={`${formatKeyAmount(
                                           tokenInfo,
                                           "bufferAmount",
@@ -1031,7 +1030,7 @@ export default function DashboardV2() {
                                         showDollar={false}
                                       />
                                       <StatsTooltipRow
-                                        label={t`Max ${tokenInfo.symbol} Capacity`}
+                                        label={`Max ${tokenInfo.symbol} Capacity`}
                                         value={formatAmount(maxUsdgAmount, 18, 0, true)}
                                         showDollar={true}
                                       />
@@ -1050,7 +1049,7 @@ export default function DashboardV2() {
                 </div>
 
                 <div className="glp-composition-small">
-                  <PageTitle title={t`GLP Index Composition`} />
+                  <PageTitle title={`GLP Index Composition`} />
                 </div>
 
                 <div className="token-grid">
@@ -1080,13 +1079,13 @@ export default function DashboardV2() {
                         <div className="App-card-content">
                           <div className="App-card-row">
                             <div className="label">
-                              <Trans>Price</Trans>
+                              <span>Price</span>
                             </div>
                             <div>${formatKeyAmount(tokenInfo, "minPrice", USD_DECIMALS, 2, true)}</div>
                           </div>
                           <div className="App-card-row">
                             <div className="label">
-                              <Trans>Pool</Trans>
+                              <span>Pool</span>
                             </div>
                             <div>
                               <TooltipComponent
@@ -1096,7 +1095,7 @@ export default function DashboardV2() {
                                   return (
                                     <>
                                       <StatsTooltipRow
-                                        label={t`Pool Amount`}
+                                        label={`Pool Amount`}
                                         value={`${formatKeyAmount(
                                           tokenInfo,
                                           "managedAmount",
@@ -1107,7 +1106,7 @@ export default function DashboardV2() {
                                         showDollar={false}
                                       />
                                       <StatsTooltipRow
-                                        label={t`Target Min Amount`}
+                                        label={`Target Min Amount`}
                                         value={`${formatKeyAmount(
                                           tokenInfo,
                                           "bufferAmount",
@@ -1118,7 +1117,7 @@ export default function DashboardV2() {
                                         showDollar={false}
                                       />
                                       <StatsTooltipRow
-                                        label={t`Max ${tokenInfo.symbol} Capacity`}
+                                        label={`Max ${tokenInfo.symbol} Capacity`}
                                         value={formatAmount(maxUsdgAmount, 18, 0, true)}
                                       />
                                     </>
@@ -1129,13 +1128,13 @@ export default function DashboardV2() {
                           </div>
                           <div className="App-card-row">
                             <div className="label">
-                              <Trans>Weight</Trans>
+                              <span>Weight</span>
                             </div>
                             <div>{getWeightText(tokenInfo)}</div>
                           </div>
                           <div className="App-card-row">
                             <div className="label">
-                              <Trans>Utilization</Trans>
+                              <span>Utilization</span>
                             </div>
                             <div>{formatAmount(utilization, 2, 2, false)}%</div>
                           </div>

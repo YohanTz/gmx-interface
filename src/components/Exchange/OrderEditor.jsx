@@ -21,7 +21,7 @@ import { TRIGGER_PREFIX_ABOVE, TRIGGER_PREFIX_BELOW } from "config/ui";
 import { getTokenInfo } from "domain/tokens/utils";
 import { bigNumberify, formatAmount, formatAmountFree, parseValue } from "lib/numbers";
 import { useChainId } from "lib/chains";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import Button from "components/Button/Button";
 import getLiquidationPrice from "lib/positions/getLiquidationPrice";
 import { getPriceDecimals, getToken } from "config/tokens";
@@ -247,12 +247,12 @@ export default function OrderEditor(props) {
         isVisible={true}
         className="Exchange-list-modal"
         setIsVisible={() => setEditingOrder(null)}
-        label={t`Edit order`}
+        label={`Edit order`}
       >
         <div className="Exchange-swap-section">
           <div className="Exchange-swap-section-top">
             <div className="muted">
-              <Trans>Price</Trans>
+              <span>Price</span>
             </div>
             <div
               className="muted align-right clickable"
@@ -260,7 +260,7 @@ export default function OrderEditor(props) {
                 setTriggerPriceValue(formatAmountFree(indexTokenMarkPrice, USD_DECIMALS, orderPriceDecimal));
               }}
             >
-              <Trans>Mark: {formatAmount(indexTokenMarkPrice, USD_DECIMALS, orderPriceDecimal)}</Trans>
+              <span>Mark: {formatAmount(indexTokenMarkPrice, USD_DECIMALS, orderPriceDecimal)}</span>
             </div>
           </div>
           <div className="Exchange-swap-section-bottom">
@@ -277,7 +277,7 @@ export default function OrderEditor(props) {
             <div className="PositionEditor-token-symbol">USD</div>
           </div>
         </div>
-        <ExchangeInfoRow label={t`Price`}>
+        <ExchangeInfoRow label={`Price`}>
           {triggerPrice && !triggerPrice.eq(order.triggerPrice) ? (
             <>
               <span className="muted">
@@ -297,7 +297,7 @@ export default function OrderEditor(props) {
         {liquidationPrice && (
           <div className="Exchange-info-row">
             <div className="Exchange-info-label">
-              <Trans>Liq. Price</Trans>
+              <span>Liq. Price</span>
             </div>
             <div className="align-right">{`$${formatAmount(liquidationPrice, USD_DECIMALS, 2, true)}`}</div>
           </div>
@@ -316,12 +316,12 @@ export default function OrderEditor(props) {
       isVisible={true}
       className="Exchange-list-modal"
       setIsVisible={() => setEditingOrder(null)}
-      label={t`Edit order`}
+      label={`Edit order`}
     >
       <div className="Exchange-swap-section">
         <div className="Exchange-swap-section-top">
           <div className="muted">
-            <Trans>Price</Trans>
+            <span>Price</span>
           </div>
           {fromTokenInfo && toTokenInfo && (
             <div
@@ -332,7 +332,7 @@ export default function OrderEditor(props) {
                 );
               }}
             >
-              <Trans>Mark Price: </Trans>
+              <span>Mark Price: </span>
               {formatAmount(getExchangeRate(fromTokenInfo, toTokenInfo, triggerRatioInverted), USD_DECIMALS, 2)}
             </div>
           )}
@@ -362,7 +362,7 @@ export default function OrderEditor(props) {
           })()}
         </div>
       </div>
-      <ExchangeInfoRow label={t`Minimum received`}>
+      <ExchangeInfoRow label={`Minimum received`}>
         {triggerRatio && !triggerRatio.eq(order.triggerRatio) ? (
           <>
             <span className="muted">{formatAmount(order.minOut, toTokenInfo.decimals, 4, true)}</span>
@@ -376,7 +376,7 @@ export default function OrderEditor(props) {
         )}
         &nbsp;{toTokenInfo.symbol}
       </ExchangeInfoRow>
-      <ExchangeInfoRow label={t`Price`}>
+      <ExchangeInfoRow label={`Price`}>
         {triggerRatio && !triggerRatio.eq(0) && !triggerRatio.eq(order.triggerRatio) ? (
           <>
             <span className="muted">
@@ -398,7 +398,7 @@ export default function OrderEditor(props) {
       {fromTokenInfo && (
         <div className="Exchange-info-row">
           <div className="Exchange-info-label">
-            <Trans>{fromTokenInfo.symbol} price</Trans>
+            <span>{fromTokenInfo.symbol} price</span>
           </div>
           <div className="align-right">{formatAmount(fromTokenInfo.minPrice, USD_DECIMALS, 2, true)} USD</div>
         </div>
@@ -406,7 +406,7 @@ export default function OrderEditor(props) {
       {toTokenInfo && (
         <div className="Exchange-info-row">
           <div className="Exchange-info-label">
-            <Trans>{toTokenInfo.symbol} price</Trans>
+            <span>{toTokenInfo.symbol} price</span>
           </div>
           <div className="align-right">{formatAmount(toTokenInfo.maxPrice, USD_DECIMALS, 2, true)} USD</div>
         </div>

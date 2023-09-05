@@ -1,12 +1,12 @@
 import { Web3Provider } from "@ethersproject/providers";
-import { StarknetConfig, InjectedConnector } from "@starknet-react/core";
+import { InjectedConnector, StarknetConfig } from "@starknet-react/core";
 import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
 import { ethers } from "ethers";
 import useScrollToTop from "lib/useScrollToTop";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SWRConfig } from "swr";
 
-import { Redirect, Route, HashRouter as Router, Switch, useHistory, useLocation } from "react-router-dom";
+import { HashRouter as Router, Redirect, Route, Switch, useHistory, useLocation } from "react-router-dom";
 
 import { BASIS_POINTS_DIVISOR } from "config/factors";
 import { getAppBaseUrl, isHomeSite, isMobileDevice, REFERRAL_CODE_QUERY_PARAM } from "lib/legacy";
@@ -46,9 +46,6 @@ import SEO from "components/Common/SEO";
 import EventToastContainer from "components/EventToast/EventToastContainer";
 import useEventToast from "components/EventToast/useEventToast";
 import Tooltip from "components/Tooltip/Tooltip";
-import coinbaseImg from "img/coinbaseWallet.png";
-import metamaskImg from "img/metamask.png";
-import walletConnectImg from "img/walletconnect-circle-blue.svg";
 import useRouteQuery from "lib/useRouteQuery";
 
 import PositionRouter from "abis/PositionRouter.json";
@@ -63,10 +60,8 @@ import ReferralTerms from "pages/ReferralTerms/ReferralTerms";
 import TermsAndConditions from "pages/TermsAndConditions/TermsAndConditions";
 import { useLocalStorage } from "react-use";
 
-import { i18n } from "@lingui/core";
-import { t, Trans } from "@lingui/macro";
-import { I18nProvider } from "@lingui/react";
 import Button from "components/Button/Button";
+import { ConnectWalletModal } from "components/ConnectWalletModal/ConnectWalletModal";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import { Header } from "components/Header/Header";
 import { ARBITRUM, EXECUTION_FEE_CONFIG_V2, getExplorerUrl } from "config/chains";
@@ -76,7 +71,6 @@ import {
   CURRENT_PROVIDER_LOCALSTORAGE_KEY,
   DISABLE_ORDER_VALIDATION_KEY,
   IS_PNL_IN_LEVERAGE_KEY,
-  LANGUAGE_LOCALSTORAGE_KEY,
   REFERRAL_CODE_KEY,
   SHOULD_EAGER_CONNECT_LOCALSTORAGE_KEY,
   SHOULD_SHOW_POSITION_LINES_KEY,
@@ -87,7 +81,6 @@ import { SettingsContextProvider, useSettings } from "context/SettingsContext/Se
 import { SyntheticsEventsProvider } from "context/SyntheticsEvents";
 import { useChainId } from "lib/chains";
 import { helperToast } from "lib/helperToast";
-import { defaultLocale, dynamicActivate } from "lib/i18n";
 import { useLocalStorageSerializeKey } from "lib/localStorage";
 import { roundToTwoDecimals } from "lib/numbers";
 import { useWsProvider } from "lib/rpc";
@@ -108,7 +101,6 @@ import SyntheticsActions from "pages/SyntheticsActions/SyntheticsActions";
 import { SyntheticsFallbackPage } from "pages/SyntheticsFallbackPage/SyntheticsFallbackPage";
 import { SyntheticsPage } from "pages/SyntheticsPage/SyntheticsPage";
 import { SyntheticsStats } from "pages/SyntheticsStats/SyntheticsStats";
-import { ConnectWalletModal } from "components/ConnectWalletModal/ConnectWalletModal";
 
 if (window?.ethereum?.autoRefreshOnNetworkChange) {
   window.ethereum.autoRefreshOnNetworkChange = false;
@@ -198,18 +190,18 @@ function FullApp() {
     if (!hasMetaMaskWalletExtension()) {
       helperToast.error(
         <div>
-          <Trans>MetaMask not detected.</Trans>
+          <span>MetaMask not detected.</span>
           <br />
           <br />
           {userOnMobileDevice ? (
-            <Trans>
+            <span>
               <ExternalLink href="https://metamask.io">Install MetaMask</ExternalLink>, and use GMX with its built-in
               browser.
-            </Trans>
+            </span>
           ) : (
-            <Trans>
+            <span>
               <ExternalLink href="https://metamask.io">Install MetaMask</ExternalLink> to start using GMX.
-            </Trans>
+            </span>
           )}
         </div>
       );
@@ -221,19 +213,19 @@ function FullApp() {
     if (!hasCoinBaseWalletExtension()) {
       helperToast.error(
         <div>
-          <Trans>Coinbase Wallet not detected.</Trans>
+          <span>Coinbase Wallet not detected.</span>
           <br />
           <br />
           {userOnMobileDevice ? (
-            <Trans>
+            <span>
               <ExternalLink href="https://www.coinbase.com/wallet">Install Coinbase Wallet</ExternalLink>, and use GMX
               with its built-in browser.
-            </Trans>
+            </span>
           ) : (
-            <Trans>
+            <span>
               <ExternalLink href="https://www.coinbase.com/wallet">Install Coinbase Wallet</ExternalLink> to start using
               GMX.
-            </Trans>
+            </span>
           )}
         </div>
       );
@@ -407,9 +399,9 @@ function FullApp() {
             const txUrl = getExplorerUrl(chainId) + "tx/" + pendingTxn.hash;
             helperToast.error(
               <div>
-                <Trans>
+                <span>
                   Txn failed. <ExternalLink href={txUrl}>View</ExternalLink>
-                </Trans>
+                </span>
                 <br />
               </div>
             );
@@ -420,7 +412,7 @@ function FullApp() {
               <div>
                 {pendingTxn.message}{" "}
                 <ExternalLink href={txUrl}>
-                  <Trans>View</Trans>
+                  <span>View</span>
                 </ExternalLink>
                 <br />
               </div>
@@ -689,11 +681,11 @@ function FullApp() {
         className="App-settings"
         isVisible={isSettingsVisible}
         setIsVisible={setIsSettingsVisible}
-        label={t`Settings`}
+        label="Settings"
       >
         <div className="App-settings-row">
           <div>
-            <Trans>Allowed Slippage</Trans>
+            <span>Allowed Slippage</span>
           </div>
           <div className="App-slippage-tolerance-input-container">
             <input
@@ -710,14 +702,14 @@ function FullApp() {
           <div className="App-settings-row">
             <div>
               <Tooltip
-                handle={<Trans>Max Execution Fee Buffer</Trans>}
+                handle={<span>Max Execution Fee Buffer</span>}
                 renderContent={() => (
                   <div>
-                    <Trans>
+                    <span>
                       The Max Execution Fee is set to a higher value to handle potential increases in gas price during
                       order execution. Any excess execution fee will be refunded to your account when the order is
                       executed. Only applicable to GMX V2.
-                    </Trans>
+                    </span>
                     <br />
                     <br />
                     <ExternalLink href="https://docs.gmx.io/docs/trading/v2#execution-fee">Read more</ExternalLink>
@@ -738,36 +730,36 @@ function FullApp() {
             {parseFloat(executionFeeBufferBps) <
               (EXECUTION_FEE_CONFIG_V2[chainId].defaultBufferBps / BASIS_POINTS_DIVISOR) * 100 && (
               <div className="warning">
-                <Trans>
+                <span>
                   Max Execution Fee buffer below{" "}
                   {(EXECUTION_FEE_CONFIG_V2[chainId].defaultBufferBps / BASIS_POINTS_DIVISOR) * 100}% may result in
                   failed orders.
-                </Trans>
+                </span>
               </div>
             )}
           </div>
         )}
         <div className="Exchange-settings-row">
           <Checkbox isChecked={showPnlAfterFees} setIsChecked={setShowPnlAfterFees}>
-            <Trans>Display PnL after fees</Trans>
+            <span>Display PnL after fees</span>
           </Checkbox>
         </div>
         <div className="Exchange-settings-row">
           <Checkbox isChecked={isPnlInLeverage} setIsChecked={setIsPnlInLeverage}>
-            <Trans>Include PnL in leverage display</Trans>
+            <span>Include PnL in leverage display</span>
           </Checkbox>
         </div>
         <div className="Exchange-settings-row chart-positions-settings">
           <Checkbox isChecked={savedShouldShowPositionLines} setIsChecked={setSavedShouldShowPositionLines}>
             <span>
-              <Trans>Chart positions</Trans>
+              <span>Chart positions</span>
             </span>
           </Checkbox>
         </div>
         {isDevelopment() && (
           <div className="Exchange-settings-row">
             <Checkbox isChecked={shouldDisableValidationForTesting} setIsChecked={setShouldDisableValidationForTesting}>
-              <Trans>Disable order validations</Trans>
+              <span>Disable order validations</span>
             </Checkbox>
           </div>
         )}
@@ -775,13 +767,13 @@ function FullApp() {
         {isDevelopment() && (
           <div className="Exchange-settings-row">
             <Checkbox isChecked={showDebugValues} setIsChecked={setShowDebugValues}>
-              <Trans>Show debug values</Trans>
+              <span>Show debug values</span>
             </Checkbox>
           </div>
         )}
 
         <Button variant="primary-action" className="w-full mt-md" onClick={saveAndCloseSettings}>
-          <Trans>Save</Trans>
+          <span>Save</span>
         </Button>
       </Modal>
     </>
@@ -795,10 +787,6 @@ const connectors = [
 
 function App() {
   useScrollToTop();
-  useEffect(() => {
-    const defaultLanguage = localStorage.getItem(LANGUAGE_LOCALSTORAGE_KEY) || defaultLocale;
-    dynamicActivate(defaultLanguage);
-  }, []);
   return (
     <SWRConfig value={{ refreshInterval: 5000 }}>
       <Web3ReactProvider getLibrary={getLibrary}>
@@ -807,9 +795,7 @@ function App() {
             <SyntheticsEventsProvider>
               <SEO>
                 <Router>
-                  <I18nProvider i18n={i18n}>
-                    <FullApp />
-                  </I18nProvider>
+                  <FullApp />
                 </Router>
               </SEO>
             </SyntheticsEventsProvider>

@@ -3,7 +3,7 @@ import Modal from "../Modal/Modal";
 import { get1InchSwapUrl } from "config/links";
 import { Token, TokenInfo } from "domain/tokens";
 import { getNativeToken } from "config/tokens";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 
 const { AddressZero } = ethers.constants;
@@ -45,27 +45,27 @@ export default function NoLiquidityErrorModal({
   return (
     <Modal isVisible={Boolean(modalError)} setIsVisible={setModalError} label={label} className="Error-modal font-base">
       <div>
-        <Trans>
+        <span>
           You need to select {swapTokenSymbol} as the "Pay" token to use it for collateral to initiate this trade.
-        </Trans>
+        </span>
       </div>
       <br />
       <div>
-        <Trans>
+        <span>
           As there is not enough liquidity in GLP to swap {fromToken.symbol} to {swapTokenSymbol}, you can use the
           option below to do so:
-        </Trans>
+        </span>
       </div>
       <br />
 
       <ExternalLink href={oneInchSwapUrl}>
-        <Trans>Buy {swapTokenSymbol} on 1inch</Trans>
+        <span>Buy {swapTokenSymbol} on 1inch</span>
       </ExternalLink>
 
       {isShort && (
         <div>
           <br />
-          <Trans>Alternatively, you can select a different "Collateral In" token.</Trans>
+          <span>Alternatively, you can select a different "Collateral In" token.</span>
           <br />
         </div>
       )}

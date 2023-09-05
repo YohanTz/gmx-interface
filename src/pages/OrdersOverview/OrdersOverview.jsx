@@ -19,7 +19,7 @@ import {
 } from "lib/legacy";
 
 import "./OrdersOverview.css";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import { getTokenInfo } from "domain/tokens/utils";
 import { useInfoTokens } from "domain/tokens";
 import { formatAmount } from "lib/numbers";
@@ -79,65 +79,65 @@ export default function OrdersOverview() {
     <div className="Orders-overview">
       {stats && (
         <p className="Orders-overview-stats">
-          <Trans>
+          <span>
             Total active: {openTotal}, executed: {executedTotal}, cancelled: {cancelledTotal}
-          </Trans>
+          </span>
           <br />
-          <Trans>
+          <span>
             Increase active: {stats.openIncrease}, executed: {stats.executedIncrease}, cancelled:{" "}
             {stats.cancelledIncrease}
-          </Trans>
+          </span>
           <br />
-          <Trans>
+          <span>
             Decrease active: {stats.openDecrease}, executed: {stats.executedDecrease}, cancelled:{" "}
             {stats.cancelledDecrease}
-          </Trans>
+          </span>
           <br />
-          <Trans>
+          <span>
             Swap active: {stats.openSwap}, executed: {stats.executedSwap}, cancelled: {stats.cancelledSwap}
-          </Trans>
+          </span>
           <br />
         </p>
       )}
       <p>
         <span className="positive">
-          <Trans>Price conditions are met</Trans>
+          <span>Price conditions are met</span>
         </span>
         <br />
         <span style={{ color: "orange" }}>
-          <Trans>Close to execution price</Trans>
+          <span>Close to execution price</span>
         </span>
         <br />
         <span className="negative">
-          <Trans>Can't execute because of an error</Trans>
+          <span>Can't execute because of an error</span>
         </span>
       </p>
       <table className="Orders-overview-table">
         <thead>
           <tr>
             <th>
-              <Trans>Type</Trans>
+              <span>Type</span>
             </th>
             <th colSpan="2">
-              <Trans>Order</Trans>
+              <span>Order</span>
             </th>
             <th>
-              <Trans>Price</Trans>
+              <span>Price</span>
             </th>
             <th>
-              <Trans>Mark Price</Trans>
+              <span>Mark Price</span>
             </th>
             <th>
-              <Trans>Diff</Trans>
+              <span>Diff</span>
             </th>
             <th>
-              <Trans>Account</Trans>
+              <span>Account</span>
             </th>
             <th>
-              <Trans>Created At</Trans>
+              <span>Created At</span>
             </th>
             <th>
-              <Trans>Index</Trans>
+              <span>Index</span>
             </th>
             <th></th>
           </tr>
@@ -285,7 +285,7 @@ export default function OrdersOverview() {
                   <td className="negative">{error}</td>
                   <td>
                     <button className="Orders-overview-action" onClick={(evt) => executeOrder(evt, order)}>
-                      <Trans>Execute</Trans>
+                      <span>Execute</span>
                     </button>
                   </td>
                 </tr>

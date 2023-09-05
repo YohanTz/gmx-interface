@@ -59,25 +59,25 @@ export function PositionList(p: Props) {
         <tbody>
           <tr className="Exchange-list-header">
             <th>
-              <Trans>Position</Trans>
+              <span>Position</span>
             </th>
             <th>
-              <Trans>Net Value</Trans>
+              <span>Net Value</span>
             </th>
             <th>
-              <Trans>Size</Trans>
+              <span>Size</span>
             </th>
             <th>
-              <Trans>Collateral</Trans>
+              <span>Collateral</span>
             </th>
             <th>
-              <Trans>Entry Price</Trans>
+              <span>Entry Price</span>
             </th>
             <th>
-              <Trans>Mark Price</Trans>
+              <span>Mark Price</span>
             </th>
             <th>
-              <Trans>Liq Price</Trans>
+              <span>Liq Price</span>
             </th>
           </tr>
           {positions.length === 0 && (

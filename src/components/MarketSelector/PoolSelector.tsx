@@ -124,7 +124,7 @@ export function PoolSelector({
             className="mt-md"
             value={searchKeyword}
             setValue={(e) => setSearchKeyword(e.target.value)}
-            placeholder={t`Search Pool`}
+            placeholder={`Search Pool`}
             onKeyDown={_handleKeyDown}
           />
         )}

@@ -104,7 +104,7 @@ export function GmList({
           {!hideTitle && (
             <>
               <div className="App-card-title">
-                <Trans>GM Pools</Trans>
+                <span>GM Pools</span>
                 <img src={currentIcons.network} width="16" alt="Network Icon" />
               </div>
               <div className="App-card-divider"></div>
@@ -115,31 +115,31 @@ export function GmList({
             <thead>
               <tr>
                 <th>
-                  <Trans>MARKET</Trans>
+                  <span>MARKET</span>
                 </th>
                 <th>
-                  <Trans>PRICE</Trans>
+                  <span>PRICE</span>
                 </th>
                 <th>
-                  <Trans>TOTAL SUPPLY</Trans>
+                  <span>TOTAL SUPPLY</span>
                 </th>
                 <th>
                   <Tooltip
-                    handle={<Trans>MINTABLE</Trans>}
+                    handle={<span>MINTABLE</span>}
                     className="text-none"
                     position="right-bottom"
                     renderContent={() => (
                       <p className="text-white">
-                        <Trans>Available amount to deposit into the specific GM pool.</Trans>
+                        <span>Available amount to deposit into the specific GM pool.</span>
                       </p>
                     )}
                   />
                 </th>
                 <th>
-                  <Trans>WALLET</Trans>
+                  <span>WALLET</span>
                 </th>
                 <th>
-                  <Trans>APR</Trans>
+                  <span>APR</span>
                 </th>
 
                 <th></th>
@@ -236,7 +236,7 @@ export function GmList({
                           shouldScrollToTop ? "1" : "0"
                         }`}
                       >
-                        <Trans>Buy</Trans>
+                        <span>Buy</span>
                       </Button>
                       <Button
                         className="GmList-action GmList-last-action"
@@ -245,7 +245,7 @@ export function GmList({
                           shouldScrollToTop ? "1" : "0"
                         }`}
                       >
-                        <Trans>Sell</Trans>
+                        <span>Sell</span>
                       </Button>
                     </td>
                   </tr>
@@ -258,7 +258,7 @@ export function GmList({
 
       {isMobile && (
         <>
-          {!hideTitle && <PageTitle title={t`GM Pools`} />}
+          {!hideTitle && <PageTitle title={`GM Pools`} />}
 
           <div className="token-grid">
             {sortedMarketTokens.map((token) => {
@@ -297,7 +297,7 @@ export function GmList({
                   <div className="App-card-content">
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Price</Trans>
+                        <span>Price</span>
                       </div>
                       <div>
                         {formatUsd(token.prices?.minPrice, {
@@ -307,7 +307,7 @@ export function GmList({
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Total Supply</Trans>
+                        <span>Total Supply</span>
                       </div>
                       <div>
                         {" "}
@@ -321,12 +321,12 @@ export function GmList({
                     <div className="App-card-row">
                       <div className="label">
                         <Tooltip
-                          handle={<Trans>Mintable</Trans>}
+                          handle={<span>Mintable</span>}
                           className="text-none"
                           position="left-bottom"
                           renderContent={() => (
                             <p className="text-white">
-                              <Trans>Available amount to deposit into the specific GM pool.</Trans>
+                              <span>Available amount to deposit into the specific GM pool.</span>
                             </p>
                           )}
                         />
@@ -343,7 +343,7 @@ export function GmList({
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>Wallet</Trans>
+                        <span>Wallet</span>
                       </div>
                       <div>
                         {formatTokenAmount(token.balance, token.decimals, "GM", {
@@ -360,7 +360,7 @@ export function GmList({
                     </div>
                     <div className="App-card-row">
                       <div className="label">
-                        <Trans>APR</Trans>
+                        <span>APR</span>
                       </div>
                       <div>{apr ? `${formatAmount(apr, 2, 2)}%` : "..."}</div>
                     </div>
@@ -373,7 +373,7 @@ export function GmList({
                           shouldScrollToTop ? "1" : "0"
                         }`}
                       >
-                        <Trans>Buy</Trans>
+                        <span>Buy</span>
                       </Button>
                       <Button
                         variant="secondary"
@@ -381,7 +381,7 @@ export function GmList({
                           shouldScrollToTop ? "1" : "0"
                         }`}
                       >
-                        <Trans>Sell</Trans>
+                        <span>Sell</span>
                       </Button>
                     </div>
                   </div>
@@ -416,10 +416,10 @@ function renderMintableAmount({ mintableInfo, market, token, longToken, shortTok
       renderContent={() => (
         <>
           <p className="text-white">
-            <Trans>
+            <span>
               {longToken.symbol} and {shortToken.symbol} can be used to mint GM tokens for this market up to the
               specified minting caps.
-            </Trans>
+            </span>
           </p>
           <br />
           <StatsTooltipRow

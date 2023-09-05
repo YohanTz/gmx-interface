@@ -141,20 +141,20 @@ export function OrderItem(p: Props) {
           renderContent={() => {
             return (
               <>
-                <StatsTooltipRow label={t`Market`} value={positionOrder.marketInfo.name} showDollar={false} />
-                <StatsTooltipRow label={t`Collateral`} value={getCollateralText()} showDollar={false} />
+                <StatsTooltipRow label={`Market`} value={positionOrder.marketInfo.name} showDollar={false} />
+                <StatsTooltipRow label={`Collateral`} value={getCollateralText()} showDollar={false} />
 
                 {isCollateralSwap && (
                   <>
                     <br />
-                    <Trans>
+                    <span>
                       {formatTokenAmount(
                         p.order.initialCollateralDeltaAmount,
                         p.order.initialCollateralToken.decimals,
                         p.order.initialCollateralToken.symbol
                       )}{" "}
                       will be swapped to {p.order.targetCollateralToken.symbol} on order execution.
-                    </Trans>
+                    </span>
                   </>
                 )}
 
@@ -271,7 +271,7 @@ export function OrderItem(p: Props) {
           renderContent={() => (
             <>
               <StatsTooltipRow
-                label={t`Acceptable Price`}
+                label={`Acceptable Price`}
                 value={
                   positionOrder.orderType === OrderType.StopLossDecrease
                     ? "NA"
@@ -309,7 +309,7 @@ export function OrderItem(p: Props) {
           position="right-bottom"
           renderContent={() => {
             return (
-              <Trans>
+              <span>
                 <p>
                   The order will be executed when the oracle price is {positionOrder.triggerThresholdType}{" "}
                   {formatUsd(positionOrder.triggerPrice, { displayDecimals: priceDecimals })}.
@@ -318,7 +318,7 @@ export function OrderItem(p: Props) {
                   Note that there may be rare cases where the order cannot be executed, for example, if the chain is
                   down and no oracle reports are produced or if the price impact exceeds your acceptable price.
                 </p>
-              </Trans>
+              </span>
             );
           }}
         />
@@ -345,14 +345,14 @@ export function OrderItem(p: Props) {
             {p.onEditOrder && (
               <td>
                 <button className="Exchange-list-action" onClick={p.onEditOrder}>
-                  <Trans>Edit</Trans>
+                  <span>Edit</span>
                 </button>
               </td>
             )}
             {p.onCancelOrder && (
               <td>
                 <button className="Exchange-list-action" onClick={p.onCancelOrder} disabled={p.isCanceling}>
-                  <Trans>Cancel</Trans>
+                  <span>Cancel</span>
                 </button>
               </td>
             )}
@@ -377,14 +377,14 @@ export function OrderItem(p: Props) {
             )}
             <div className="App-card-row">
               <div className="label">
-                <Trans>Trigger Price</Trans>
+                <span>Trigger Price</span>
               </div>
               <div>{renderTriggerPrice()}</div>
             </div>
 
             <div className="App-card-row">
               <div className="label">
-                <Trans>Mark Price</Trans>
+                <span>Mark Price</span>
               </div>
               <div>{renderMarkPrice()}</div>
             </div>
@@ -392,7 +392,7 @@ export function OrderItem(p: Props) {
             {isIncreaseOrderType(p.order.orderType) && (
               <div className="App-card-row">
                 <div className="label">
-                  <Trans>Collateral</Trans>
+                  <span>Collateral</span>
                 </div>
                 <div>
                   {isCollateralSwap ? (
@@ -401,14 +401,14 @@ export function OrderItem(p: Props) {
                       position="right-bottom"
                       renderContent={() => {
                         return (
-                          <Trans>
+                          <span>
                             {formatTokenAmount(
                               p.order.initialCollateralDeltaAmount,
                               p.order.initialCollateralToken.decimals,
                               p.order.initialCollateralToken.symbol
                             )}{" "}
                             will be swapped to {p.order.targetCollateralToken.symbol} on order execution.
-                          </Trans>
+                          </span>
                         );
                       }}
                     />
@@ -426,13 +426,13 @@ export function OrderItem(p: Props) {
             <div className="remove-top-margin">
               {p.onEditOrder && (
                 <Button variant="secondary" className="mr-md mt-md" onClick={p.onEditOrder}>
-                  <Trans>Edit</Trans>
+                  <span>Edit</span>
                 </Button>
               )}
 
               {p.onCancelOrder && (
                 <Button variant="secondary" className="mt-md" onClick={p.onCancelOrder}>
-                  <Trans>Cancel</Trans>
+                  <span>Cancel</span>
                 </Button>
               )}
             </div>

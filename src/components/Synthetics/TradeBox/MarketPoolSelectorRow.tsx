@@ -55,10 +55,10 @@ export function MarketPoolSelectorRow(p: Props) {
     if (isNoSufficientLiquidityInAnyMarket) {
       return (
         <div className="MarketSelector-tooltip-row">
-          <Trans>Insufficient liquidity in any {indexToken?.symbol}/USD market pools for your order.</Trans>
+          <span>Insufficient liquidity in any {indexToken?.symbol}/USD market pools for your order.</span>
           <br />
           <br />
-          <Trans>V2 is newly live, and liquidity may be low initially.</Trans>
+          <span>V2 is newly live, and liquidity may be low initially.</span>
         </div>
       );
     }
@@ -66,7 +66,7 @@ export function MarketPoolSelectorRow(p: Props) {
     if (isOutPositionLiquidity && maxLiquidityMarket && !isSelectedMarket(maxLiquidityMarket)) {
       return (
         <div className="MarketSelector-tooltip-row">
-          <Trans>
+          <span>
             Insufficient liquidity in {selectedMarket ? getMarketPoolName(selectedMarket) : "..."} market pool. <br />
             <div
               className="MarketSelector-tooltip-row-action clickable underline muted "
@@ -74,7 +74,7 @@ export function MarketPoolSelectorRow(p: Props) {
             >
               Switch to {getMarketPoolName(maxLiquidityMarket)} market pool.
             </div>
-          </Trans>
+          </span>
         </div>
       );
     }
@@ -82,7 +82,7 @@ export function MarketPoolSelectorRow(p: Props) {
     if (!hasExistingPosition && marketWithPosition && !isSelectedMarket(marketWithPosition)) {
       return (
         <div className="MarketSelector-tooltip-row">
-          <Trans>
+          <span>
             You have an existing position in the {getMarketPoolName(marketWithPosition)} market pool.{" "}
             <div
               className="MarketSelector-tooltip-row-action clickable underline muted"
@@ -92,7 +92,7 @@ export function MarketPoolSelectorRow(p: Props) {
             >
               Switch to {getMarketPoolName(marketWithPosition)} market pool.
             </div>{" "}
-          </Trans>
+          </span>
         </div>
       );
     }
@@ -100,7 +100,7 @@ export function MarketPoolSelectorRow(p: Props) {
     if (!marketWithPosition && !hasExistingOrder && marketWithOrder && !isSelectedMarket(marketWithOrder)) {
       return (
         <div className="MarketSelector-tooltip-row">
-          <Trans>
+          <span>
             You have an existing order in the {getMarketPoolName(marketWithOrder)} market pool.{" "}
             <div
               className="MarketSelector-tooltip-row-action clickable underline muted"
@@ -110,7 +110,7 @@ export function MarketPoolSelectorRow(p: Props) {
             >
               Switch to {getMarketPoolName(marketWithOrder)} market pool.
             </div>{" "}
-          </Trans>
+          </span>
         </div>
       );
     }
@@ -124,7 +124,7 @@ export function MarketPoolSelectorRow(p: Props) {
     ) {
       return (
         <div className="MarketSelector-tooltip-row">
-          <Trans>
+          <span>
             You can get a {formatPercentage(currentPriceImpactBps?.sub(minPriceImpactBps))} better execution price in
             the {getMarketPoolName(minPriceImpactMarket)} market pool.
             <div
@@ -133,7 +133,7 @@ export function MarketPoolSelectorRow(p: Props) {
             >
               Switch to {getMarketPoolName(minPriceImpactMarket)} market pool.
             </div>
-          </Trans>
+          </span>
         </div>
       );
     }
@@ -162,7 +162,7 @@ export function MarketPoolSelectorRow(p: Props) {
       label={
         message ? (
           <Tooltip
-            handle={t`Pool`}
+            handle={`Pool`}
             position="left-bottom"
             className="MarketSelector-tooltip"
             renderContent={() => <div className="MarketSelector-tooltip-content">{message}</div>}
@@ -174,7 +174,7 @@ export function MarketPoolSelectorRow(p: Props) {
       value={
         <>
           <PoolSelector
-            label={t`Pool`}
+            label={`Pool`}
             className="SwapBox-info-dropdown"
             selectedIndexName={indexName}
             selectedMarketAddress={selectedMarket?.marketTokenAddress}

@@ -68,7 +68,7 @@ function TradersStats({
   return (
     <div className="rebate-container">
       <div className="referral-stats">
-        <ReferralInfoCard label={t`Active Referral Code`}>
+        <ReferralInfoCard label={`Active Referral Code`}>
           <div className="active-referral-code">
             <div className="edit">
               <span>{userReferralCodeString}</span>
@@ -77,26 +77,26 @@ function TradersStats({
             {traderTier && (
               <div className="tier">
                 <Tooltip
-                  handle={t`Tier ${getTierIdDisplay(traderTier)} (${currentTierDiscount}% discount)`}
+                  handle={`Tier ${getTierIdDisplay(traderTier)} (${currentTierDiscount}% discount)`}
                   position="right-bottom"
                   className={discountShare?.gt(0) ? "tier-discount-warning" : ""}
                   renderContent={() => (
                     <p className="text-white">
-                      <Trans>You will receive a {currentTierDiscount}% discount on opening and closing fees.</Trans>
+                      <span>You will receive a {currentTierDiscount}% discount on opening and closing fees.</span>
                       <br />
                       <br />
-                      <Trans>
+                      <span>
                         For trades on V1, this discount will be airdropped to your account every Wednesday. On V2,
                         discounts are applied automatically and will reduce your fees when you make a trade.
-                      </Trans>
+                      </span>
                       {discountShare?.gt(0) && (
                         <>
                           <br />
                           <br />
-                          <Trans>
+                          <span>
                             The owner of this Referral Code has set a custom discount of {currentTierDiscount}% instead
                             of the standard {tierDiscountInfo[traderTier]}% for Tier {getTierIdDisplay(traderTier)}.
-                          </Trans>
+                          </span>
                         </>
                       )}
                     </p>
@@ -108,79 +108,79 @@ function TradersStats({
         </ReferralInfoCard>
         <ReferralInfoCard
           value={`$${getUSDValue(currentReferralsData?.traderReferralTotalStats?.volume)}`}
-          label={t`Trading Volume`}
-          labelTooltipText={t`Volume traded by this account with an active referral code.`}
+          label={`Trading Volume`}
+          labelTooltipText={`Volume traded by this account with an active referral code.`}
           tooltipContent={
             <>
               <StatsTooltipRow
-                label={t`V1 Arbitrum`}
+                label={`V1 Arbitrum`}
                 value={getUSDValue(arbitrumData?.traderReferralTotalStats.v1Data.volume)}
               />
               <StatsTooltipRow
-                label={t`V1 Avalanche`}
+                label={`V1 Avalanche`}
                 value={getUSDValue(avalancheData?.traderReferralTotalStats.v1Data.volume)}
               />
               {isDevelopment() && (
                 <StatsTooltipRow
-                  label={t`V1 Avalanche Fuji`}
+                  label={`V1 Avalanche Fuji`}
                   value={getUSDValue(fujiData?.traderReferralTotalStats.v1Data.volume)}
                 />
               )}
               <StatsTooltipRow
-                label={t`V2 Arbitrum`}
+                label={`V2 Arbitrum`}
                 value={getUSDValue(arbitrumData?.traderReferralTotalStats.v2Data.volume)}
               />
               <StatsTooltipRow
-                label={t`V2 Avalanche`}
+                label={`V2 Avalanche`}
                 value={getUSDValue(avalancheData?.traderReferralTotalStats.v2Data.volume)}
               />
               {isDevelopment() && (
                 <StatsTooltipRow
-                  label={t`V2 Avalanche Fuji`}
+                  label={`V2 Avalanche Fuji`}
                   value={getUSDValue(fujiData?.traderReferralTotalStats.v2Data.volume)}
                 />
               )}
               <div className="Tooltip-divider" />
-              <StatsTooltipRow label={t`Total`} value={getUSDValue(total?.traderVolume)} />
+              <StatsTooltipRow label={`Total`} value={getUSDValue(total?.traderVolume)} />
             </>
           }
         />
         <ReferralInfoCard
           value={`$${getUSDValue(currentReferralsData?.traderReferralTotalStats?.discountUsd)}`}
-          label={t`Rebates`}
-          labelTooltipText={t`Rebates earned by this account as a trader.`}
+          label={`Rebates`}
+          labelTooltipText={`Rebates earned by this account as a trader.`}
           tooltipContent={
             <>
               <StatsTooltipRow
-                label={t`V1 Arbitrum`}
+                label={`V1 Arbitrum`}
                 value={getUSDValue(arbitrumData?.traderReferralTotalStats.v1Data.discountUsd)}
               />
               <StatsTooltipRow
-                label={t`V1 Avalanche`}
+                label={`V1 Avalanche`}
                 value={getUSDValue(avalancheData?.traderReferralTotalStats.v1Data.discountUsd)}
               />
               {isDevelopment() && (
                 <StatsTooltipRow
-                  label={t`V1 Avalanche Fuji`}
+                  label={`V1 Avalanche Fuji`}
                   value={getUSDValue(avalancheData?.traderReferralTotalStats.v1Data.discountUsd)}
                 />
               )}
               <StatsTooltipRow
-                label={t`V2 Arbitrum`}
+                label={`V2 Arbitrum`}
                 value={getUSDValue(arbitrumData?.traderReferralTotalStats.v2Data.discountUsd)}
               />
               <StatsTooltipRow
-                label={t`V2 Avalanche`}
+                label={`V2 Avalanche`}
                 value={getUSDValue(avalancheData?.traderReferralTotalStats.v2Data.discountUsd)}
               />
               {isDevelopment() && (
                 <StatsTooltipRow
-                  label={t`V2 Avalanche Fuji`}
+                  label={`V2 Avalanche Fuji`}
                   value={getUSDValue(fujiData?.traderReferralTotalStats.v2Data.discountUsd)}
                 />
               )}
               <div className="Tooltip-divider" />
-              <StatsTooltipRow label={t`Total`} value={getUSDValue(total?.discountUsd)} />
+              <StatsTooltipRow label={`Total`} value={getUSDValue(total?.discountUsd)} />
             </>
           }
         />
@@ -188,7 +188,7 @@ function TradersStats({
           className="Connect-wallet-modal"
           isVisible={isEditModalOpen}
           setIsVisible={close}
-          label={t`Edit Referral Code`}
+          label={`Edit Referral Code`}
           onAfterOpen={() => editModalRef.current?.focus()}
         >
           <div className="edit-referral-modal">
@@ -205,24 +205,24 @@ function TradersStats({
       {currentDiscountDistributions.length > 0 ? (
         <div className="reward-history">
           <Card
-            title={t`Rebates Distribution History`}
-            tooltipText={t`V1 rebates are airdropped weekly. V2 rebates are automatically applied as fee discounts on each trade and do not show on this table.`}
+            title={`Rebates Distribution History`}
+            tooltipText={`V1 rebates are airdropped weekly. V2 rebates are automatically applied as fee discounts on each trade and do not show on this table.`}
           >
             <div className="table-wrapper">
               <table className="referral-table">
                 <thead>
                   <tr>
                     <th className="table-head" scope="col">
-                      <Trans>Date</Trans>
+                      <span>Date</span>
                     </th>
                     <th className="table-head" scope="col">
-                      <Trans>Type</Trans>
+                      <span>Type</span>
                     </th>
                     <th className="table-head" scope="col">
-                      <Trans>Amount</Trans>
+                      <span>Amount</span>
                     </th>
                     <th className="table-head" scope="col">
-                      <Trans>Transaction</Trans>
+                      <span>Transaction</span>
                     </th>
                   </tr>
                 </thead>
@@ -271,12 +271,12 @@ function TradersStats({
                               <>
                                 {tokensWithoutPrices.length > 0 && (
                                   <>
-                                    <Trans>
+                                    <span>
                                       USD Value may not be accurate since the data does not contain prices for{" "}
                                       {tokensWithoutPrices
                                         .map((address) => getToken(chainId, address).symbol)
                                         .join(", ")}
-                                    </Trans>
+                                    </span>
                                     <br />
                                     <br />
                                   </>
@@ -320,8 +320,8 @@ function TradersStats({
         </div>
       ) : (
         <EmptyMessage
-          tooltipText={t`V1 rebates are airdropped weekly. V2 rebates are automatically applied as fee discounts on each trade and do not show on this table.`}
-          message={t`No rebates distribution history yet.`}
+          tooltipText={`V1 rebates are airdropped weekly. V2 rebates are automatically applied as fee discounts on each trade and do not show on this table.`}
+          message={`No rebates distribution history yet.`}
         />
       )}
     </div>

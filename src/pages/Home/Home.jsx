@@ -131,7 +131,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
         redirectPopupTimestamp={redirectPopupTimestamp}
         showRedirectModal={showRedirectModal}
       >
-        <Trans>Launch App</Trans>
+        <span>Launch App</span>
       </HeaderLink>
     );
   };
@@ -143,16 +143,16 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
         <div className="Home-title-section-container default-container">
           <div className="Home-title-section">
             <div className="Home-title">
-              <Trans>
+              <span>
                 Decentralized
                 <br />
                 Perpetual Exchange
-              </Trans>
+              </span>
             </div>
             <div className="Home-description">
-              <Trans>
+              <span>
                 Trade BTC, ETH, AVAX and other top cryptocurrencies with up to 50x leverage directly from your wallet
-              </Trans>
+              </span>
             </div>
             <LaunchExchangeButton />
           </div>
@@ -162,7 +162,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
             <img src={tradingIcon} alt="Total Trading Volume Icon" className="Home-latest-info__icon" />
             <div className="Home-latest-info-content">
               <div className="Home-latest-info__title">
-                <Trans>Total Trading Volume</Trans>
+                <span>Total Trading Volume</span>
               </div>
               <div className="Home-latest-info__value">${formatAmount(totalVolumeSum, USD_DECIMALS, 0, true)}</div>
             </div>
@@ -171,7 +171,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
             <img src={statsIcon} alt="Open Interest Icon" className="Home-latest-info__icon" />
             <div className="Home-latest-info-content">
               <div className="Home-latest-info__title">
-                <Trans>Open Interest</Trans>
+                <span>Open Interest</span>
               </div>
               <div className="Home-latest-info__value">${formatAmount(openInterest, USD_DECIMALS, 0, true)}</div>
             </div>
@@ -180,7 +180,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
             <img src={totaluserIcon} alt="Total Users Icon" className="Home-latest-info__icon" />
             <div className="Home-latest-info-content">
               <div className="Home-latest-info__title">
-                <Trans>Total Users</Trans>
+                <span>Total Users</span>
               </div>
               <div className="Home-latest-info__value">{numberWithCommas(totalUsers.toFixed(0))}</div>
             </div>
@@ -193,42 +193,42 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
             <div className="Home-benefit-icon">
               <img src={liquidityIcon} alt="Reduce Liquidation Risks Icon" className="Home-benefit-icon-symbol" />
               <div className="Home-benefit-title">
-                <Trans>Reduce Liquidation Risks</Trans>
+                <span>Reduce Liquidation Risks</span>
               </div>
             </div>
             <div className="Home-benefit-description">
-              <Trans>
+              <span>
                 An aggregate of high-quality price feeds determine when liquidations occur. This keeps positions safe
                 from temporary wicks.
-              </Trans>
+              </span>
             </div>
           </div>
           <div className="Home-benefit">
             <div className="Home-benefit-icon">
               <img src={costIcon} alt="Save on Costs Icon" className="Home-benefit-icon-symbol" />
               <div className="Home-benefit-title">
-                <Trans>Save on Costs</Trans>
+                <span>Save on Costs</span>
               </div>
             </div>
             <div className="Home-benefit-description">
-              <Trans>
+              <span>
                 Enter and exit positions with minimal spread and low price impact. Get the optimal price without
                 incurring additional costs.
-              </Trans>
+              </span>
             </div>
           </div>
           <div className="Home-benefit">
             <div className="Home-benefit-icon">
               <img src={simpleSwapIcon} alt="Simple Swaps Icon" className="Home-benefit-icon-symbol" />
               <div className="Home-benefit-title">
-                <Trans>Simple Swaps</Trans>
+                <span>Simple Swaps</span>
               </div>
             </div>
             <div className="Home-benefit-description">
-              <Trans>
+              <span>
                 Open positions through a simple swap interface. Conveniently swap from any supported asset into the
                 position of your choice.
-              </Trans>
+              </span>
             </div>
           </div>
         </div>
@@ -237,10 +237,10 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
         <div className="Home-cta-container default-container">
           <div className="Home-cta-info">
             <div className="Home-cta-info__title">
-              <Trans>Available on your preferred network</Trans>
+              <span>Available on your preferred network</span>
             </div>
             <div className="Home-cta-info__description">
-              <Trans>GMX is currently live on Arbitrum and Avalanche.</Trans>
+              <span>GMX is currently live on Arbitrum and Avalanche.</span>
             </div>
           </div>
           <div className="Home-cta-options">
@@ -273,7 +273,7 @@ export default function Home({ showRedirectModal, redirectPopupTimestamp }) {
         <div className="Home-token-card-container default-container">
           <div className="Home-token-card-info">
             <div className="Home-token-card-info__title">
-              <Trans>Three tokens create our ecosystem</Trans>
+              <span>Three tokens create our ecosystem</span>
             </div>
           </div>
           <TokenCard showRedirectModal={showRedirectModal} redirectPopupTimestamp={redirectPopupTimestamp} />

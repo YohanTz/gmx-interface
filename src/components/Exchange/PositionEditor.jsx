@@ -536,7 +536,7 @@ export default function PositionEditor(props) {
                       ? `${convertedAmountFormatted} ${isDeposit ? "USD" : position.collateralToken.symbol}`
                       : ""
                   }
-                  topRightLabel={t`Max`}
+                  topRightLabel={`Max`}
                   topRightValue={maxAmount && maxAmountFormatted}
                   onClickTopRightLabel={() => setFromValue(maxAmountFormattedFree)}
                   onClick={() => {
@@ -572,7 +572,7 @@ export default function PositionEditor(props) {
                   )}
                   <div className="Exchange-info-row">
                     <div className="Exchange-info-label">
-                      <Trans>Leverage</Trans>
+                      <span>Leverage</span>
                     </div>
                     <div className="align-right">
                       {!nextLeverage && <div>{formatAmount(position.leverage, 4, 2, true)}x</div>}
@@ -589,7 +589,7 @@ export default function PositionEditor(props) {
                   </div>
                   <div className="Exchange-info-row top-line">
                     <div className="Exchange-info-label">
-                      <Trans>Entry Price</Trans>
+                      <span>Entry Price</span>
                     </div>
                     <div className="align-right">
                       ${formatAmount(position.averagePrice, USD_DECIMALS, positionPriceDecimal, true)}
@@ -597,7 +597,7 @@ export default function PositionEditor(props) {
                   </div>
                   <div className="Exchange-info-row">
                     <div className="Exchange-info-label">
-                      <Trans>Mark Price</Trans>
+                      <span>Mark Price</span>
                     </div>
                     <div className="align-right">
                       ${formatAmount(position.markPrice, USD_DECIMALS, positionPriceDecimal, true)}
@@ -605,7 +605,7 @@ export default function PositionEditor(props) {
                   </div>
                   <div className="Exchange-info-row">
                     <div className="Exchange-info-label">
-                      <Trans>Liq. Price</Trans>
+                      <span>Liq. Price</span>
                     </div>
                     <div className="align-right">
                       {!nextLiquidationPrice && (
@@ -628,13 +628,13 @@ export default function PositionEditor(props) {
                   </div>
                   <div className="Exchange-info-row top-line">
                     <div className="Exchange-info-label">
-                      <Trans>Size</Trans>
+                      <span>Size</span>
                     </div>
                     <div className="align-right">{formatAmount(position.size, USD_DECIMALS, 2, true)} USD</div>
                   </div>
                   <div className="Exchange-info-row">
                     <div className="Exchange-info-label">
-                      <Trans>Collateral ({collateralToken.symbol})</Trans>
+                      <span>Collateral ({collateralToken.symbol})</span>
                     </div>
                     <div className="align-right">
                       {!nextCollateral && (
@@ -655,7 +655,7 @@ export default function PositionEditor(props) {
                   {fromAmount?.gt(0) && fundingFee?.gt(0) && (
                     <div className="Exchange-info-row">
                       <div className="Exchange-info-label">
-                        <Trans>Borrow Fee</Trans>
+                        <span>Borrow Fee</span>
                       </div>
                       <div className="align-right">
                         <Tooltip
@@ -669,9 +669,7 @@ export default function PositionEditor(props) {
                             </>
                           }
                           position="right-top"
-                          renderContent={() => (
-                            <Trans>The pending borrow fee will be charged on this transaction.</Trans>
-                          )}
+                          renderContent={() => <span>The pending borrow fee will be charged on this transaction.</span>}
                         />
                       </div>
                     </div>
@@ -679,7 +677,7 @@ export default function PositionEditor(props) {
 
                   <div className="Exchange-info-row">
                     <div className="Exchange-info-label">
-                      <Trans>Fees</Trans>
+                      <span>Fees</span>
                     </div>
                     <div className="align-right">
                       <FeesTooltip

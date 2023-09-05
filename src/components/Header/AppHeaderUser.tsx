@@ -100,14 +100,14 @@ export function AppHeaderUser({
             redirectPopupTimestamp={redirectPopupTimestamp}
             showRedirectModal={showRedirectModal}
           >
-            {isHomeSite() ? <Trans>Launch App</Trans> : <Trans>Trade</Trans>}
+            {isHomeSite() ? <span>Launch App</span> : <span>Trade</span>}
           </HeaderLink>
         </div>
 
         {showConnectionOptions ? (
           <>
             <ConnectWalletButton onClick={() => setWalletModalVisible(true)} imgSrc={connectWalletImg}>
-              {small ? <Trans>Connect</Trans> : <Trans>Connect Wallet</Trans>}
+              {small ? <span>Connect</span> : <span>Connect Wallet</span>}
             </ConnectWalletButton>
             <NetworkDropdown
               small={small}
@@ -135,7 +135,7 @@ export function AppHeaderUser({
           redirectPopupTimestamp={redirectPopupTimestamp}
           showRedirectModal={showRedirectModal}
         >
-          {isHomeSite() ? <Trans>Launch App</Trans> : <Trans>Trade</Trans>}
+          {isHomeSite() ? <span>Launch App</span> : <span>Trade</span>}
         </HeaderLink>
       </div>
 

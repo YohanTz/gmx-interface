@@ -29,7 +29,7 @@ export default function ChainsStatsTooltipRow({
     <>
       <p className="Tooltip-row">
         <span className="label">
-          <Trans>{title} on Arbitrum:</Trans>
+          <span>{title} on Arbitrum:</span>
         </span>
         <span className="amount">
           {showDollar && "$"}
@@ -39,7 +39,7 @@ export default function ChainsStatsTooltipRow({
       </p>
       <p className="Tooltip-row">
         <span className="label">
-          <Trans>{title} on Avalanche:</Trans>
+          <span>{title} on Avalanche:</span>
         </span>
         <span className="amount">
           {showDollar && "$"}
@@ -50,7 +50,7 @@ export default function ChainsStatsTooltipRow({
       <div className="Tooltip-divider" />
       <p className="Tooltip-row">
         <span className="label">
-          <Trans>Total:</Trans>
+          <span>Total:</span>
         </span>
         <span className="amount">
           {showDollar && "$"}

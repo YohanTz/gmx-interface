@@ -60,9 +60,9 @@ export function MarketStats(p: Props) {
       </div>
       <div className="App-card-divider" />
       <div className="App-card-content">
-        <CardRow label={t`Market`} value={marketInfo?.name || "..."} />
+        <CardRow label={`Market`} value={marketInfo?.name || "..."} />
         <CardRow
-          label={t`Price`}
+          label={`Price`}
           value={
             <Tooltip
               handle={
@@ -74,7 +74,7 @@ export function MarketStats(p: Props) {
               renderContent={() => {
                 return (
                   <div>
-                    <Trans>GM Token pricing includes positions' Pending PnL, Impact Pool Amount and Borrow Fees.</Trans>
+                    <span>GM Token pricing includes positions' Pending PnL, Impact Pool Amount and Borrow Fees.</span>
                   </div>
                 );
               }}
@@ -82,7 +82,7 @@ export function MarketStats(p: Props) {
           }
         />
         <CardRow
-          label={t`Wallet`}
+          label={`Wallet`}
           value={
             marketBalance && marketBalanceUsd
               ? formatTokenAmountWithUsd(marketBalance, marketBalanceUsd, "GM", marketToken.decimals)
@@ -90,10 +90,10 @@ export function MarketStats(p: Props) {
           }
         />
 
-        <CardRow label={t`APR`} value={apr ? `${formatAmount(apr, 2, 2)}%` : "..."} />
+        <CardRow label={`APR`} value={apr ? `${formatAmount(apr, 2, 2)}%` : "..."} />
 
         <CardRow
-          label={t`Total Supply`}
+          label={`Total Supply`}
           value={
             marketTotalSupply && marketTotalSupplyUsd
               ? formatTokenAmountWithUsd(marketTotalSupply, marketTotalSupplyUsd, "GM", marketToken.decimals)
@@ -102,7 +102,7 @@ export function MarketStats(p: Props) {
         />
 
         <CardRow
-          label={t`Mintable`}
+          label={`Mintable`}
           value={
             mintableInfo && marketTotalSupplyUsd && marketToken ? (
               <Tooltip
@@ -117,22 +117,22 @@ export function MarketStats(p: Props) {
                   return (
                     <div>
                       {marketInfo?.isSameCollaterals ? (
-                        <Trans>
+                        <span>
                           {marketInfo?.longToken.symbol} can be used to mint GM for this market up to the specified
                           minting caps.
-                        </Trans>
+                        </span>
                       ) : (
-                        <Trans>
+                        <span>
                           {marketInfo?.longToken.symbol} and {marketInfo?.shortToken.symbol} can be used to mint GM for
                           this market up to the specified minting caps.
-                        </Trans>
+                        </span>
                       )}
 
                       <br />
                       <br />
 
                       <StatsTooltipRow
-                        label={t`Max ${marketInfo?.longToken.symbol}`}
+                        label={`Max ${marketInfo?.longToken.symbol}`}
                         value={[
                           formatTokenAmount(
                             mintableInfo?.longDepositCapacityAmount,
@@ -155,7 +155,7 @@ export function MarketStats(p: Props) {
 
                       {!marketInfo?.isSameCollaterals && (
                         <StatsTooltipRow
-                          label={t`Max ${marketInfo?.shortToken.symbol}`}
+                          label={`Max ${marketInfo?.shortToken.symbol}`}
                           value={[
                             formatTokenAmount(
                               mintableInfo?.shortDepositCapacityAmount,
@@ -189,17 +189,17 @@ export function MarketStats(p: Props) {
 
         <div className="App-card-divider" />
 
-        <CardRow label={t`Long Collateral`} value={longToken?.symbol || "..."} />
+        <CardRow label={`Long Collateral`} value={longToken?.symbol || "..."} />
         <CardRow
-          label={t`Pool Amount`}
+          label={`Pool Amount`}
           value={formatTokenAmountWithUsd(longPoolAmount, longPoolAmountUsd, longToken?.symbol, longToken?.decimals)}
         />
 
         <div className="App-card-divider" />
 
-        <CardRow label={t`Short Collateral`} value={shortToken?.symbol || "..."} />
+        <CardRow label={`Short Collateral`} value={shortToken?.symbol || "..."} />
         <CardRow
-          label={t`Pool Amount`}
+          label={`Pool Amount`}
           value={formatTokenAmountWithUsd(
             shortPoolAmount,
             shortPoolAmountUsd,

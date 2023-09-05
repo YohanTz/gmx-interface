@@ -391,9 +391,9 @@ export function PositionSeller(p: Props) {
         isVisible={position}
         setIsVisible={p.onClose}
         label={
-          <Trans>
+          <span>
             Close {p.position?.isLong ? t`Long` : t`Short`} {p.position?.indexToken?.symbol}
-          </Trans>
+          </span>
         }
         allowContentTouchMove
       >
@@ -406,7 +406,7 @@ export function PositionSeller(p: Props) {
 
         {position && isTrigger && (
           <div className="Exchange-swap-section Exchange-trigger-order-info">
-            <Trans>
+            <span>
               Take-Profit and Stop-Loss orders are created in the main Tradebox.
               <br />
               <br />
@@ -427,7 +427,7 @@ export function PositionSeller(p: Props) {
                 More Info
               </ExternalLink>
               .
-            </Trans>
+            </span>
           </div>
         )}
 
@@ -435,8 +435,8 @@ export function PositionSeller(p: Props) {
           <>
             <div className="relative">
               <BuyInputSection
-                topLeftLabel={t`Close`}
-                topRightLabel={t`Max`}
+                topLeftLabel={`Close`}
+                topRightLabel={`Max`}
                 topRightValue={formatUsd(maxCloseSize)}
                 inputValue={closeUsdInputValue}
                 onInputValueChange={(e) => setCloseUsdInputValue(e.target.value)}
@@ -456,7 +456,7 @@ export function PositionSeller(p: Props) {
               <div className="PositionEditor-keep-leverage-settings">
                 <ToggleSwitch isChecked={keepLeverage ?? false} setIsChecked={setKeepLeverage}>
                   <span className="text-gray font-sm">
-                    <Trans>Keep leverage at {position?.leverage ? formatLeverage(position.leverage) : "..."}</Trans>
+                    <span>Keep leverage at {position?.leverage ? formatLeverage(position.leverage) : "..."}</span>
                   </span>
                 </ToggleSwitch>
               </div>
@@ -465,12 +465,12 @@ export function PositionSeller(p: Props) {
                 <ExchangeInfoRow
                   label={
                     <TooltipWithPortal
-                      handle={t`Allowed Slippage`}
+                      handle={`Allowed Slippage`}
                       position="left-top"
                       renderContent={() => {
                         return (
                           <div className="text-white">
-                            <Trans>
+                            <span>
                               You can edit the default Allowed Slippage in the settings menu on the top right of the
                               page.
                               <br />
@@ -478,7 +478,7 @@ export function PositionSeller(p: Props) {
                               Note that a low allowed slippage, e.g. less than{" "}
                               {formatPercentage(bigNumberify(DEFAULT_SLIPPAGE_AMOUNT), { signed: false })}, may result
                               in failed orders if prices are volatile.
-                            </Trans>
+                            </span>
                           </div>
                         );
                       }}
@@ -491,7 +491,7 @@ export function PositionSeller(p: Props) {
 
               <ExchangeInfoRow
                 isTop
-                label={t`Mark Price`}
+                label={`Mark Price`}
                 value={
                   formatUsd(markPrice, {
                     displayDecimals: indexPriceDecimals,
@@ -499,7 +499,7 @@ export function PositionSeller(p: Props) {
                 }
               />
               <ExchangeInfoRow
-                label={t`Entry Price`}
+                label={`Entry Price`}
                 value={
                   formatUsd(position?.entryPrice, {
                     displayDecimals: indexPriceDecimals,
@@ -507,12 +507,12 @@ export function PositionSeller(p: Props) {
                 }
               />
               <ExchangeInfoRow
-                label={t`Price Impact`}
+                label={`Price Impact`}
                 value={formatPercentage(decreaseAmounts?.acceptablePriceDeltaBps, { signed: true }) || "-"}
               />
 
               <ExchangeInfoRow
-                label={t`Acceptable Price`}
+                label={`Acceptable Price`}
                 value={
                   decreaseAmounts?.sizeDeltaUsd.gt(0)
                     ? formatAcceptablePrice(decreaseAmounts.acceptablePrice, {
@@ -524,7 +524,7 @@ export function PositionSeller(p: Props) {
 
               <ExchangeInfoRow
                 className="SwapBox-info-row"
-                label={t`Liq. Price`}
+                label={`Liq. Price`}
                 value={
                   decreaseAmounts?.isFullClose ? (
                     "-"
@@ -549,7 +549,7 @@ export function PositionSeller(p: Props) {
 
               <ExchangeInfoRow
                 isTop
-                label={t`Size`}
+                label={`Size`}
                 value={
                   <ValueTransition
                     from={formatUsd(position?.sizeInUsd)!}
@@ -563,12 +563,12 @@ export function PositionSeller(p: Props) {
                   <Tooltip
                     handle={
                       <span className="Exchange-info-label">
-                        <Trans>Collateral ({position.collateralToken?.symbol})</Trans>
+                        <span>Collateral ({position.collateralToken?.symbol})</span>
                       </span>
                     }
                     position="left-top"
                     renderContent={() => {
-                      return <Trans>Initial Collateral (Collateral excluding Borrow and Funding Fee).</Trans>;
+                      return <span>Initial Collateral (Collateral excluding Borrow and Funding Fee).</span>;
                     }}
                   />
                 </div>
@@ -582,7 +582,7 @@ export function PositionSeller(p: Props) {
 
               {!keepLeverage && (
                 <ExchangeInfoRow
-                  label={t`Leverage`}
+                  label={`Leverage`}
                   value={
                     decreaseAmounts?.sizeDeltaUsd.eq(position.sizeInUsd) ? (
                       "-"
@@ -597,7 +597,7 @@ export function PositionSeller(p: Props) {
               )}
 
               <ExchangeInfoRow
-                label={t`PnL`}
+                label={`PnL`}
                 value={
                   <ValueTransition
                     from={formatDeltaUsd(position.pnl, position.pnlPercentage)}
@@ -610,12 +610,12 @@ export function PositionSeller(p: Props) {
 
               <ExchangeInfoRow
                 isTop
-                label={t`Receive`}
+                label={`Receive`}
                 className="Exchange-info-row PositionSeller-receive-row "
                 value={
                   receiveToken && (
                     <TokenSelector
-                      label={t`Receive`}
+                      label={`Receive`}
                       className={cx("PositionSeller-token-selector", {
                         warning: isNotEnoughReceiveTokenLiquidity,
                       })}
@@ -653,7 +653,7 @@ export function PositionSeller(p: Props) {
               <div className="PositionSeller-price-impact-warning">
                 <Checkbox asRow isChecked={isHighPriceImpactAccepted} setIsChecked={setIsHighPriceImpactAccepted}>
                   <span className="text-gray font-sm">
-                    <Trans>Acknowledge high Price Impact</Trans>
+                    <span>Acknowledge high Price Impact</span>
                   </span>
                 </Checkbox>
               </div>

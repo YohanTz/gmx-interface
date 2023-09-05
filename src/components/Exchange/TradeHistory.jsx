@@ -20,7 +20,7 @@ import { getExplorerUrl } from "config/chains";
 import { bigNumberify, formatAmount } from "lib/numbers";
 import { formatDateTime } from "lib/dates";
 import StatsTooltipRow from "../StatsTooltip/StatsTooltipRow";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import Button from "components/Button/Button";
 import { getPriceDecimals } from "config/tokens";
@@ -69,27 +69,27 @@ function renderLiquidationTooltip(liquidationData, label) {
           <br />
           <br />
           <StatsTooltipRow
-            label={t`Initial collateral`}
+            label={`Initial collateral`}
             showDollar
             value={formatAmount(liquidationData.collateral, USD_DECIMALS, 2, true)}
           />
           <StatsTooltipRow
-            label={t`Min required collateral`}
+            label={`Min required collateral`}
             showDollar
             value={formatAmount(minCollateral, USD_DECIMALS, 2, true)}
           />
           <StatsTooltipRow
-            label={t`Borrow Fee`}
+            label={`Borrow Fee`}
             showDollar
             value={formatAmount(liquidationData.borrowFee, USD_DECIMALS, 2, true)}
           />
           <StatsTooltipRow
-            label={t`PnL`}
+            label={`PnL`}
             showDollar={false}
             value={`-$${formatAmount(liquidationData.loss, USD_DECIMALS, 2, true)}`}
           />
           {liquidationData.type === "full" && (
-            <StatsTooltipRow label={t`Liquidation Fee`} showDollar value={formatAmount(LIQUIDATION_FEE, 30, 2, true)} />
+            <StatsTooltipRow label={`Liquidation Fee`} showDollar value={formatAmount(LIQUIDATION_FEE, 30, 2, true)} />
           )}
         </>
       )}
@@ -159,10 +159,10 @@ export default function TradeHistory(props) {
           return defaultMsg;
         }
         return (
-          <Trans>
+          <span>
             Swap {formatAmount(params.tokenAmount, token.decimals, 4, true)} {token.symbol} for
             {formatAmount(params.usdgAmount, 18, 4, true)} USDG
-          </Trans>
+          </span>
         );
       }
 
@@ -172,10 +172,10 @@ export default function TradeHistory(props) {
           return defaultMsg;
         }
         return (
-          <Trans>
+          <span>
             Swap {formatAmount(params.usdgAmount, 18, 4, true)} USDG for
             {formatAmount(params.tokenAmount, token.decimals, 4, true)} {token.symbol}
-          </Trans>
+          </span>
         );
       }
 
@@ -186,10 +186,10 @@ export default function TradeHistory(props) {
           return defaultMsg;
         }
         return (
-          <Trans>
+          <span>
             Swap {formatAmount(params.amountIn, tokenIn.decimals, 4, true)} {tokenIn.symbol} for{" "}
             {formatAmount(params.amountOut, tokenOut.decimals, 4, true)} {tokenOut.symbol}
-          </Trans>
+          </span>
         );
       }
 
@@ -202,9 +202,9 @@ export default function TradeHistory(props) {
 
         if (bigNumberify(params.sizeDelta).eq(0)) {
           return (
-            <Trans>
+            <span>
               Request deposit into {indexToken.symbol} {longOrShortText}
-            </Trans>
+            </span>
           );
         }
 
@@ -230,9 +230,9 @@ export default function TradeHistory(props) {
 
         if (bigNumberify(params.sizeDelta).eq(0)) {
           return (
-            <Trans>
+            <span>
               Request withdrawal from {indexToken.symbol} {longOrShortText}
-            </Trans>
+            </span>
           );
         }
 
@@ -258,24 +258,24 @@ export default function TradeHistory(props) {
 
         if (bigNumberify(params.sizeDelta).eq(0)) {
           return (
-            <Trans>
+            <span>
               Could not execute deposit into {indexToken.symbol} {longOrShortText}
-            </Trans>
+            </span>
           );
         }
 
         return (
           <>
-            <Trans>
+            <span>
               Could not increase {indexToken.symbol} {longOrShortText}, +
               {formatAmount(params.sizeDelta, USD_DECIMALS, 2, true)} USD, Acceptable Price:&nbsp;
               {params.isLong ? "<" : ">"}&nbsp; USD
-            </Trans>
+            </span>
             <Tooltip
               position="center-top"
               handle={`${formatAmount(params.acceptablePrice, USD_DECIMALS, indexTokenPriceDecimal, true)} USD`}
               renderContent={() => (
-                <Trans>Try increasing the "Allowed Slippage", under the Settings menu on the top right.</Trans>
+                <span>Try increasing the "Allowed Slippage", under the Settings menu on the top right.</span>
               )}
             />
           </>
@@ -291,25 +291,25 @@ export default function TradeHistory(props) {
 
         if (bigNumberify(params.sizeDelta).eq(0)) {
           return (
-            <Trans>
+            <span>
               Could not execute withdrawal from {indexToken.symbol} {longOrShortText}
-            </Trans>
+            </span>
           );
         }
 
         return (
           <>
-            <Trans>
+            <span>
               Could not decrease {indexToken.symbol} {longOrShortText}, +
               {formatAmount(params.sizeDelta, USD_DECIMALS, 2, true)} USD, Acceptable Price:&nbsp;
               {params.isLong ? ">" : "<"}&nbsp;
-            </Trans>
+            </span>
             USD
             <Tooltip
               position="right-top"
               handle={`${formatAmount(params.acceptablePrice, USD_DECIMALS, indexTokenPriceDecimal, true)} USD`}
               renderContent={() => (
-                <Trans>Try increasing the "Allowed Slippage", under the Settings menu on the top right</Trans>
+                <span>Try increasing the "Allowed Slippage", under the Settings menu on the top right</span>
               )}
             />
           </>
@@ -328,10 +328,10 @@ export default function TradeHistory(props) {
         }
         if (bigNumberify(params.sizeDelta).eq(0)) {
           return (
-            <Trans>
+            <span>
               Deposit {formatAmount(params.collateralDelta, USD_DECIMALS, 2, true)} USD into {indexToken.symbol}{" "}
               {longOrShortText}
-            </Trans>
+            </span>
           );
         }
         return t`Increase ${indexToken.symbol} ${longOrShortText}, +${formatAmount(
@@ -359,10 +359,10 @@ export default function TradeHistory(props) {
         }
         if (bigNumberify(params.sizeDelta).eq(0)) {
           return (
-            <Trans>
+            <span>
               Withdraw {formatAmount(params.collateralDelta, USD_DECIMALS, 2, true)} USD from {indexToken.symbol}
               {longOrShortText}{" "}
-            </Trans>
+            </span>
           );
         }
         const isLiquidation = params.flags?.isLiquidation;
@@ -394,12 +394,12 @@ export default function TradeHistory(props) {
         const liquidationData = getLiquidationData(liquidationsDataMap, params.key, tradeData.timestamp);
         if (liquidationData) {
           return (
-            <Trans>
+            <span>
               {renderLiquidationTooltip(liquidationData, t`Liquidated`)}&nbsp; {indexToken.symbol} {longOrShortText}, -
               {formatAmount(params.size, USD_DECIMALS, 2, true)} USD,&nbsp;
               {indexToken.symbol} Price: ${formatAmount(params.markPrice, USD_DECIMALS, indexTokenPriceDecimal, true)}{" "}
               USD
-            </Trans>
+            </span>
           );
         }
         return t`
@@ -425,10 +425,10 @@ export default function TradeHistory(props) {
           true
         )}`;
         return (
-          <Trans>
+          <span>
             Execute Order: {orderTypeText} {indexToken.symbol} {longShortDisplay} {sizeDeltaDisplay} USD, Price:{" "}
             {executionPriceDisplay} USD
-          </Trans>
+          </span>
         );
       }
 
@@ -456,10 +456,10 @@ export default function TradeHistory(props) {
           true
         )} USD`;
         return (
-          <Trans>
+          <span>
             {getOrderActionTitle(tradeData.action)}:{" "}
             {getPositionDisplay(increase, indexToken, order.isLong, order.sizeDelta)}, Price: {priceDisplay}
-          </Trans>
+          </span>
         );
       }
 
@@ -474,9 +474,9 @@ export default function TradeHistory(props) {
         const fromAmountDisplay = formatAmount(order.amountIn, fromToken.decimals, fromToken.isStable ? 2 : 4, true);
         const toAmountDisplay = formatAmount(order.amountOut, toToken.decimals, toToken.isStable ? 2 : 4, true);
         return (
-          <Trans>
+          <span>
             Execute Order: Swap {fromAmountDisplay} {fromToken.symbol} for {toAmountDisplay} {toToken.symbol}
-          </Trans>
+          </span>
         );
       }
 
@@ -496,12 +496,12 @@ export default function TradeHistory(props) {
           : "";
 
         return (
-          <Trans>
+          <span>
             {getOrderActionTitle(tradeData.action)}: Swap {amountInDisplay}
             {fromToken?.symbol || ""} for
             {minOutDisplay} {toToken?.symbol || ""}, Price:
             {getExchangeRateDisplay(order.triggerRatio, fromToken, toToken)} USD
-          </Trans>
+          </span>
         );
       }
     },
@@ -526,7 +526,7 @@ export default function TradeHistory(props) {
     <div className="TradeHistory">
       {tradesWithMessages.length === 0 && (
         <div className="TradeHistory-row App-box">
-          <Trans>No trades yet</Trans>
+          <span>No trades yet</span>
         </div>
       )}
       {tradesWithMessages.length > 0 &&
@@ -563,12 +563,12 @@ export default function TradeHistory(props) {
         <div className="gap-right">
           {pageIndex > 0 && (
             <Button variant="secondary" onClick={loadPrevPage}>
-              <Trans>Prev</Trans>
+              <span>Prev</span>
             </Button>
           )}
           {trades && trades.length >= TRADES_PAGE_SIZE && (
             <Button variant="secondary" onClick={loadNextPage}>
-              <Trans>Next</Trans>
+              <span>Next</span>
             </Button>
           )}
         </div>

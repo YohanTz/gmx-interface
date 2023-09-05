@@ -1,5 +1,5 @@
 import Helmat from "react-helmet";
-import { Plural, Trans, t } from "@lingui/macro";
+import { Plural, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import Checkbox from "components/Checkbox/Checkbox";
@@ -313,7 +313,7 @@ export function SyntheticsPage(p: Props) {
                   className={cx("muted chart-positions", { active: savedShouldShowPositionLines })}
                 >
                   <span>
-                    <Trans>Chart positions</Trans>
+                    <span>Chart positions</span>
                   </span>
                 </Checkbox>
               </div>

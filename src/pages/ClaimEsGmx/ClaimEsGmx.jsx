@@ -332,46 +332,46 @@ export default function ClaimEsGmx({ setPendingTxns }) {
     <div className="ClaimEsGmx Page page-layout">
       <div className="Page-title-section mt-0">
         <div className="Page-title">
-          <Trans>Claim esGMX</Trans>
+          <span>Claim esGMX</span>
         </div>
         {!isArbitrum && (
           <div className="Page-description">
             <br />
-            <Trans>Please switch your network to Arbitrum.</Trans>
+            <span>Please switch your network to Arbitrum.</span>
           </div>
         )}
         {isArbitrum && (
           <div>
             <div className="Page-description">
               <br />
-              <Trans>You have {formatAmount(esGmxIouBalance, 18, 2, true)} esGMX (IOU) tokens.</Trans>
+              <span>You have {formatAmount(esGmxIouBalance, 18, 2, true)} esGMX (IOU) tokens.</span>
               <br />
               <br />
-              <Trans>The address of the esGMX (IOU) token is {esGmxIouAddress}.</Trans>
+              <span>The address of the esGMX (IOU) token is {esGmxIouAddress}.</span>
               <br />
-              <Trans>
+              <span>
                 The esGMX (IOU) token is transferrable. You can add the token to your wallet and send it to another
                 address to claim if you'd like.
-              </Trans>
+              </span>
               <br />
               <br />
-              <Trans>Select your vesting option below then click "Claim".</Trans>
+              <span>Select your vesting option below then click "Claim".</span>
               <br />
-              <Trans>
+              <span>
                 After claiming, the esGMX tokens will be airdropped to your account on the selected network within 7
                 days.
-              </Trans>
+              </span>
               <br />
-              <Trans>The esGMX tokens can be staked or vested at any time.</Trans>
+              <span>The esGMX tokens can be staked or vested at any time.</span>
               <br />
-              <Trans>
+              <span>
                 Your esGMX (IOU) balance will decrease by your claim amount after claiming, this is expected behaviour.
-              </Trans>
+              </span>
               <br />
-              <Trans>
+              <span>
                 You can check your claim history{" "}
                 <ExternalLink href={`https://arbiscan.io/token/${esGmxIouAddress}?a=${account}`}>here</ExternalLink>.
-              </Trans>
+              </span>
             </div>
             <br />
             <div className="ClaimEsGmx-vesting-options">
@@ -380,7 +380,7 @@ export default function ClaimEsGmx({ setPendingTxns }) {
                 isChecked={selectedOption === VEST_WITH_GMX_ARB}
                 setIsChecked={() => setSelectedOption(VEST_WITH_GMX_ARB)}
               >
-                <Trans>Vest with GMX on Arbitrum</Trans>
+                <span>Vest with GMX on Arbitrum</span>
                 <img src={arbitrumIcon} alt="Arbitrum" />
               </Checkbox>
               <Checkbox
@@ -388,7 +388,7 @@ export default function ClaimEsGmx({ setPendingTxns }) {
                 isChecked={selectedOption === VEST_WITH_GLP_ARB}
                 setIsChecked={() => setSelectedOption(VEST_WITH_GLP_ARB)}
               >
-                <Trans>Vest with GLP on Arbitrum</Trans>
+                <span>Vest with GLP on Arbitrum</span>
                 <img src={arbitrumIcon} alt="Arbitrum" />
               </Checkbox>
               <Checkbox
@@ -396,7 +396,7 @@ export default function ClaimEsGmx({ setPendingTxns }) {
                 isChecked={selectedOption === VEST_WITH_GMX_AVAX}
                 setIsChecked={() => setSelectedOption(VEST_WITH_GMX_AVAX)}
               >
-                <Trans>Vest with GMX on Avalanche</Trans>
+                <span>Vest with GMX on Avalanche</span>
                 <img src={avaIcon} alt="Avalanche" />
               </Checkbox>
               <Checkbox
@@ -404,23 +404,23 @@ export default function ClaimEsGmx({ setPendingTxns }) {
                 isChecked={selectedOption === VEST_WITH_GLP_AVAX}
                 setIsChecked={() => setSelectedOption(VEST_WITH_GLP_AVAX)}
               >
-                <Trans>Vest with GLP on Avalanche</Trans>
+                <span>Vest with GLP on Avalanche</span>
                 <img src={avaIcon} alt="Avalanche" />
               </Checkbox>
             </div>
             <br />
             {!error && (
               <div className="muted">
-                <Trans>
+                <span>
                   You can currently vest a maximum of {formatAmount(maxVestableAmount, 18, 2, true)} esGMX tokens at a
                   ratio of {formatAmount(currentRatio, 4, 2, true)} {stakingToken} to 1 esGMX.
-                </Trans>
+                </span>
                 {shouldShowStakingAmounts && `${formatAmount(initialStakingAmount, 18, 2, true)}.`}
                 <br />
-                <Trans>
+                <span>
                   After claiming you will be able to vest a maximum of {formatAmount(nextMaxVestableEsGmx, 18, 2, true)}{" "}
                   esGMX at a ratio of {formatAmount(nextRatio, 4, 2, true)} {stakingToken} to 1 esGMX.
-                </Trans>
+                </span>
                 {shouldShowStakingAmounts && `${formatAmount(nextStakingAmount, 18, 2, true)}.`}
                 <br />
                 <br />
@@ -428,7 +428,7 @@ export default function ClaimEsGmx({ setPendingTxns }) {
             )}
             <div>
               <div className="ClaimEsGmx-input-label muted">
-                <Trans>Amount to claim</Trans>
+                <span>Amount to claim</span>
               </div>
               <div className="ClaimEsGmx-input-container">
                 <input type="number" placeholder="0.0" value={value} onChange={(e) => setValue(e.target.value)} />
@@ -437,7 +437,7 @@ export default function ClaimEsGmx({ setPendingTxns }) {
                     className="ClaimEsGmx-max-button"
                     onClick={() => setValue(formatAmountFree(esGmxIouBalance, 18, 18))}
                   >
-                    <Trans>MAX</Trans>
+                    <span>MAX</span>
                   </div>
                 )}
               </div>

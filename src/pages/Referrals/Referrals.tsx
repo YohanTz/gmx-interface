@@ -128,14 +128,14 @@ function Referrals({ connectWallet, setPendingTxns, pendingTxns }) {
       <div className="default-container page-layout Referrals">
         <PageTitle
           isTop
-          title={t`Referrals`}
+          title={`Referrals`}
           subtitle={
-            <Trans>
+            <span>
               Get fee discounts and earn rebates through the GMX referral program.
               <br />
               For more information, please read the{" "}
               <ExternalLink href="https://docs.gmx.io/docs/referrals">referral program details</ExternalLink>.
-            </Trans>
+            </span>
           }
         />
         <div className="referral-tab-container">

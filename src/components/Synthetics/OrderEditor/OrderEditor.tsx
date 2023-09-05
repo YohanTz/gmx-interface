@@ -383,7 +383,7 @@ export function OrderEditor(p: Props) {
         className="PositionSeller-modal"
         isVisible={true}
         setIsVisible={p.onClose}
-        label={<Trans>Edit {p.order.title}</Trans>}
+        label={<span>Edit {p.order.title}</span>}
         allowContentTouchMove
       >
         {!isSwapOrderType(p.order.orderType) && (
@@ -397,8 +397,8 @@ export function OrderEditor(p: Props) {
             </BuyInputSection>
 
             <BuyInputSection
-              topLeftLabel={t`Price`}
-              topRightLabel={t`Mark`}
+              topLeftLabel={`Price`}
+              topRightLabel={`Mark`}
               topRightValue={formatUsd(markPrice, { displayDecimals: indexPriceDecimals })}
               onClickTopRightLabel={() =>
                 setTriggerPriceInputValue(formatAmount(markPrice, USD_DECIMALS, indexPriceDecimals || 2))
@@ -415,7 +415,7 @@ export function OrderEditor(p: Props) {
           <>
             {triggerRatio && (
               <BuyInputSection
-                topLeftLabel={t`Price`}
+                topLeftLabel={`Price`}
                 topRightValue={formatAmount(markRatio?.ratio, USD_DECIMALS, 4)}
                 onClickTopRightLabel={() => {
                   setTriggerRatioInputValue(formatAmount(markRatio?.ratio, USD_DECIMALS, 10));
@@ -435,13 +435,13 @@ export function OrderEditor(p: Props) {
           {!isSwapOrderType(p.order.orderType) && (
             <>
               <ExchangeInfoRow
-                label={t`Acceptable Price`}
+                label={`Acceptable Price`}
                 value={formatAcceptablePrice(acceptablePrice, { displayDecimals: indexPriceDecimals })}
               />
 
               {existingPosition && (
                 <ExchangeInfoRow
-                  label={t`Liq. Price`}
+                  label={`Liq. Price`}
                   value={formatLiquidationPrice(existingPosition.liquidationPrice, {
                     displayDecimals: indexPriceDecimals,
                   })}
@@ -453,7 +453,7 @@ export function OrderEditor(p: Props) {
           {isSwapOrderType(p.order.orderType) && (
             <>
               <ExchangeInfoRow
-                label={t`Swap Price Impact`}
+                label={`Swap Price Impact`}
                 value={
                   <span
                     className={cx({
@@ -465,10 +465,10 @@ export function OrderEditor(p: Props) {
                 }
               />
 
-              <ExchangeInfoRow label={t`Swap Fees`} value={formatUsd(p.order.swapPathStats?.totalSwapFeeUsd)} />
+              <ExchangeInfoRow label={`Swap Fees`} value={formatUsd(p.order.swapPathStats?.totalSwapFeeUsd)} />
 
               <ExchangeInfoRow
-                label={t`Min. Receive`}
+                label={`Min. Receive`}
                 value={formatTokenAmount(
                   minOutputAmount,
                   p.order.targetCollateralToken.decimals,
@@ -479,7 +479,7 @@ export function OrderEditor(p: Props) {
           )}
 
           {executionFee?.feeTokenAmount.gt(0) && (
-            <ExchangeInfoRow label={t`Max Execution Fee`}>
+            <ExchangeInfoRow label={`Max Execution Fee`}>
               {formatTokenAmount(
                 executionFee?.feeTokenAmount,
                 executionFee?.feeToken.decimals,

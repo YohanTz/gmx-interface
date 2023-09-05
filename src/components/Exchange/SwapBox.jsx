@@ -321,7 +321,7 @@ export default function SwapBox(props) {
     return (
       <div className="Exchange-info-row">
         <div className="Exchange-info-label">
-          <Trans>Available Liquidity</Trans>
+          <span>Available Liquidity</span>
         </div>
         <div className="align-right">
           <Tooltip
@@ -331,11 +331,11 @@ export default function SwapBox(props) {
               return (
                 <>
                   <StatsTooltipRow
-                    label={t`Max ${toTokenInfo.symbol} long capacity`}
+                    label={`Max ${toTokenInfo.symbol} long capacity`}
                     value={formatAmount(toTokenInfo.maxLongCapacity, USD_DECIMALS, 0, true)}
                   />
                   <StatsTooltipRow
-                    label={t`Current ${toTokenInfo.symbol} long`}
+                    label={`Current ${toTokenInfo.symbol} long`}
                     value={formatAmount(toTokenInfo.guaranteedUsd, USD_DECIMALS, 0, true)}
                   />
                 </>
@@ -1804,7 +1804,7 @@ export default function SwapBox(props) {
   const ERROR_TOOLTIP_MSG = {
     [ErrorCode.InsufficientLiquiditySwap]: t`Swap amount exceeds Available Liquidity.`,
     [ErrorCode.InsufficientLiquidityLeverage]: (
-      <Trans>
+      <span>
         <p>{toToken.symbol} is required for collateral.</p>
         <p>
           Swap amount from {fromToken.symbol} to {toToken.symbol} exceeds {toToken.symbol} Available Liquidity. Reduce
@@ -1813,10 +1813,10 @@ export default function SwapBox(props) {
         <ExternalLink href={get1InchSwapUrl(chainId, fromToken.symbol, toToken.symbol)}>
           You can buy {toToken.symbol} on 1inch.
         </ExternalLink>
-      </Trans>
+      </span>
     ),
     [ErrorCode.TokenPoolExceeded]: (
-      <Trans>
+      <span>
         <p>{toToken.symbol} is required for collateral.</p>
         <p>
           Swap amount from {fromToken.symbol} to {toToken.symbol} exceeds {fromToken.symbol} acceptable amount. Reduce
@@ -1825,10 +1825,10 @@ export default function SwapBox(props) {
         <ExternalLink href={get1InchSwapUrl(chainId, fromToken.symbol, toToken.symbol)}>
           You can buy {toToken.symbol} on 1inch.
         </ExternalLink>
-      </Trans>
+      </span>
     ),
     [ErrorCode.TokenPoolExceededShorts]: (
-      <Trans>
+      <span>
         <p>{shortCollateralToken.symbol} is required for collateral.</p>
         <p>
           Swap amount from {fromToken.symbol} to {shortCollateralToken.symbol} exceeds {fromToken.symbol} acceptable
@@ -1838,25 +1838,25 @@ export default function SwapBox(props) {
         <ExternalLink href={get1InchSwapUrl(chainId, fromToken.symbol, shortCollateralToken.symbol)}>
           You can buy {shortCollateralToken.symbol} on 1inch.
         </ExternalLink>
-      </Trans>
+      </span>
     ),
     [ErrorCode.InsufficientCollateralIn]: (
-      <Trans>
+      <span>
         <p>{shortCollateralToken.symbol} is required for collateral.</p>
         <p>
           Swap amount from {fromToken.symbol} to {shortCollateralToken.symbol} exceeds {shortCollateralToken.symbol}{" "}
           available liquidity. Reduce the "Pay" size, or change the "Collateral In" token.
         </p>
-      </Trans>
+      </span>
     ),
     [ErrorCode.InsufficientProfitLiquidity]: (
-      <Trans>
+      <span>
         <p>{shortCollateralToken.symbol} is required for collateral.</p>
         <p>
           Short amount for {toToken.symbol} with {shortCollateralToken.symbol} exceeds potential profits liquidity.
           Reduce the "Short Position" size, or change the "Collateral In" token.
         </p>
-      </Trans>
+      </span>
     ),
   };
 
@@ -1947,9 +1947,9 @@ export default function SwapBox(props) {
           {showFromAndToSection && (
             <React.Fragment>
               <BuyInputSection
-                topLeftLabel={t`Pay`}
+                topLeftLabel={`Pay`}
                 topLeftValue={fromUsdMin && `$${formatAmount(fromUsdMin, USD_DECIMALS, 2, true)}`}
-                topRightLabel={t`Balance`}
+                topRightLabel={`Balance`}
                 topRightValue={fromBalance && `${formatAmount(fromBalance, fromToken.decimals, 4, true)}`}
                 onClickTopRightLabel={setFromValueToMaximumAvailable}
                 showMaxButton={shouldShowMaxButton()}
@@ -1958,7 +1958,7 @@ export default function SwapBox(props) {
                 onClickMax={setFromValueToMaximumAvailable}
               >
                 <TokenSelector
-                  label={t`Pay`}
+                  label={`Pay`}
                   chainId={chainId}
                   tokenAddress={fromTokenAddress}
                   onSelectToken={onSelectFromToken}
@@ -2003,7 +2003,7 @@ export default function SwapBox(props) {
           )}
           {showTriggerRatioSection && (
             <BuyInputSection
-              topLeftLabel={t`Price`}
+              topLeftLabel={`Price`}
               topRightLabel={formatAmount(
                 getExchangeRate(fromTokenInfo, toTokenInfo, triggerRatioInverted),
                 USD_DECIMALS,
@@ -2035,8 +2035,8 @@ export default function SwapBox(props) {
           )}
           {showTriggerPriceSection && (
             <BuyInputSection
-              topLeftLabel={t`Price`}
-              topRightLabel={t`Mark`}
+              topLeftLabel={`Price`}
+              topRightLabel={`Mark`}
               topRightValue={formatAmount(entryMarkPrice, USD_DECIMALS, toTokenPriceDecimal, true)}
               onClickTopRightLabel={() => {
                 setTriggerPriceValue(formatAmountFree(entryMarkPrice, USD_DECIMALS, toTokenPriceDecimal));
@@ -2050,7 +2050,7 @@ export default function SwapBox(props) {
           )}
           {isSwap && (
             <div className="Exchange-swap-box-info">
-              <ExchangeInfoRow label={t`Fees`}>
+              <ExchangeInfoRow label={`Fees`}>
                 <div>
                   {!fees && "-"}
                   {fees && (
@@ -2086,13 +2086,13 @@ export default function SwapBox(props) {
                     <Tooltip
                       className="Collateral-warning"
                       position="left-bottom"
-                      handle={<Trans>Collateral In</Trans>}
+                      handle={<span>Collateral In</span>}
                       renderContent={() => (
                         <span>
-                          <Trans>
+                          <span>
                             You have an existing position with {existingCurrentIndexCollateralToken?.symbol} as
                             collateral.
-                          </Trans>
+                          </span>
                           <br />
                           <br />
                           <div
@@ -2101,20 +2101,20 @@ export default function SwapBox(props) {
                             }}
                             className="text-gray underline cursor-pointer"
                           >
-                            <Trans>Switch to {existingCurrentIndexCollateralToken?.symbol} collateral.</Trans>
+                            <span>Switch to {existingCurrentIndexCollateralToken?.symbol} collateral.</span>
                           </div>
                         </span>
                       )}
                     />
                   ) : (
                     <div className="Exchange-info-label">
-                      <Trans>Collateral In</Trans>
+                      <span>Collateral In</span>
                     </div>
                   )}
 
                   <div className="align-right">
                     <TokenSelector
-                      label={t`Collateral In`}
+                      label={`Collateral In`}
                       chainId={chainId}
                       tokenAddress={shortCollateralAddress}
                       onSelectToken={onSelectShortCollateralAddress}
@@ -2127,7 +2127,7 @@ export default function SwapBox(props) {
               {isLong && (
                 <div className="Exchange-info-row">
                   <div className="Exchange-info-label">
-                    <Trans>Collateral In</Trans>
+                    <span>Collateral In</span>
                   </div>
                   <div className="align-right">
                     <Tooltip
@@ -2135,16 +2135,16 @@ export default function SwapBox(props) {
                       handle="USD"
                       renderContent={() => (
                         <span className="SwapBox-collateral-tooltip-text">
-                          <Trans>
+                          <span>
                             A snapshot of the USD value of your {existingPosition?.collateralToken?.symbol} collateral
                             is taken when the position is opened.
-                          </Trans>
+                          </span>
                           <br />
                           <br />
-                          <Trans>
+                          <span>
                             When closing the position, you can select which token you would like to receive the profits
                             in.
-                          </Trans>
+                          </span>
                         </span>
                       )}
                     />
@@ -2153,7 +2153,7 @@ export default function SwapBox(props) {
               )}
               <div className="Exchange-info-row">
                 <div className="Exchange-info-label">
-                  <Trans>Leverage</Trans>
+                  <span>Leverage</span>
                 </div>
                 <div className="align-right">
                   {hasExistingPosition && toAmount && toAmount.gt(0) && (
@@ -2169,7 +2169,7 @@ export default function SwapBox(props) {
               </div>
               <div className="Exchange-info-row">
                 <div className="Exchange-info-label">
-                  <Trans>Entry Price</Trans>
+                  <span>Entry Price</span>
                 </div>
                 <div className="align-right">
                   {hasExistingPosition && toAmount && toAmount.gt(0) && (
@@ -2184,7 +2184,7 @@ export default function SwapBox(props) {
               </div>
               <div className="Exchange-info-row">
                 <div className="Exchange-info-label">
-                  <Trans>Liq. Price</Trans>
+                  <span>Liq. Price</span>
                 </div>
                 <div className="align-right">
                   {hasExistingPosition && toAmount && toAmount.gt(0) && (
@@ -2200,7 +2200,7 @@ export default function SwapBox(props) {
                   {!displayLiquidationPrice && `-`}
                 </div>
               </div>
-              <ExchangeInfoRow label={t`Fees`}>
+              <ExchangeInfoRow label={`Fees`}>
                 <div>
                   {!feesUsd && "-"}
 
@@ -2213,7 +2213,7 @@ export default function SwapBox(props) {
                       }}
                       positionFee={positionFee}
                       swapFee={swapFees}
-                      titleText={swapFees && <Trans>{collateralToken.symbol} is required for collateral.</Trans>}
+                      titleText={swapFees && <span>{collateralToken.symbol} is required for collateral.</span>}
                     />
                   )}
                 </div>
@@ -2222,7 +2222,7 @@ export default function SwapBox(props) {
           )}
           {isStopOrder && (
             <div className="Exchange-swap-section Exchange-trigger-order-info">
-              <Trans>
+              <span>
                 Take-profit and stop-loss orders can be set after opening a position. <br />
                 <br />
                 There will be a "Close" button on each position row, clicking this will display the option to set
@@ -2233,7 +2233,7 @@ export default function SwapBox(props) {
                   docs
                 </ExternalLink>
                 .
-              </Trans>
+              </span>
             </div>
           )}
           <div className="Exchange-swap-button-container">{renderPrimaryButton()}</div>
@@ -2243,12 +2243,12 @@ export default function SwapBox(props) {
         {isSwap && (
           <div className="Exchange-swap-market-box App-box App-box-border">
             <div className="Exchange-swap-market-box-title">
-              <Trans>Swap</Trans>
+              <span>Swap</span>
             </div>
             <div className="App-card-divider"></div>
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>{fromToken.symbol} Price</Trans>
+                <span>{fromToken.symbol} Price</span>
               </div>
               <div className="align-right">
                 ${fromTokenInfo && formatAmount(fromTokenInfo.minPrice, USD_DECIMALS, 2, true)}
@@ -2256,7 +2256,7 @@ export default function SwapBox(props) {
             </div>
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>{toToken.symbol} Price</Trans>
+                <span>{toToken.symbol} Price</span>
               </div>
               <div className="align-right">
                 ${toTokenInfo && formatAmount(toTokenInfo.maxPrice, USD_DECIMALS, 2, true)}
@@ -2264,7 +2264,7 @@ export default function SwapBox(props) {
             </div>
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>Available Liquidity</Trans>
+                <span>Available Liquidity</span>
               </div>
 
               <div className="align-right al-swap">
@@ -2275,14 +2275,14 @@ export default function SwapBox(props) {
                     return (
                       <div>
                         <StatsTooltipRow
-                          label={t`Max ${fromTokenInfo.symbol} in`}
+                          label={`Max ${fromTokenInfo.symbol} in`}
                           value={[
                             `${formatAmount(maxFromTokenIn, fromTokenInfo.decimals, 0, true)} ${fromTokenInfo.symbol}`,
                             `($${formatAmount(maxFromTokenInUSD, USD_DECIMALS, 0, true)})`,
                           ]}
                         />
                         <StatsTooltipRow
-                          label={t`Max ${toTokenInfo.symbol} out`}
+                          label={`Max ${toTokenInfo.symbol} out`}
                           value={[
                             `${formatAmount(maxToTokenOut, toTokenInfo.decimals, 0, true)} ${toTokenInfo.symbol}`,
                             `($${formatAmount(maxToTokenOutUSD, USD_DECIMALS, 0, true)})`,
@@ -2295,7 +2295,7 @@ export default function SwapBox(props) {
               </div>
             </div>
             {!isMarketOrder && (
-              <ExchangeInfoRow label={t`Price`}>
+              <ExchangeInfoRow label={`Price`}>
                 {getExchangeRateDisplay(getExchangeRate(fromTokenInfo, toTokenInfo), fromToken, toToken)}
               </ExchangeInfoRow>
             )}
@@ -2309,7 +2309,7 @@ export default function SwapBox(props) {
             <div className="App-card-divider" />
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>Entry Price</Trans>
+                <span>Entry Price</span>
               </div>
               <div className="align-right">
                 <Tooltip
@@ -2318,7 +2318,7 @@ export default function SwapBox(props) {
                   renderContent={() => {
                     return (
                       <div>
-                        <Trans>
+                        <span>
                           The position will be opened at{" "}
                           {formatAmount(entryMarkPrice, USD_DECIMALS, toTokenPriceDecimal, true)} USD with a max
                           slippage of {parseFloat(savedSlippageAmount / 100.0).toFixed(2)}%.
@@ -2331,7 +2331,7 @@ export default function SwapBox(props) {
                           <ExternalLink href="https://docs.gmx.io/docs/trading/v1#opening-a-position">
                             More Info
                           </ExternalLink>
-                        </Trans>
+                        </span>
                       </div>
                     );
                   }}
@@ -2340,7 +2340,7 @@ export default function SwapBox(props) {
             </div>
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>Exit Price</Trans>
+                <span>Exit Price</span>
               </div>
               <div className="align-right">
                 <Tooltip
@@ -2349,7 +2349,7 @@ export default function SwapBox(props) {
                   renderContent={() => {
                     return (
                       <div>
-                        <Trans>
+                        <span>
                           If you have an existing position, the position will be closed at{" "}
                           {formatAmount(entryMarkPrice, USD_DECIMALS, toTokenPriceDecimal, true)} USD.
                           <br />
@@ -2360,7 +2360,7 @@ export default function SwapBox(props) {
                           <ExternalLink href="https://docs.gmx.io/docs/trading/v1#opening-a-position">
                             More Info
                           </ExternalLink>
-                        </Trans>
+                        </span>
                       </div>
                     );
                   }}
@@ -2369,7 +2369,7 @@ export default function SwapBox(props) {
             </div>
             <div className="Exchange-info-row">
               <div className="Exchange-info-label">
-                <Trans>Borrow Fee</Trans>
+                <span>Borrow Fee</span>
               </div>
               <div className="align-right">
                 <Tooltip
@@ -2386,10 +2386,10 @@ export default function SwapBox(props) {
                         )}
                         {!hasZeroBorrowFee && (
                           <div>
-                            <Trans>
+                            <span>
                               The borrow fee is calculated as (assets borrowed) / (total assets in pool) * 0.01% per
                               hour.
-                            </Trans>
+                            </span>
                             <br />
                             <br />
                             {isShort && t`You can change the "Collateral In" token above to find lower fees`}
@@ -2397,7 +2397,7 @@ export default function SwapBox(props) {
                         )}
                         <br />
                         <ExternalLink href="https://docs.gmx.io/docs/trading/v1#opening-a-position">
-                          <Trans>More Info</Trans>
+                          <span>More Info</span>
                         </ExternalLink>
                       </div>
                     );
@@ -2411,7 +2411,7 @@ export default function SwapBox(props) {
             {isShort && toTokenInfo.hasMaxAvailableShort && (
               <div className="Exchange-info-row">
                 <div className="Exchange-info-label">
-                  <Trans>Available Liquidity</Trans>
+                  <span>Available Liquidity</span>
                 </div>
                 <div className="align-right">
                   <Tooltip
@@ -2421,11 +2421,11 @@ export default function SwapBox(props) {
                       return (
                         <>
                           <StatsTooltipRow
-                            label={t`Max ${toTokenInfo.symbol} short capacity`}
+                            label={`Max ${toTokenInfo.symbol} short capacity`}
                             value={formatAmount(toTokenInfo.maxGlobalShortSize, USD_DECIMALS, 0, true)}
                           />
                           <StatsTooltipRow
-                            label={t`Current ${toTokenInfo.symbol} shorts`}
+                            label={`Current ${toTokenInfo.symbol} shorts`}
                             value={formatAmount(toTokenInfo.globalShortSize, USD_DECIMALS, 0, true)}
                           />
                         </>

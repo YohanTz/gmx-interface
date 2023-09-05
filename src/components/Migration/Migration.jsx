@@ -29,7 +29,7 @@ import {
   parseValue,
 } from "lib/numbers";
 import ExternalLink from "components/ExternalLink/ExternalLink";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 
 const { MaxUint256, AddressZero } = ethers.constants;
 
@@ -172,9 +172,9 @@ function MigrationModal(props) {
         const txUrl = getExplorerUrl(CHAIN_ID) + "tx/" + res.hash;
         helperToast.success(
           <div>
-            <Trans>
+            <span>
               Migration submitted! <ExternalLink href={txUrl}>View status.</ExternalLink>
-            </Trans>
+            </span>
           </div>
         );
         setIsVisible(false);
@@ -235,7 +235,7 @@ function MigrationModal(props) {
               <div className="Exchange-swap-usd">Migrate</div>
             </div>
             <div className="muted align-right clickable" onClick={() => setValue(formatAmountFree(maxAmount, 18, 8))}>
-              <Trans>Max: {formatAmount(maxAmount, 18, 4, true)}</Trans>
+              <span>Max: {formatAmount(maxAmount, 18, 4, true)}</span>
             </div>
           </div>
           <div className="Exchange-swap-section-bottom">
@@ -268,7 +268,7 @@ function MigrationModal(props) {
           {token.bonus > 0 && (
             <div className="App-info-row">
               <div className="App-info-label">
-                <Trans>Bonus Tokens</Trans>
+                <span>Bonus Tokens</span>
               </div>
               <div className="align-right">
                 {bonusAmount &&
@@ -285,7 +285,7 @@ function MigrationModal(props) {
           {token.bonus > 0 && (
             <div className="App-info-row">
               <div className="App-info-label">
-                <Trans>To Receive</Trans>
+                <span>To Receive</span>
               </div>
               <div className="align-right">
                 {totalAmount &&
@@ -408,12 +408,12 @@ export default function Migration() {
             ${formatAmount(totalMigratedUsd, decimals + 18, 0, true)}
           </div>
           <div className="Stake-title-secondary">
-            <Trans>Total Assets Migrated</Trans>
+            <span>Total Assets Migrated</span>
           </div>
         </div>
       </div>
       <div className="Migration-note">
-        <Trans>Your wallet: {formatAmount(gmxBalance, 18, 4, true)}</Trans> GMX
+        <span>Your wallet: {formatAmount(gmxBalance, 18, 4, true)}</span> GMX
       </div>
       <div className="Migration-cards">
         {tokens.map((token, index) => {
@@ -425,25 +425,25 @@ export default function Migration() {
               <div className="Stake-card-bottom App-card-content">
                 <div className="Stake-info App-card-row">
                   <div className="label">
-                    <Trans>Wallet</Trans>
+                    <span>Wallet</span>
                   </div>
                   <div>{formatArrayAmount(balances, index * 2, 18, 4, true)}</div>
                 </div>
                 <div className="Stake-info App-card-row">
                   <div className="label">
-                    <Trans>Migration Price</Trans>
+                    <span>Migration Price</span>
                   </div>
                   <div>${formatAmount(price, decimals, 2, true)}</div>
                 </div>
                 <div className="Stake-info App-card-row">
                   <div className="label">
-                    <Trans>Bonus Tokens</Trans>
+                    <span>Bonus Tokens</span>
                   </div>
                   <div>{parseFloat(bonus).toFixed(2)}%</div>
                 </div>
                 <div className="Stake-info App-card-row">
                   <div className="label">
-                    <Trans>Migrated</Trans>
+                    <span>Migrated</span>
                   </div>
                   {!hasCap && <div>{formatArrayAmount(migratedAmounts, index, 18, 0, true)}</div>}
                   {hasCap && (
@@ -455,12 +455,12 @@ export default function Migration() {
                 <div className="App-card-options">
                   {!active && (
                     <button className="App-button-option App-card-option" onClick={connectWallet}>
-                      <Trans>Connect Wallet</Trans>
+                      <span>Connect Wallet</span>
                     </button>
                   )}
                   {active && (
                     <button className="App-button-option App-card-option" onClick={() => showMigrationModal(index)}>
-                      <Trans>Migrate</Trans>
+                      <span>Migrate</span>
                     </button>
                   )}
                 </div>

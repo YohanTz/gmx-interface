@@ -85,10 +85,10 @@ export default function CompleteAccountTransfer(props) {
       <div className="CompleteAccountTransfer Page page-layout">
         <div className="Page-title-section">
           <div className="Page-title">
-            <Trans>Complete Account Transfer</Trans>
+            <span>Complete Account Transfer</span>
           </div>
           <div className="Page-description">
-            <Trans>Invalid Transfer Addresses: Please check the url.</Trans>
+            <span>Invalid Transfer Addresses: Please check the url.</span>
           </div>
         </div>
       </div>
@@ -102,23 +102,23 @@ export default function CompleteAccountTransfer(props) {
         setIsVisible={setIsTransferSubmittedModalVisible}
         label="Transfer Completed"
       >
-        <Trans>Your transfer has been completed.</Trans>
+        <span>Your transfer has been completed.</span>
         <br />
         <br />
         <Link className="App-cta" to="/earn">
-          <Trans>Continue</Trans>
+          <span>Continue</span>
         </Link>
       </Modal>
       <div className="Page-title-section">
         <div className="Page-title">
-          <Trans>Complete Account Transfer</Trans>
+          <span>Complete Account Transfer</span>
         </div>
         {!isCorrectAccount && (
           <div className="Page-description">
-            <Trans>To complete the transfer, you must switch your connected account to {receiver}.</Trans>
+            <span>To complete the transfer, you must switch your connected account to {receiver}.</span>
             <br />
             <br />
-            <Trans>
+            <span>
               You will need to be on this page to accept the transfer,{" "}
               <span
                 onClick={() => {
@@ -129,14 +129,14 @@ export default function CompleteAccountTransfer(props) {
                 click here
               </span>{" "}
               to copy the link to this page if needed.
-            </Trans>
+            </span>
             <br />
             <br />
           </div>
         )}
         {isCorrectAccount && (
           <div className="Page-description">
-            <Trans>You have a pending transfer from {sender}.</Trans>
+            <span>You have a pending transfer from {sender}.</span>
             <br />
           </div>
         )}

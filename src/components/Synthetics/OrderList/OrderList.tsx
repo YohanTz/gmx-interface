@@ -107,22 +107,22 @@ export function OrderList(p: Props) {
 
             <th>
               <div>
-                <Trans>Type</Trans>
+                <span>Type</span>
               </div>
             </th>
             <th>
               <div>
-                <Trans>Order</Trans>
+                <span>Order</span>
               </div>
             </th>
             <th>
               <div>
-                <Trans>Trigger Price</Trans>
+                <span>Trigger Price</span>
               </div>
             </th>
             <th>
               <div>
-                <Trans>Mark Price</Trans>
+                <span>Mark Price</span>
               </div>
             </th>
           </tr>

@@ -1,4 +1,4 @@
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 import Tooltip from "components/Tooltip/Tooltip";
@@ -123,9 +123,9 @@ function FeesTooltip({
           ))}
           <br />
           <div className="PositionSeller-fee-item">
-            <Trans>
+            <span>
               <ExternalLink href="https://docs.gmx.io/docs/trading/v1#fees">More Info</ExternalLink> about fees.
-            </Trans>
+            </span>
           </div>
         </div>
       )}

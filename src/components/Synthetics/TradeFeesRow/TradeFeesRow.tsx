@@ -45,7 +45,7 @@ export function TradeFeesRow(p: Props) {
           id: "positionPriceImpact",
           label: (
             <>
-              <div>{t`Position Price Impact`}:</div>
+              <div>{`Position Price Impact`}:</div>
               <div>({formatPercentage(p.positionPriceImpact.bps.abs())} of position size)</div>
             </>
           ),
@@ -58,7 +58,7 @@ export function TradeFeesRow(p: Props) {
           id: "swapPriceImpact",
           label: (
             <>
-              <div>{t`Swap Price Impact`}:</div>
+              <div>{`Swap Price Impact`}:</div>
               <div>({formatPercentage(p.swapPriceImpact.bps.abs())} of swap amount)</div>
             </>
           ),
@@ -72,7 +72,7 @@ export function TradeFeesRow(p: Props) {
         label: (
           <>
             <div>
-              {t`Swap ${getToken(chainId, swap.tokenInAddress).symbol} to ${
+              {`Swap ${getToken(chainId, swap.tokenInAddress).symbol} to ${
                 getToken(chainId, swap.tokenOutAddress).symbol
               }`}
               :
@@ -88,7 +88,7 @@ export function TradeFeesRow(p: Props) {
           id: "swapProfitFee",
           label: (
             <>
-              <div>{t`Swap Profit Fee`}:</div>
+              <div>{`Swap Profit Fee`}:</div>
               <div>({formatPercentage(p.swapProfitFee.bps.abs())} of collateral)</div>
             </>
           ),
@@ -122,7 +122,7 @@ export function TradeFeesRow(p: Props) {
           id: "borrowFee",
           label: (
             <>
-              <div>{t`Borrow Fee`}:</div>
+              <div>{`Borrow Fee`}:</div>
               <div>({formatPercentage(p.borrowFee.bps.abs())} of collateral)</div>
             </>
           ),
@@ -135,7 +135,7 @@ export function TradeFeesRow(p: Props) {
           id: "fundingFee",
           label: (
             <>
-              <div>{t`Funding Fee`}:</div>
+              <div>{`Funding Fee`}:</div>
               <div>({formatPercentage(p.fundingFee.bps.abs())} of collateral)</div>
             </>
           ),
