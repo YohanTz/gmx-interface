@@ -583,14 +583,6 @@ function FullApp() {
         pauseOnHover
       />
       <EventToastContainer />
-      <RedirectPopupModal
-        redirectModalVisible={redirectModalVisible}
-        setRedirectModalVisible={setRedirectModalVisible}
-        appRedirectUrl={appRedirectUrl}
-        setRedirectPopupTimestamp={setRedirectPopupTimestamp}
-        setShouldHideRedirectModal={setShouldHideRedirectModal}
-        shouldHideRedirectModal={shouldHideRedirectModal}
-      />
       <ConnectWalletModal walletModalVisible={walletModalVisible} setWalletModalVisible={setWalletModalVisible} />
       <Modal
         className="App-settings"
