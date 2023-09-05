@@ -3,13 +3,13 @@ import { InjectedConnector, StarknetConfig } from "@starknet-react/core";
 import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
 import { ethers } from "ethers";
 import useScrollToTop from "lib/useScrollToTop";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SWRConfig } from "swr";
 
 import { HashRouter as Router, Redirect, Route, Switch, useHistory, useLocation } from "react-router-dom";
 
 import { BASIS_POINTS_DIVISOR } from "config/factors";
-import { getAppBaseUrl, isHomeSite, isMobileDevice, REFERRAL_CODE_QUERY_PARAM } from "lib/legacy";
+import { getAppBaseUrl, isHomeSite, REFERRAL_CODE_QUERY_PARAM } from "lib/legacy";
 
 import { decodeReferralCode, encodeReferralCode } from "domain/referrals";
 import Actions from "pages/Actions/Actions";
@@ -84,18 +84,7 @@ import { helperToast } from "lib/helperToast";
 import { useLocalStorageSerializeKey } from "lib/localStorage";
 import { roundToTwoDecimals } from "lib/numbers";
 import { useWsProvider } from "lib/rpc";
-import {
-  activateInjectedProvider,
-  clearWalletConnectData,
-  clearWalletLinkData,
-  getInjectedHandler,
-  getWalletConnectHandler,
-  hasCoinBaseWalletExtension,
-  hasMetaMaskWalletExtension,
-  useEagerConnect,
-  useHandleUnsupportedNetwork,
-  useInactiveListener,
-} from "lib/wallets";
+import { getInjectedHandler, useEagerConnect, useHandleUnsupportedNetwork, useInactiveListener } from "lib/wallets";
 import { MarketPoolsPage } from "pages/MarketPoolsPage/MarketPoolsPage";
 import SyntheticsActions from "pages/SyntheticsActions/SyntheticsActions";
 import { SyntheticsFallbackPage } from "pages/SyntheticsFallbackPage/SyntheticsFallbackPage";
@@ -163,82 +152,8 @@ function FullApp() {
     }
   }, [query, history, location]);
 
-  const disconnectAccount = useCallback(() => {
-    // only works with WalletConnect
-    clearWalletConnectData();
-    // force clear localStorage connection for MM/CB Wallet (Brave legacy)
-    clearWalletLinkData();
-    deactivate();
-  }, [deactivate]);
-
-  const disconnectAccountAndCloseSettings = () => {
-    disconnectAccount();
-    localStorage.removeItem(SHOULD_EAGER_CONNECT_LOCALSTORAGE_KEY);
-    localStorage.removeItem(CURRENT_PROVIDER_LOCALSTORAGE_KEY);
+  const closeSettings = () => {
     setIsSettingsVisible(false);
-  };
-
-  const connectInjectedWallet = getInjectedHandler(activate, deactivate);
-
-  const activateWalletConnect = () => {
-    getWalletConnectHandler(activate, deactivate, setActivatingConnector)();
-  };
-
-  const userOnMobileDevice = "navigator" in window && isMobileDevice(window.navigator);
-
-  const activateMetaMask = () => {
-    if (!hasMetaMaskWalletExtension()) {
-      helperToast.error(
-        <div>
-          <span>MetaMask not detected.</span>
-          <br />
-          <br />
-          {userOnMobileDevice ? (
-            <span>
-              <ExternalLink href="https://metamask.io">Install MetaMask</ExternalLink>, and use GMX with its built-in
-              browser.
-            </span>
-          ) : (
-            <span>
-              <ExternalLink href="https://metamask.io">Install MetaMask</ExternalLink> to start using GMX.
-            </span>
-          )}
-        </div>
-      );
-      return false;
-    }
-    attemptActivateWallet("MetaMask");
-  };
-  const activateCoinBase = () => {
-    if (!hasCoinBaseWalletExtension()) {
-      helperToast.error(
-        <div>
-          <span>Coinbase Wallet not detected.</span>
-          <br />
-          <br />
-          {userOnMobileDevice ? (
-            <span>
-              <ExternalLink href="https://www.coinbase.com/wallet">Install Coinbase Wallet</ExternalLink>, and use GMX
-              with its built-in browser.
-            </span>
-          ) : (
-            <span>
-              <ExternalLink href="https://www.coinbase.com/wallet">Install Coinbase Wallet</ExternalLink> to start using
-              GMX.
-            </span>
-          )}
-        </div>
-      );
-      return false;
-    }
-    attemptActivateWallet("CoinBase");
-  };
-
-  const attemptActivateWallet = (providerName) => {
-    localStorage.setItem(SHOULD_EAGER_CONNECT_LOCALSTORAGE_KEY, true);
-    localStorage.setItem(CURRENT_PROVIDER_LOCALSTORAGE_KEY, providerName);
-    activateInjectedProvider(providerName);
-    connectInjectedWallet();
   };
 
   const [tradePageVersion, setTradePageVersion] = useLocalStorageSerializeKey(
@@ -487,7 +402,7 @@ function FullApp() {
       <div className="App">
         <div className="App-content">
           <Header
-            disconnectAccountAndCloseSettings={disconnectAccountAndCloseSettings}
+            closeSettings={closeSettings}
             openSettings={openSettings}
             setWalletModalVisible={setWalletModalVisible}
             redirectPopupTimestamp={redirectPopupTimestamp}

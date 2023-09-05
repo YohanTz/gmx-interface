@@ -10,17 +10,16 @@ import { isDevelopment } from "config/env";
 import { getIcon } from "config/icons";
 import { useChainId } from "lib/chains";
 import { getAccountUrl, isHomeSite } from "lib/legacy";
-import { switchNetwork } from "lib/wallets";
-import LanguagePopupHome from "../NetworkDropdown/LanguagePopupHome";
 import NetworkDropdown from "../NetworkDropdown/NetworkDropdown";
 import "./Header.css";
 import { HeaderLink } from "./HeaderLink";
+import { useAccount } from "@starknet-react/core";
 
 type Props = {
   openSettings: () => void;
   small?: boolean;
   setWalletModalVisible: (visible: boolean) => void;
-  disconnectAccountAndCloseSettings: () => void;
+  closeSettings: () => void;
   redirectPopupTimestamp: number;
   showRedirectModal: (to: string) => void;
   tradePageVersion: number;
@@ -60,39 +59,38 @@ export function AppHeaderUser({
   openSettings,
   small,
   setWalletModalVisible,
-  disconnectAccountAndCloseSettings,
+  closeSettings,
   redirectPopupTimestamp,
   showRedirectModal,
   tradePageVersion,
 }: Props) {
   const { chainId } = useChainId();
-  const { active, account } = useWeb3React();
-  const showConnectionOptions = !isHomeSite();
+  const { address } = useAccount();
 
   const tradeLink = tradePageVersion === 1 ? "/trade" : "/v2";
 
   useEffect(() => {
-    if (active) {
+    if (address !== undefined) {
       setWalletModalVisible(false);
     }
-  }, [active, setWalletModalVisible]);
+  }, [address, setWalletModalVisible]);
 
-  const onNetworkSelect = useCallback(
-    (option) => {
-      if (option.value === chainId) {
-        return;
-      }
-      return switchNetwork(option.value, active);
-    },
-    [chainId, active]
-  );
+  // const onNetworkSelect = useCallback(
+  //   (option) => {
+  //     if (option.value === chainId) {
+  //       return;
+  //     }
+  //     return switchNetwork(option.value, active);
+  //   },
+  //   [chainId, active]
+  // );
 
   const selectorLabel = getChainName(chainId);
 
-  if (!active || !account) {
+  if (address === undefined) {
     return (
       <div className="App-header-user">
-        <div className={cx("App-header-trade-link", { "homepage-header": isHomeSite() })}>
+        <div className={cx("App-header-trade-link", { "homepage-header": false })}>
           <HeaderLink
             className="default-btn"
             to={tradeLink!}
@@ -103,27 +101,19 @@ export function AppHeaderUser({
           </HeaderLink>
         </div>
 
-        {showConnectionOptions ? (
-          <>
-            <ConnectWalletButton onClick={() => setWalletModalVisible(true)} imgSrc={connectWalletImg}>
-              {small ? <span>Connect</span> : <span>Connect Wallet</span>}
-            </ConnectWalletButton>
-            <NetworkDropdown
-              small={small}
-              networkOptions={NETWORK_OPTIONS}
-              selectorLabel={selectorLabel}
-              onNetworkSelect={onNetworkSelect}
-              openSettings={openSettings}
-            />
-          </>
-        ) : (
-          <LanguagePopupHome />
-        )}
+        <ConnectWalletButton onClick={() => setWalletModalVisible(true)} imgSrc={connectWalletImg}>
+          {small ? <span>Connect</span> : <span>Connect Wallet</span>}
+        </ConnectWalletButton>
+        <NetworkDropdown
+          small={small}
+          networkOptions={NETWORK_OPTIONS}
+          selectorLabel={selectorLabel}
+          onNetworkSelect={() => {}}
+          openSettings={openSettings}
+        />
       </div>
     );
   }
-
-  const accountUrl = getAccountUrl(chainId, account);
 
   return (
     <div className="App-header-user">
@@ -138,26 +128,16 @@ export function AppHeaderUser({
         </HeaderLink>
       </div>
 
-      {showConnectionOptions ? (
-        <>
-          <div className="App-header-user-address">
-            <AddressDropdown
-              account={account}
-              accountUrl={accountUrl}
-              disconnectAccountAndCloseSettings={disconnectAccountAndCloseSettings}
-            />
-          </div>
-          <NetworkDropdown
-            small={small}
-            networkOptions={NETWORK_OPTIONS}
-            selectorLabel={selectorLabel}
-            onNetworkSelect={onNetworkSelect}
-            openSettings={openSettings}
-          />
-        </>
-      ) : (
-        <LanguagePopupHome />
-      )}
+      <div className="App-header-user-address">
+        <AddressDropdown address={address} closeSettings={closeSettings} />
+      </div>
+      <NetworkDropdown
+        small={small}
+        networkOptions={NETWORK_OPTIONS}
+        selectorLabel={selectorLabel}
+        onNetworkSelect={() => {}}
+        openSettings={openSettings}
+      />
     </div>
   );
 }

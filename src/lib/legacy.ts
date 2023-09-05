@@ -84,7 +84,7 @@ export function deserialize(data) {
 }
 
 export function isHomeSite() {
-  return process.env.REACT_APP_IS_HOME_SITE === "true";
+  return false;
 }
 
 export function getMarginFee(sizeDelta) {
@@ -1259,13 +1259,14 @@ export function getTradePageUrl() {
 export function importImage(name) {
   let tokenImage = "";
 
-  try {
-    tokenImage = require("img/" + name);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
-  }
+  // try {
+  //   tokenImage = require("img/" + name);
+  // } catch (error) {
+  //   // eslint-disable-next-line no-console
+  //   console.error(error);
+  // }
 
+  // TODO @YohanTz: Fix this
   return tokenImage;
 }
 

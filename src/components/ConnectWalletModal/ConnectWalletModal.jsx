@@ -1,7 +1,5 @@
 import { useAccount, useConnectors } from "@starknet-react/core";
 import Modal from "components/Modal/Modal";
-
-import metamaskImg from "img/metamask.png";
 import { useEffect } from "react";
 
 // type Props = {
@@ -15,11 +13,11 @@ export function ConnectWalletModal({ walletModalVisible, setWalletModalVisible }
 
   //   const userOnMobileDevice = "navigator" in window && isMobileDevice(window.navigator);
 
-  //   useEffect(() => {
-  //     if (address !== undefined) {
-  //       setWalletModalVisible(false);
-  //     }
-  //   }, [address, setWalletModalVisible]);
+  useEffect(() => {
+    if (address !== undefined) {
+      setWalletModalVisible(false);
+    }
+  }, [address, setWalletModalVisible]);
 
   return (
     <Modal
@@ -31,7 +29,7 @@ export function ConnectWalletModal({ walletModalVisible, setWalletModalVisible }
       {connectors.map((connector) => {
         return (
           <button className="Wallet-btn Connect-btn" onClick={() => connect(connector)} key={connector.id}>
-            <img src={metamaskImg} alt={connector.id} />
+            <img src="Test" alt={connector.id} />
             <div>
               <span>{connector.id}</span>
             </div>

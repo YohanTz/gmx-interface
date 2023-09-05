@@ -3030,13 +3030,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@headlessui/react@npm:1.6.1":
-  version: 1.6.1
-  resolution: "@headlessui/react@npm:1.6.1"
+"@headlessui/react@npm:1.7.17":
+  version: 1.7.17
+  resolution: "@headlessui/react@npm:1.7.17"
+  dependencies:
+    client-only: ^0.0.1
   peerDependencies:
     react: ^16 || ^17 || ^18
     react-dom: ^16 || ^17 || ^18
-  checksum: e69ac75b71dae4960790ca985a4b1eff4ba0e4a7c9b9d31791a0a0ae618dc125b7decd8801d530b017de02b90150884eb17c1c3dedcf42afc2b42f137e17c870
+  checksum: 0cdb67747e7f606f78214dac0b48573247779e70534b4471515c094b74addda173dc6a9847d33aea9c6e6bc151016c034125328953077e32aa7947ebabed91f7
   languageName: node
   linkType: hard
 
@@ -5675,6 +5677,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"client-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "client-only@npm:0.0.1"
+  checksum: 0c16bf660dadb90610553c1d8946a7fdfb81d624adea073b8440b7d795d5b5b08beb3c950c6a2cf16279365a3265158a236876d92bce16423c485c322d7dfaf8
+  languageName: node
+  linkType: hard
+
 "cliui@npm:^5.0.0":
   version: 5.0.0
   resolution: "cliui@npm:5.0.0"
@@ -7264,7 +7273,7 @@ __metadata:
     "@davatar/react": 1.8.1
     "@ethersproject/providers": 5.5.1
     "@ethersproject/units": 5.5.0
-    "@headlessui/react": 1.6.1
+    "@headlessui/react": 1.7.17
     "@starknet-react/core": 1.0.4
     "@testing-library/jest-dom": 5.16.1
     "@testing-library/react": 11.2.7
