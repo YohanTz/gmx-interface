@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import { useCallback, useState } from "react";
 
@@ -105,10 +104,10 @@ function StakeModal(props) {
 
   const getError = () => {
     if (!amount || amount.eq(0)) {
-      return t`Enter an amount`;
+      return `Enter an amount`;
     }
     if (maxAmount && amount.gt(maxAmount)) {
-      return t`Max amount exceeded`;
+      return `Max amount exceeded`;
     }
   };
 
@@ -128,8 +127,8 @@ function StakeModal(props) {
     const contract = new ethers.Contract(rewardRouterAddress, RewardRouter.abi, library.getSigner());
 
     callContract(chainId, contract, stakeMethodName, [amount], {
-      sentMsg: t`Stake submitted!`,
-      failMsg: t`Stake failed.`,
+      sentMsg: `Stake submitted!`,
+      failMsg: `Stake failed.`,
       setPendingTxns,
     })
       .then(async (res) => {
@@ -160,15 +159,15 @@ function StakeModal(props) {
       return error;
     }
     if (isApproving) {
-      return t`Approving ${stakingTokenSymbol}...`;
+      return `Approving ${stakingTokenSymbol}...`;
     }
     if (needApproval) {
-      return t`Approve ${stakingTokenSymbol}`;
+      return `Approve ${stakingTokenSymbol}`;
     }
     if (isStaking) {
-      return t`Staking...`;
+      return `Staking...`;
     }
-    return t`Stake`;
+    return `Stake`;
   };
 
   return (
@@ -253,10 +252,10 @@ function UnstakeModal(props) {
 
   const getError = () => {
     if (!amount) {
-      return t`Enter an amount`;
+      return `Enter an amount`;
     }
     if (amount.gt(maxAmount)) {
-      return t`Max amount exceeded`;
+      return `Max amount exceeded`;
     }
   };
 
@@ -264,9 +263,9 @@ function UnstakeModal(props) {
     setIsUnstaking(true);
     const contract = new ethers.Contract(rewardRouterAddress, RewardRouter.abi, library.getSigner());
     callContract(chainId, contract, unstakeMethodName, [amount], {
-      sentMsg: t`Unstake submitted!`,
-      failMsg: t`Unstake failed.`,
-      successMsg: t`Unstake completed!`,
+      sentMsg: `Unstake submitted!`,
+      failMsg: `Unstake failed.`,
+      successMsg: `Unstake completed!`,
       setPendingTxns,
     })
       .then(async (res) => {
@@ -294,9 +293,9 @@ function UnstakeModal(props) {
       return error;
     }
     if (isUnstaking) {
-      return t`Unstaking...`;
+      return `Unstaking...`;
     }
-    return t`Unstake`;
+    return `Unstake`;
   };
 
   return (
@@ -392,13 +391,13 @@ function VesterDepositModal(props) {
 
   const getError = () => {
     if (!amount || amount.eq(0)) {
-      return t`Enter an amount`;
+      return `Enter an amount`;
     }
     if (maxAmount && amount.gt(maxAmount)) {
-      return t`Max amount exceeded`;
+      return `Max amount exceeded`;
     }
     if (nextReserveAmount.gt(maxReserveAmount)) {
-      return t`Insufficient staked tokens`;
+      return `Insufficient staked tokens`;
     }
   };
 
@@ -407,9 +406,9 @@ function VesterDepositModal(props) {
     const contract = new ethers.Contract(vesterAddress, Vester.abi, library.getSigner());
 
     callContract(chainId, contract, "deposit", [amount], {
-      sentMsg: t`Deposit submitted!`,
-      failMsg: t`Deposit failed!`,
-      successMsg: t`Deposited!`,
+      sentMsg: `Deposit submitted!`,
+      failMsg: `Deposit failed!`,
+      successMsg: `Deposited!`,
       setPendingTxns,
     })
       .then(async (res) => {
@@ -437,13 +436,13 @@ function VesterDepositModal(props) {
       return error;
     }
     if (isDepositing) {
-      return t`Depositing...`;
+      return `Depositing...`;
     }
-    return t`Deposit`;
+    return `Deposit`;
   };
 
   return (
-    <SEO title={getPageTitle(t`Earn`)}>
+    <SEO title={getPageTitle(`Earn`)}>
       <div className="StakeModal">
         <Modal isVisible={isVisible} setIsVisible={setIsVisible} label={title} className="non-scrollable">
           <BuyInputSection
@@ -567,9 +566,9 @@ function VesterWithdrawModal(props) {
     const contract = new ethers.Contract(vesterAddress, Vester.abi, library.getSigner());
 
     callContract(chainId, contract, "withdraw", [], {
-      sentMsg: t`Withdraw submitted.`,
-      failMsg: t`Withdraw failed.`,
-      successMsg: t`Withdrawn!`,
+      sentMsg: `Withdraw submitted.`,
+      failMsg: `Withdraw failed.`,
+      successMsg: `Withdrawn!`,
       setPendingTxns,
     })
       .then(async (res) => {
@@ -668,15 +667,15 @@ function CompoundModal(props) {
 
   const getPrimaryText = () => {
     if (isApproving) {
-      return t`Approving GMX...`;
+      return `Approving GMX...`;
     }
     if (needApproval) {
-      return t`Approve GMX`;
+      return `Approve GMX`;
     }
     if (isCompounding) {
-      return t`Compounding...`;
+      return `Compounding...`;
     }
-    return t`Compound`;
+    return `Compound`;
   };
 
   const onClickPrimary = () => {
@@ -708,9 +707,9 @@ function CompoundModal(props) {
         shouldConvertWeth,
       ],
       {
-        sentMsg: t`Compound submitted!`,
-        failMsg: t`Compound failed.`,
-        successMsg: t`Compound completed!`,
+        sentMsg: `Compound submitted!`,
+        failMsg: `Compound failed.`,
+        successMsg: `Compound completed!`,
         setPendingTxns,
       }
     )
@@ -834,9 +833,9 @@ function ClaimModal(props) {
 
   const getPrimaryText = () => {
     if (isClaiming) {
-      return t`Claiming...`;
+      return `Claiming...`;
     }
-    return t`Claim`;
+    return `Claim`;
   };
 
   const onClickPrimary = () => {
@@ -857,9 +856,9 @@ function ClaimModal(props) {
         shouldConvertWeth,
       ],
       {
-        sentMsg: t`Claim submitted.`,
-        failMsg: t`Claim failed.`,
-        successMsg: t`Claim completed!`,
+        sentMsg: `Claim submitted.`,
+        failMsg: `Claim failed.`,
+        successMsg: `Claim completed!`,
         setPendingTxns,
       }
     )
@@ -1178,12 +1177,12 @@ export default function StakeV2({ setPendingTxns, connectWallet }) {
 
   const showStakeGmxModal = () => {
     if (!isGmxTransferEnabled) {
-      helperToast.error(t`GMX transfers not yet enabled`);
+      helperToast.error(`GMX transfers not yet enabled`);
       return;
     }
 
     setIsStakeModalVisible(true);
-    setStakeModalTitle(t`Stake GMX`);
+    setStakeModalTitle(`Stake GMX`);
     setStakeModalMaxAmount(processedData.gmxBalance);
     setStakeValue("");
     setStakingTokenSymbol("GMX");
@@ -1194,7 +1193,7 @@ export default function StakeV2({ setPendingTxns, connectWallet }) {
 
   const showStakeEsGmxModal = () => {
     setIsStakeModalVisible(true);
-    setStakeModalTitle(t`Stake esGMX`);
+    setStakeModalTitle(`Stake esGMX`);
     setStakeModalMaxAmount(processedData.esGmxBalance);
     setStakeValue("");
     setStakingTokenSymbol("esGMX");
@@ -1210,7 +1209,7 @@ export default function StakeV2({ setPendingTxns, connectWallet }) {
     }
 
     setIsVesterDepositModalVisible(true);
-    setVesterDepositTitle(t`GMX Vault`);
+    setVesterDepositTitle(`GMX Vault`);
     setVesterDepositStakeTokenLabel("staked GMX + esGMX + Multiplier Points");
     setVesterDepositMaxAmount(remainingVestableAmount);
     setVesterDepositBalance(processedData.esGmxBalance);
@@ -1231,7 +1230,7 @@ export default function StakeV2({ setPendingTxns, connectWallet }) {
     }
 
     setIsVesterDepositModalVisible(true);
-    setVesterDepositTitle(t`GLP Vault`);
+    setVesterDepositTitle(`GLP Vault`);
     setVesterDepositStakeTokenLabel("staked GLP");
     setVesterDepositMaxAmount(remainingVestableAmount);
     setVesterDepositBalance(processedData.esGmxBalance);
@@ -1247,33 +1246,33 @@ export default function StakeV2({ setPendingTxns, connectWallet }) {
 
   const showGmxVesterWithdrawModal = () => {
     if (!vestingData || !vestingData.gmxVesterVestedAmount || vestingData.gmxVesterVestedAmount.eq(0)) {
-      helperToast.error(t`You have not deposited any tokens for vesting.`);
+      helperToast.error(`You have not deposited any tokens for vesting.`);
       return;
     }
 
     setIsVesterWithdrawModalVisible(true);
-    setVesterWithdrawTitle(t`Withdraw from GMX Vault`);
+    setVesterWithdrawTitle(`Withdraw from GMX Vault`);
     setVesterWithdrawAddress(gmxVesterAddress);
   };
 
   const showGlpVesterWithdrawModal = () => {
     if (!vestingData || !vestingData.glpVesterVestedAmount || vestingData.glpVesterVestedAmount.eq(0)) {
-      helperToast.error(t`You have not deposited any tokens for vesting.`);
+      helperToast.error(`You have not deposited any tokens for vesting.`);
       return;
     }
 
     setIsVesterWithdrawModalVisible(true);
-    setVesterWithdrawTitle(t`Withdraw from GLP Vault`);
+    setVesterWithdrawTitle(`Withdraw from GLP Vault`);
     setVesterWithdrawAddress(glpVesterAddress);
   };
 
   const showUnstakeGmxModal = () => {
     if (!isGmxTransferEnabled) {
-      helperToast.error(t`GMX transfers not yet enabled`);
+      helperToast.error(`GMX transfers not yet enabled`);
       return;
     }
     setIsUnstakeModalVisible(true);
-    setUnstakeModalTitle(t`Unstake GMX`);
+    setUnstakeModalTitle(`Unstake GMX`);
     let maxAmount = processedData.gmxInStakedGmx;
     if (
       processedData.gmxInStakedGmx &&
@@ -1293,7 +1292,7 @@ export default function StakeV2({ setPendingTxns, connectWallet }) {
 
   const showUnstakeEsGmxModal = () => {
     setIsUnstakeModalVisible(true);
-    setUnstakeModalTitle(t`Unstake esGMX`);
+    setUnstakeModalTitle(`Unstake esGMX`);
     let maxAmount = processedData.esGmxInStakedGmx;
     if (
       processedData.esGmxInStakedGmx &&
@@ -1312,7 +1311,7 @@ export default function StakeV2({ setPendingTxns, connectWallet }) {
   };
 
   const renderMultiplierPointsLabel = useCallback(() => {
-    return t`Multiplier Points APR`;
+    return `Multiplier Points APR`;
   }, []);
 
   const renderMultiplierPointsValue = useCallback(() => {

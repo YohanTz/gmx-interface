@@ -1,7 +1,7 @@
 import "./RedirectModal.css";
 import Modal from "../Modal/Modal";
 import Checkbox from "../Checkbox/Checkbox";
-import { t } from "@lingui/macro";
+
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import Button from "components/Button/Button";
 

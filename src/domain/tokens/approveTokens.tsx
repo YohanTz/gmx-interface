@@ -5,7 +5,6 @@ import { helperToast } from "lib/helperToast";
 import { InfoTokens, TokenInfo } from "./types";
 import { Web3Provider } from "@ethersproject/providers";
 import ExternalLink from "components/ExternalLink/ExternalLink";
-import { t } from "@lingui/macro";
 
 type Params = {
   setIsApproving: (val: boolean) => void;
@@ -55,7 +54,7 @@ export function approveTokens({
         const token = getTokenInfo(infoTokens, tokenAddress);
         const pendingTxn = {
           hash: res.hash,
-          message: includeMessage ? t`${token.symbol} Approved!` : false,
+          message: includeMessage ? `${token.symbol} Approved!` : false,
         };
         setPendingTxns([...pendingTxns, pendingTxn]);
       }
@@ -80,9 +79,9 @@ export function approveTokens({
           </div>
         );
       } else if (e.message?.includes("User denied transaction signature")) {
-        failMsg = t`Approval was cancelled`;
+        failMsg = `Approval was cancelled`;
       } else {
-        failMsg = t`Approval failed`;
+        failMsg = `Approval failed`;
       }
       helperToast.error(failMsg);
     })

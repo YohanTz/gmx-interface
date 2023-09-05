@@ -21,7 +21,7 @@ import { TRIGGER_PREFIX_ABOVE, TRIGGER_PREFIX_BELOW } from "config/ui";
 import { getTokenInfo } from "domain/tokens/utils";
 import { bigNumberify, formatAmount, formatAmountFree, parseValue } from "lib/numbers";
 import { useChainId } from "lib/chains";
-import { t } from "@lingui/macro";
+
 import Button from "components/Button/Button";
 import getLiquidationPrice from "lib/positions/getLiquidationPrice";
 import { getPriceDecimals, getToken } from "config/tokens";
@@ -147,9 +147,9 @@ export default function OrderEditor(props) {
     }
 
     params.push({
-      successMsg: t`Order updated!`,
-      failMsg: t`Order update failed.`,
-      sentMsg: t`Order update submitted!`,
+      successMsg: `Order updated!`,
+      failMsg: `Order update failed.`,
+      sentMsg: `Order update submitted!`,
       pendingTxns,
       setPendingTxns,
     });
@@ -173,43 +173,43 @@ export default function OrderEditor(props) {
 
   const getError = () => {
     if ((!triggerRatio || triggerRatio.eq(0)) && (!triggerPrice || triggerPrice.eq(0))) {
-      return t`Enter Price`;
+      return `Enter Price`;
     }
     if (order.type === SWAP && triggerRatio.eq(order.triggerRatio)) {
-      return t`Enter new Price`;
+      return `Enter new Price`;
     }
     if (order.type !== SWAP && triggerPrice.eq(order.triggerPrice)) {
-      return t`Enter new Price`;
+      return `Enter new Price`;
     }
     if (position) {
       if (order.type === DECREASE) {
         if (position.isLong && triggerPrice.lte(liquidationPrice)) {
-          return t`Price below Liq. Price`;
+          return `Price below Liq. Price`;
         }
         if (!position.isLong && triggerPrice.gte(liquidationPrice)) {
-          return t`Price above Liq. Price`;
+          return `Price above Liq. Price`;
         }
       }
 
       const { delta, hasProfit } = calculatePositionDelta(triggerPrice, position);
       if (hasProfit && delta.eq(0)) {
-        return t`Invalid price, see warning`;
+        return `Invalid price, see warning`;
       }
     }
 
     if (order.type !== SWAP && indexTokenMarkPrice && !savedShouldDisableValidationForTesting) {
       if (order.triggerAboveThreshold && indexTokenMarkPrice.gt(triggerPrice)) {
-        return t`Price below Mark Price`;
+        return `Price below Mark Price`;
       }
       if (!order.triggerAboveThreshold && indexTokenMarkPrice.lt(triggerPrice)) {
-        return t`Price above Mark Price`;
+        return `Price above Mark Price`;
       }
     }
 
     if (order.type === SWAP) {
       const currentRate = getExchangeRate(fromTokenInfo, toTokenInfo);
       if (currentRate && !currentRate.gte(triggerRatio)) {
-        return triggerRatioInverted ? t`Price is below Mark Price` : t`Price is above Mark Price`;
+        return triggerRatioInverted ? `Price is below Mark Price` : `Price is above Mark Price`;
       }
     }
   };
@@ -233,9 +233,9 @@ export default function OrderEditor(props) {
     }
 
     if (isSubmitting) {
-      return t`Updating Order...`;
+      return `Updating Order...`;
     }
-    return t`Update Order`;
+    return `Update Order`;
   };
 
   if (order.type !== SWAP) {

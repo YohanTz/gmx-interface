@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import cx from "classnames";
 import { ethers } from "ethers";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -225,7 +224,7 @@ export default function PositionSeller(props) {
 
   const positionRouterAddress = getContract(chainId, "PositionRouter");
   const nativeTokenSymbol = getConstant(chainId, "nativeTokenSymbol");
-  const longOrShortText = position?.isLong ? t`Long` : t`Short`;
+  const longOrShortText = position?.isLong ? `Long` : `Short`;
 
   const toTokens = isContractAccount ? getV1Tokens(chainId).filter((t) => !t.isNative) : getV1Tokens(chainId);
   const wrappedToken = getWrappedToken(chainId);
@@ -241,8 +240,8 @@ export default function PositionSeller(props) {
 
   const ORDER_OPTIONS = [MARKET, STOP];
   const ORDER_OPTION_LABELS = {
-    [MARKET]: t`Market`,
-    [STOP]: t`Trigger`,
+    [MARKET]: `Market`,
+    [STOP]: `Trigger`,
   };
   let [orderOption, setOrderOption] = useState(MARKET);
 
@@ -376,7 +375,7 @@ export default function PositionSeller(props) {
     fromAmount = parseValue(fromValue, USD_DECIMALS);
     sizeDelta = fromAmount;
 
-    title = t`Close ${longOrShortText} ${position.indexToken.symbol}`;
+    title = `Close ${longOrShortText} ${position.indexToken.symbol}`;
     liquidationPrice = getLiquidationPrice({
       size: position.size,
       collateral: position.collateral,
@@ -602,39 +601,39 @@ export default function PositionSeller(props) {
 
   const getError = () => {
     if (isSwapAllowed && isContractAccount && isAddressZero(receiveToken?.address)) {
-      return [t`${nativeTokenSymbol} can not be sent to smart contract addresses. Select another token.`];
+      return [`${nativeTokenSymbol} can not be sent to smart contract addresses. Select another token.`];
     }
     if (IS_NETWORK_DISABLED[chainId]) {
-      if (orderOption === STOP) return [t`Trigger order disabled, pending ${getChainName(chainId)} upgrade`];
-      return [t`Position close disabled, pending ${getChainName(chainId)} upgrade`];
+      if (orderOption === STOP) return [`Trigger order disabled, pending ${getChainName(chainId)} upgrade`];
+      return [`Position close disabled, pending ${getChainName(chainId)} upgrade`];
     }
     if (hasOutdatedUi) {
-      return [t`Page outdated, please refresh`];
+      return [`Page outdated, please refresh`];
     }
     if (!fromAmount) {
-      return [t`Enter an amount`];
+      return [`Enter an amount`];
     }
     if (nextLeverage && nextLeverage.eq(0)) {
-      return [t`Enter an amount`];
+      return [`Enter an amount`];
     }
     if (orderOption === STOP) {
       if (!triggerPriceUsd || triggerPriceUsd.eq(0)) {
-        return [t`Enter Price`];
+        return [`Enter Price`];
       }
       if (position.isLong && triggerPriceUsd.lte(liquidationPrice)) {
-        return [t`Price below Liq. Price`];
+        return [`Price below Liq. Price`];
       }
       if (!position.isLong && triggerPriceUsd.gte(liquidationPrice)) {
-        return [t`Price above Liq. Price`];
+        return [`Price above Liq. Price`];
       }
 
       if (profitPrice && nextDelta.eq(0) && nextHasProfit) {
-        return [t`Invalid price, see warning`];
+        return [`Invalid price, see warning`];
       }
     }
 
     if (isNotEnoughReceiveTokenLiquidity) {
-      return [t`Insufficient Liquidity`, ErrorDisplayType.Tooltip, ErrorCode.InsufficientReceiveToken];
+      return [`Insufficient Liquidity`, ErrorDisplayType.Tooltip, ErrorCode.InsufficientReceiveToken];
     }
 
     if (
@@ -642,53 +641,53 @@ export default function PositionSeller(props) {
       keepLeverage &&
       (leverageWithoutDelta?.lt(0) || leverageWithoutDelta?.gt(100 * BASIS_POINTS_DIVISOR))
     ) {
-      return [t`Fees are higher than Collateral`, ErrorDisplayType.Tooltip, ErrorCode.FeesHigherThanCollateral];
+      return [`Fees are higher than Collateral`, ErrorDisplayType.Tooltip, ErrorCode.FeesHigherThanCollateral];
     }
 
     if (!isClosing && keepLeverage && isKeepLeverageNotPossible) {
-      return [t`Keep Leverage is not possible`, ErrorDisplayType.Tooltip, ErrorCode.KeepLeverageNotPossible];
+      return [`Keep Leverage is not possible`, ErrorDisplayType.Tooltip, ErrorCode.KeepLeverageNotPossible];
     }
 
     if (!isClosing && nextCollateral?.lt(0)) {
-      return [t`Realized PnL insufficient for Fees`, ErrorDisplayType.Tooltip, ErrorCode.NegativeNextCollateral];
+      return [`Realized PnL insufficient for Fees`, ErrorDisplayType.Tooltip, ErrorCode.NegativeNextCollateral];
     }
 
     if (isCollateralPoolCapacityExceeded) {
-      return [t`Insufficient Liquidity`, ErrorDisplayType.Tooltip, ErrorCode.ReceiveCollateralTokenOnly];
+      return [`Insufficient Liquidity`, ErrorDisplayType.Tooltip, ErrorCode.ReceiveCollateralTokenOnly];
     }
 
     if (!isClosing && position && position.size && fromAmount) {
       if (position.size.sub(fromAmount).lt(expandDecimals(10, USD_DECIMALS))) {
-        return [t`Leftover position below 10 USD`];
+        return [`Leftover position below 10 USD`];
       }
       if (nextCollateral && nextCollateral.lt(expandDecimals(5, USD_DECIMALS))) {
-        return [t`Leftover collateral below 5 USD`];
+        return [`Leftover collateral below 5 USD`];
       }
     }
 
     if (position && position.size && position.size.lt(fromAmount)) {
-      return [t`Max close amount exceeded`];
+      return [`Max close amount exceeded`];
     }
 
     if (!isClosing && nextLeverage && nextLeverage.lt(1.1 * BASIS_POINTS_DIVISOR)) {
-      return [t`Min leverage: 1.1x`];
+      return [`Min leverage: 1.1x`];
     }
 
     if (!isClosing && nextLeverage && nextLeverage.gt(MAX_ALLOWED_LEVERAGE)) {
-      return [t`Max leverage: ${(MAX_ALLOWED_LEVERAGE / BASIS_POINTS_DIVISOR).toFixed(1)}x`];
+      return [`Max leverage: ${(MAX_ALLOWED_LEVERAGE / BASIS_POINTS_DIVISOR).toFixed(1)}x`];
     }
 
     if (!isClosing && nextLeverageWithoutDelta && nextLeverageWithoutDelta.gt(MAX_LEVERAGE)) {
-      return [t`Max Leverage without PnL: 100x`];
+      return [`Max Leverage without PnL: 100x`];
     }
 
     if (position.isLong) {
       if (!isClosing && nextLiquidationPrice && nextLiquidationPrice.gt(position.markPrice)) {
-        return [t`Invalid Liquidation Price`];
+        return [`Invalid Liquidation Price`];
       }
     } else {
       if (!isClosing && nextLiquidationPrice && nextLiquidationPrice.lt(position.markPrice)) {
-        return [t`Invalid Liquidation Price`];
+        return [`Invalid Liquidation Price`];
       }
     }
 
@@ -728,37 +727,37 @@ export default function PositionSeller(props) {
     }
 
     if (orderOption === STOP) {
-      if (isSubmitting) return t`Creating Order...`;
+      if (isSubmitting) return `Creating Order...`;
 
       if (needOrderBookApproval && isWaitingForPluginApproval) {
-        return t`Enabling Orders...`;
+        return `Enabling Orders...`;
       }
       if (isPluginApproving) {
-        return t`Enabling Orders...`;
+        return `Enabling Orders...`;
       }
       if (needOrderBookApproval) {
-        return t`Enable Orders`;
+        return `Enable Orders`;
       }
 
-      return t`Create Order`;
+      return `Create Order`;
     }
 
     if (needPositionRouterApproval && isWaitingForPositionRouterApproval) {
-      return t`Enabling Leverage...`;
+      return `Enabling Leverage...`;
     }
 
     if (isPositionRouterApproving) {
-      return t`Enabling Leverage...`;
+      return `Enabling Leverage...`;
     }
 
     if (needPositionRouterApproval) {
-      return t`Enable Leverage`;
+      return `Enable Leverage`;
     }
 
     if (hasPendingProfit) {
-      return t`Close without profit`;
+      return `Close without profit`;
     }
-    return isSubmitting ? t`Closing...` : t`Close`;
+    return isSubmitting ? `Closing...` : `Close`;
   };
 
   const resetForm = () => {
@@ -814,8 +813,8 @@ export default function PositionSeller(props) {
 
     if (needPositionRouterApproval) {
       approvePositionRouter({
-        sentMsg: t`Enable leverage sent.`,
-        failMsg: t`Enable leverage failed.`,
+        sentMsg: `Enable leverage sent.`,
+        failMsg: `Enable leverage failed.`,
       });
       return;
     }
@@ -841,9 +840,9 @@ export default function PositionSeller(props) {
         triggerPriceUsd,
         triggerAboveThreshold,
         {
-          sentMsg: t`Order submitted!`,
-          successMsg: t`Order created!`,
-          failMsg: t`Order creation failed.`,
+          sentMsg: `Order submitted!`,
+          successMsg: `Order created!`,
+          failMsg: `Order creation failed.`,
           setPendingTxns,
         }
       )
@@ -902,15 +901,15 @@ export default function PositionSeller(props) {
       AddressZero, // _callbackTarget
     ];
     const sizeDeltaUsd = formatAmount(sizeDelta, USD_DECIMALS, 2);
-    const successMsg = t`Requested decrease of ${position.indexToken.symbol} ${longOrShortText} by ${sizeDeltaUsd} USD.`;
+    const successMsg = `Requested decrease of ${position.indexToken.symbol} ${longOrShortText} by ${sizeDeltaUsd} USD.`;
 
     const contract = new ethers.Contract(positionRouterAddress, PositionRouter.abi, library.getSigner());
 
     callContract(chainId, contract, "createDecreasePosition", params, {
       value: minExecutionFee,
-      sentMsg: t`Close submitted!`,
+      sentMsg: `Close submitted!`,
       successMsg,
-      failMsg: t`Close failed.`,
+      failMsg: `Close failed.`,
       setPendingTxns,
       // for Arbitrum, sometimes the successMsg shows after the position has already been executed
       // hide the success message for Arbitrum as a workaround

@@ -4,7 +4,6 @@ import { useCallback, useEffect } from "react";
 import AddressDropdown from "../AddressDropdown/AddressDropdown";
 import ConnectWalletButton from "../Common/ConnectWalletButton";
 
-import { Trans } from "@lingui/macro";
 import cx from "classnames";
 import { ARBITRUM, ARBITRUM_GOERLI, AVALANCHE, AVALANCHE_FUJI, getChainName } from "config/chains";
 import { isDevelopment } from "config/env";

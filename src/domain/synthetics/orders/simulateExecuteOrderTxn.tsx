@@ -104,7 +104,7 @@ export async function simulateExecuteOrderTxn(chainId: number, library: Web3Prov
   //       </div>
   //     );
   //   } catch (e) {
-  //     const walletErrorMessage = getErrorMessage(chainId, txnError, t`Execute order simulation failed.`);
+  //     const walletErrorMessage = getErrorMessage(chainId, txnError, `Execute order simulation failed.`);
   //     msg = walletErrorMessage.failMsg;
   //   }
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cx from "classnames";
-import { Trans, t } from "@lingui/macro";
+
 import Tooltip from "../Tooltip/Tooltip";
 import PositionSeller from "./PositionSeller";
 import PositionEditor from "./PositionEditor";
@@ -47,7 +47,7 @@ const getOrdersForPosition = (account, position, orders, nativeTokenAddress) => 
     .map((order) => {
       order.error = getOrderError(account, order, undefined, position);
       if (order.type === DECREASE && order.sizeDelta.gt(position.size)) {
-        order.error = t`Order size is bigger than position, will only be executable if position increases`;
+        order.error = `Order size is bigger than position, will only be executable if position increases`;
       }
       return order;
     });
@@ -117,8 +117,8 @@ export default function PositionsList(props) {
 
   const onPositionClick = (position) => {
     if (hideActions) return;
-    const longOrShortText = position.isLong ? t`Long` : t`Short`;
-    helperToast.success(t`${longOrShortText} ${position.indexToken.symbol} market selected`);
+    const longOrShortText = position.isLong ? `Long` : `Short`;
+    helperToast.success(`${longOrShortText} ${position.indexToken.symbol} market selected`);
     setMarket(position.isLong ? LONG : SHORT, position.indexToken.address);
   };
 
@@ -267,7 +267,7 @@ export default function PositionsList(props) {
                             negative: !position.isLong,
                           })}
                         >
-                          {position.isLong ? t`Long` : t`Short`}
+                          {position.isLong ? `Long` : `Short`}
                         </span>
                       </div>
                     </div>
@@ -583,12 +583,12 @@ export default function PositionsList(props) {
                       </span>
                     )}
                     <span className={cx({ positive: position.isLong, negative: !position.isLong })}>
-                      {position.isLong ? t`Long` : t`Short`}
+                      {position.isLong ? `Long` : `Short`}
                     </span>
                   </div>
                 </td>
                 <td>
-                  <div>{position.netValue ? <NetValueTooltip position={position} /> : t`Opening...`}</div>
+                  <div>{position.netValue ? <NetValueTooltip position={position} /> : `Opening...`}</div>
 
                   {position.deltaStr && (
                     <div

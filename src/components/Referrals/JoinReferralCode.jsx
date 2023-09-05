@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Trans, t } from "@lingui/macro";
+
 import { useWeb3React } from "@web3-react/core";
 import { setTraderReferralCodeByUser, validateReferralCodeExists } from "domain/referrals/hooks";
 import { REFERRAL_CODE_REGEX } from "./referralsHelper";
@@ -46,26 +46,26 @@ export function ReferralCodeForm({
   function getPrimaryText() {
     const isEdit = type === "edit";
     if (isEdit && debouncedReferralCode === userReferralCodeString) {
-      return t`Same as current active code`;
+      return `Same as current active code`;
     }
     if (isEdit && isSubmitting) {
-      return t`Updating...`;
+      return `Updating...`;
     }
 
     if (isSubmitting) {
-      return t`Adding...`;
+      return `Adding...`;
     }
     if (debouncedReferralCode === "") {
-      return t`Enter Referral Code`;
+      return `Enter Referral Code`;
     }
     if (isValidating) {
-      return t`Checking code...`;
+      return `Checking code...`;
     }
     if (!referralCodeExists) {
-      return t`Referral Code does not exist`;
+      return `Referral Code does not exist`;
     }
 
-    return isEdit ? t`Update` : t`Submit`;
+    return isEdit ? `Update` : `Submit`;
   }
   function isPrimaryEnabled() {
     if (
@@ -88,8 +88,8 @@ export function ReferralCodeForm({
     try {
       const tx = await setTraderReferralCodeByUser(chainId, referralCode, library, {
         account,
-        successMsg: isEdit ? t`Referral code updated!` : t`Referral code added!`,
-        failMsg: isEdit ? t`Referral code updated failed.` : t`Adding referral code failed.`,
+        successMsg: isEdit ? `Referral code updated!` : `Referral code added!`,
+        failMsg: isEdit ? `Referral code updated failed.` : `Adding referral code failed.`,
         setPendingTxns,
         pendingTxns,
       });

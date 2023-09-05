@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import cx from "classnames";
 import BuyInputSection from "components/BuyInputSection/BuyInputSection";
 import { GmFees } from "components/Synthetics/GmSwap/GmFees/GmFees";
@@ -96,7 +95,7 @@ const getAvailableModes = (operation: Operation, market?: Market) => {
 
 function showMarketToast(market) {
   if (!market?.name) return;
-  helperToast.success(t`${market?.name} selected in order form`);
+  helperToast.success(`${market?.name} selected in order form`);
 }
 
 export function GmSwapBox(p: Props) {
@@ -133,13 +132,13 @@ export function GmSwapBox(p: Props) {
   const [isHighPriceImpactAccepted, setIsHighPriceImpactAccepted] = useState(false);
 
   const operationLabels = {
-    [Operation.Deposit]: t`Buy GM`,
-    [Operation.Withdrawal]: t`Sell GM`,
+    [Operation.Deposit]: `Buy GM`,
+    [Operation.Withdrawal]: `Sell GM`,
   };
 
   const modeLabels = {
-    [Mode.Single]: t`Single`,
-    [Mode.Pair]: t`Pair`,
+    [Mode.Single]: `Single`,
+    [Mode.Pair]: `Pair`,
   };
 
   const isDeposit = operation === Operation.Deposit;
@@ -422,7 +421,7 @@ export function GmSwapBox(p: Props) {
 
     if (!account) {
       return {
-        text: t`Connect Wallet`,
+        text: `Connect Wallet`,
         onSubmit: p.onConnectWallet,
       };
     }
@@ -441,7 +440,7 @@ export function GmSwapBox(p: Props) {
     }
 
     return {
-      text: isDeposit ? t`Buy GM` : t`Sell GM`,
+      text: isDeposit ? `Buy GM` : `Sell GM`,
       onSubmit,
     };
   }, [
@@ -688,7 +687,7 @@ export function GmSwapBox(p: Props) {
         if (marketInfo) {
           setIndexName(getMarketIndexName(marketInfo));
           onSelectMarket(marketInfo?.marketTokenAddress);
-          helperToast.success(t`${marketInfo.name} selected in order form`);
+          helperToast.success(`${marketInfo.name} selected in order form`);
         }
 
         if (queryParams.get("scroll") === "1") {
@@ -786,7 +785,7 @@ export function GmSwapBox(p: Props) {
       >
         <div className={cx("GmSwapBox-form-layout", { reverse: isWithdrawal })}>
           <BuyInputSection
-            topLeftLabel={isDeposit ? t`Pay` : t`Receive`}
+            topLeftLabel={isDeposit ? `Pay` : `Receive`}
             topLeftValue={formatUsd(firstTokenUsd)}
             topRightLabel={`Balance`}
             topRightValue={formatTokenAmount(firstToken?.balance, firstToken?.decimals, "", {
@@ -848,7 +847,7 @@ export function GmSwapBox(p: Props) {
 
           {isPair && secondTokenAddress && (
             <BuyInputSection
-              topLeftLabel={isDeposit ? t`Pay` : t`Receive`}
+              topLeftLabel={isDeposit ? `Pay` : `Receive`}
               topLeftValue={formatUsd(secondTokenUsd)}
               topRightLabel={`Balance`}
               topRightValue={formatTokenAmount(secondToken?.balance, secondToken?.decimals, "", {
@@ -901,7 +900,7 @@ export function GmSwapBox(p: Props) {
           </div>
 
           <BuyInputSection
-            topLeftLabel={isWithdrawal ? t`Pay` : t`Receive`}
+            topLeftLabel={isWithdrawal ? `Pay` : `Receive`}
             topLeftValue={marketTokenUsd?.gt(0) ? formatUsd(marketTokenUsd) : ""}
             topRightLabel={`Balance`}
             topRightValue={formatTokenAmount(marketToken?.balance, marketToken?.decimals, "", {

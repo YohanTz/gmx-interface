@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import cx from "classnames";
 import { Dropdown, DropdownOption } from "components/Dropdown/Dropdown";
 import TVChartContainer, { ChartLine } from "components/TVChartContainer/TVChartContainer";
@@ -99,8 +98,8 @@ export function TVChart({
         const positionOrder = order as PositionOrderInfo;
         const priceDecimal = getPriceDecimals(chainId, positionOrder.indexToken.symbol);
 
-        const longOrShortText = order.isLong ? t`Long` : t`Short`;
-        const orderTypeText = isIncreaseOrderType(order.orderType) ? t`Inc.` : t`Dec.`;
+        const longOrShortText = order.isLong ? `Long` : `Short`;
+        const orderTypeText = isIncreaseOrderType(order.orderType) ? `Inc.` : `Dec.`;
         const tokenSymbol = getTokenData(tokensData, positionOrder.marketInfo.indexTokenAddress, "native")?.symbol;
 
         return {
@@ -116,17 +115,17 @@ export function TVChart({
         convertTokenAddress(chainId, position.marketInfo.indexTokenAddress, "wrapped") ===
           convertTokenAddress(chainId, chartTokenAddress, "wrapped")
       ) {
-        const longOrShortText = position.isLong ? t`Long` : t`Short`;
+        const longOrShortText = position.isLong ? `Long` : `Short`;
         const tokenSymbol = getTokenData(tokensData, position.marketInfo?.indexTokenAddress, "native")?.symbol;
         const liquidationPrice = formatAmount(position?.liquidationPrice, USD_DECIMALS, priceDecimal);
 
         acc.push({
-          title: t`Open ${longOrShortText} ${tokenSymbol}`,
+          title: `Open ${longOrShortText} ${tokenSymbol}`,
           price: parseFloat(formatAmount(position.entryPrice, USD_DECIMALS, priceDecimal)),
         });
         if (liquidationPrice && liquidationPrice !== "NA") {
           acc.push({
-            title: t`Liq. ${longOrShortText} ${tokenSymbol}`,
+            title: `Liq. ${longOrShortText} ${tokenSymbol}`,
             price: parseFloat(liquidationPrice),
           });
         }

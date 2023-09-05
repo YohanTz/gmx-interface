@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import ModalWithPortal from "../Modal/ModalWithPortal";
-import { t } from "@lingui/macro";
+
 import cx from "classnames";
 import "./NetworkDropdown.css";
 import language24Icon from "img/ic_language24.svg";

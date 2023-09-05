@@ -16,7 +16,6 @@ import "./ClaimEsGmx.css";
 import arbitrumIcon from "img/ic_arbitrum_96.svg";
 import avaIcon from "img/ic_avalanche_96.svg";
 
-import { Trans, t } from "@lingui/macro";
 import { ARBITRUM, AVALANCHE } from "config/chains";
 import { callContract, contractFetcher } from "lib/contracts";
 import { bigNumberify, formatAmount, formatAmountFree, parseValue } from "lib/numbers";
@@ -258,19 +257,19 @@ export default function ClaimEsGmx({ setPendingTxns }) {
 
   const getError = () => {
     if (!active) {
-      return t`Wallet not connected`;
+      return `Wallet not connected`;
     }
 
     if (esGmxIouBalance && esGmxIouBalance.eq(0)) {
-      return t`No esGMX to claim`;
+      return `No esGMX to claim`;
     }
 
     if (!amount || amount.eq(0)) {
-      return t`Enter an amount`;
+      return `Enter an amount`;
     }
 
     if (selectedOption === "") {
-      return t`Select an option`;
+      return `Select an option`;
     }
 
     return false;
@@ -284,10 +283,10 @@ export default function ClaimEsGmx({ setPendingTxns }) {
     }
 
     if (isClaiming) {
-      return t`Claiming...`;
+      return `Claiming...`;
     }
 
-    return t`Claim`;
+    return `Claim`;
   };
 
   const isPrimaryEnabled = () => {
@@ -317,9 +316,9 @@ export default function ClaimEsGmx({ setPendingTxns }) {
 
     const contract = new ethers.Contract(esGmxIouAddress, Token.abi, library.getSigner());
     callContract(chainId, contract, "transfer", [receiver, amount], {
-      sentMsg: t`Claim submitted!`,
-      failMsg: t`Claim failed.`,
-      successMsg: t`Claim completed!`,
+      sentMsg: `Claim submitted!`,
+      failMsg: `Claim failed.`,
+      successMsg: `Claim completed!`,
       setPendingTxns,
     })
       .then(async (res) => {})

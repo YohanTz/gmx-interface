@@ -4,12 +4,12 @@ import SEO from "components/Common/SEO";
 import Footer from "components/Footer/Footer";
 import { getPageTitle } from "lib/legacy";
 import Card from "components/Common/Card";
-import { t } from "@lingui/macro";
+
 import ExternalLink from "components/ExternalLink/ExternalLink";
 
 function Jobs() {
   return (
-    <SEO title={getPageTitle(t`Job Openings`)}>
+    <SEO title={getPageTitle(`Job Openings`)}>
       <div className="default-container page-layout Referrals">
         <div className="section-title-block">
           <div className="section-title-icon" />

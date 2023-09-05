@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import { t } from "@lingui/macro";
 
 import {
   SWAP,
@@ -29,8 +28,8 @@ import Button from "components/Button/Button";
 import TokenIcon from "components/TokenIcon/TokenIcon";
 
 function getOrderTitle(order, indexTokenSymbol) {
-  const orderTypeText = order.type === INCREASE ? t`Increase` : t`Decrease`;
-  const longShortText = order.isLong ? t`Long` : t`Short`;
+  const orderTypeText = order.type === INCREASE ? `Increase` : `Decrease`;
+  const longShortText = order.isLong ? `Long` : `Short`;
   const sizeDeltaText = formatAmount(order.sizeDelta, USD_DECIMALS, 2, true);
   const symbolWithIcon = (
     <>
@@ -239,7 +238,7 @@ export default function OrdersList(props) {
               {!hideActions ? (
                 <Tooltip
                   handle={getExchangeRateDisplay(order.triggerRatio, fromTokenInfo, toTokenInfo)}
-                  renderContent={() => t`
+                  renderContent={() => `
                   You will receive at least ${formatAmount(
                     order.minOut,
                     toTokenInfo.decimals,
@@ -313,7 +312,7 @@ export default function OrdersList(props) {
               </div>
             </td>
           )}
-          <td className="Exchange-list-item-type">{order.type === INCREASE ? t`Limit` : t`Trigger`}</td>
+          <td className="Exchange-list-item-type">{order.type === INCREASE ? `Limit` : `Trigger`}</td>
           <td className="inline-flex">
             {order.type === DECREASE ? (
               orderText
@@ -420,7 +419,7 @@ export default function OrdersList(props) {
                   <Tooltip
                     position="right-bottom"
                     handle={getExchangeRateDisplay(order.triggerRatio, fromTokenInfo, toTokenInfo)}
-                    renderContent={() => t`
+                    renderContent={() => `
                     You will receive at least ${formatAmount(
                       order.minOut,
                       toTokenInfo.decimals,

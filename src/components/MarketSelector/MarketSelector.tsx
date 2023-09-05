@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import cx from "classnames";
 import { MarketInfo, MarketsInfoData, getMarketIndexName } from "domain/synthetics/markets";
 import { TokensData, convertToUsd } from "domain/synthetics/tokens";

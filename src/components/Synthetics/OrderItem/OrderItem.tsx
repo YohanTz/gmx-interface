@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import Button from "components/Button/Button";
 import Checkbox from "components/Checkbox/Checkbox";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
@@ -223,9 +222,9 @@ export function OrderItem(p: Props) {
         </span>
       );
 
-      const longShortText = isLong ? t`Long` : t`Short`;
+      const longShortText = isLong ? `Long` : `Short`;
       const sizeText = formatUsd(sizeDeltaUsd);
-      const increaseOrDecreaseText = isIncreaseOrderType(orderType) ? t`Increase` : t`Decrease`;
+      const increaseOrDecreaseText = isIncreaseOrderType(orderType) ? `Increase` : `Decrease`;
 
       return (
         <span>
@@ -250,7 +249,7 @@ export function OrderItem(p: Props) {
               position="right-bottom"
               handle={swapRatioText}
               renderContent={() =>
-                t`You will receive at least ${toAmountText} if this order is executed. This price is being updated in real time based on Swap Fees and Price Impact.`
+                `You will receive at least ${toAmountText} if this order is executed. This price is being updated in real time based on Swap Fees and Price Impact.`
               }
             />
           ) : (
@@ -336,7 +335,7 @@ export function OrderItem(p: Props) {
             </div>
           </td>
         )}
-        <td className="Exchange-list-item-type">{isDecreaseOrderType(p.order.orderType) ? t`Trigger` : t`Limit`}</td>
+        <td className="Exchange-list-item-type">{isDecreaseOrderType(p.order.orderType) ? `Trigger` : `Limit`}</td>
         <td className="Order-list-item-text">{renderTitle()}</td>
         <td>{renderTriggerPrice()}</td>
         <td>{renderMarkPrice()}</td>

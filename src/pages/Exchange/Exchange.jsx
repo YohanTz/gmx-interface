@@ -1,4 +1,3 @@
-import { Plural, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import { ethers } from "ethers";
@@ -597,17 +596,17 @@ export const Exchange = forwardRef((props, ref) => {
 
       const indexTokenItem = getToken(chainId, indexToken);
       const tokenSymbol = indexTokenItem.isWrapped ? getConstant(chainId, "nativeTokenSymbol") : indexTokenItem.symbol;
-      const longOrShortText = isLong ? t`Long` : t`Short`;
+      const longOrShortText = isLong ? `Long` : `Short`;
       let message;
       if (sizeDelta.eq(0)) {
-        message = t`Deposited ${formatAmount(
+        message = `Deposited ${formatAmount(
           collateralDelta,
           USD_DECIMALS,
           2,
           true
         )} USD into ${tokenSymbol} ${longOrShortText}`;
       } else {
-        message = t`Increased ${tokenSymbol} ${longOrShortText}, +${formatAmount(
+        message = `Increased ${tokenSymbol} ${longOrShortText}, +${formatAmount(
           sizeDelta,
           USD_DECIMALS,
           2,
@@ -625,18 +624,18 @@ export const Exchange = forwardRef((props, ref) => {
 
       const indexTokenItem = getToken(chainId, indexToken);
       const tokenSymbol = indexTokenItem.isWrapped ? getConstant(chainId, "nativeTokenSymbol") : indexTokenItem.symbol;
-      const longOrShortText = isLong ? t`Long` : t`Short`;
+      const longOrShortText = isLong ? `Long` : `Short`;
 
       let message;
       if (sizeDelta.eq(0)) {
-        message = t`Withdrew ${formatAmount(
+        message = `Withdrew ${formatAmount(
           collateralDelta,
           USD_DECIMALS,
           2,
           true
         )} USD from ${tokenSymbol} ${longOrShortText}.`;
       } else {
-        message = t`Decreased ${tokenSymbol} ${longOrShortText}, -${formatAmount(
+        message = `Decreased ${tokenSymbol} ${longOrShortText}, -${formatAmount(
           sizeDelta,
           USD_DECIMALS,
           2,
@@ -666,9 +665,9 @@ export const Exchange = forwardRef((props, ref) => {
       }
       const indexTokenItem = getToken(chainId, indexToken);
       const tokenSymbol = indexTokenItem.isWrapped ? getConstant(chainId, "nativeTokenSymbol") : indexTokenItem.symbol;
-      const longOrShortText = isLong ? t`Long` : t`Short`;
+      const longOrShortText = isLong ? `Long` : `Short`;
 
-      const message = t`Could not increase ${tokenSymbol} ${longOrShortText} within the allowed slippage, you can adjust the allowed slippage in the settings on the top right of the page.`;
+      const message = `Could not increase ${tokenSymbol} ${longOrShortText} within the allowed slippage, you can adjust the allowed slippage in the settings on the top right of the page.`;
       pushErrorNotification(chainId, message, e);
 
       const key = getPositionKey(account, path[path.length - 1], indexToken, isLong);
@@ -696,9 +695,9 @@ export const Exchange = forwardRef((props, ref) => {
       }
       const indexTokenItem = getToken(chainId, indexToken);
       const tokenSymbol = indexTokenItem.isWrapped ? getConstant(chainId, "nativeTokenSymbol") : indexTokenItem.symbol;
-      const longOrShortText = isLong ? t`Long` : t`Short`;
+      const longOrShortText = isLong ? `Long` : `Short`;
 
-      const message = t`Could not decrease ${tokenSymbol} ${longOrShortText} within the allowed slippage, you can adjust the allowed slippage in the settings on the top right of the page.`;
+      const message = `Could not decrease ${tokenSymbol} ${longOrShortText} within the allowed slippage, you can adjust the allowed slippage in the settings on the top right of the page.`;
 
       pushErrorNotification(chainId, message, e);
 
@@ -723,9 +722,9 @@ export const Exchange = forwardRef((props, ref) => {
       setIsCancelMultipleOrderProcessing(true);
       try {
         const tx = await cancelMultipleOrders(chainId, library, cancelOrderIdList, {
-          successMsg: t`Orders cancelled.`,
-          failMsg: t`Cancel failed.`,
-          sentMsg: t`Cancel submitted.`,
+          successMsg: `Orders cancelled.`,
+          failMsg: `Cancel failed.`,
+          sentMsg: `Cancel submitted.`,
           pendingTxns,
           setPendingTxns,
         });
@@ -757,8 +756,8 @@ export const Exchange = forwardRef((props, ref) => {
       library,
       pendingTxns,
       setPendingTxns,
-      sentMsg: t`Enable orders sent.`,
-      failMsg: t`Enable orders failed.`,
+      sentMsg: `Enable orders sent.`,
+      failMsg: `Enable orders failed.`,
     })
       .then(() => {
         setIsWaitingForPluginApproval(true);
@@ -791,9 +790,9 @@ export const Exchange = forwardRef((props, ref) => {
   const LIST_SECTIONS = [POSITIONS, flagOrdersEnabled && ORDERS, TRADES].filter(Boolean);
   let [listSection, setListSection] = useLocalStorageByChainId(chainId, "List-section-v2", LIST_SECTIONS[0]);
   const LIST_SECTIONS_LABELS = {
-    [ORDERS]: orders.length ? t`Orders (${orders.length})` : t`Orders`,
-    [POSITIONS]: positions.length ? t`Positions (${positions.length})` : t`Positions`,
-    [TRADES]: t`Trades`,
+    [ORDERS]: orders.length ? `Orders (${orders.length})` : `Orders`,
+    [POSITIONS]: positions.length ? `Positions (${positions.length})` : `Positions`,
+    [TRADES]: `Trades`,
   };
   if (!LIST_SECTIONS.includes(listSection)) {
     listSection = LIST_SECTIONS[0];

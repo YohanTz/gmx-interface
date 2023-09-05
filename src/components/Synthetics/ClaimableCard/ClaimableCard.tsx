@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import ExchangeInfoRow from "components/Exchange/ExchangeInfoRow";
 import { MarketsInfoData, getTotalClaimableFundingUsd } from "domain/synthetics/markets";
@@ -34,7 +33,7 @@ export function ClaimableCard(p: Props) {
             handle={formatUsd(totalClaimableFundingUsd)}
             position="right-bottom"
             renderContent={() => {
-              return t`Positive Funding Fees for a position become claimable after the position is increased, decreased or closed.`;
+              return `Positive Funding Fees for a position become claimable after the position is increased, decreased or closed.`;
             }}
           />
         }

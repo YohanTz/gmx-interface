@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 import Tooltip from "components/Tooltip/Tooltip";
@@ -30,7 +29,7 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
   const entryPrice = isLong ? indexToken?.prices?.maxPrice : indexToken?.prices?.minPrice;
   const exitPrice = isLong ? indexToken?.prices?.minPrice : indexToken?.prices?.maxPrice;
 
-  const longShortText = isLong ? t`Long` : t`Short`;
+  const longShortText = isLong ? `Long` : `Short`;
 
   const { liquidity, maxReservedUsd, reservedUsd, borrowingRate, fundingRate, totalInterestUsd, priceDecimals } =
     useMemo(() => {
@@ -122,7 +121,7 @@ export function MarketCard({ marketInfo, allowedSlippage, isLong, isIncrease }: 
               renderContent={() => (
                 <div>
                   <span>
-                    {longShortText} positions {fundingRate.gt(0) ? t`earn` : t`pay`} a funding fee of{" "}
+                    {longShortText} positions {fundingRate.gt(0) ? `earn` : `pay`} a funding fee of{" "}
                     {formatAmount(fundingRate.abs(), 30, 4)}% per hour.
                   </span>
                 </div>

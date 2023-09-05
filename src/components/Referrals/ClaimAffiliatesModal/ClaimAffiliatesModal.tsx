@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import Button from "components/Button/Button";
 import ExchangeInfoRow from "components/Exchange/ExchangeInfoRow";
@@ -138,7 +137,7 @@ export function ClaimAffiliatesModal(p: Props) {
       <div className="ConfirmationBox-main text-center">Claim {formatUsd(totalClaimableFundingUsd)}</div>
       <div className="ClaimModal-content">{rewards.map(renderRewardSection)}</div>
       <Button className="w-full" variant="primary-action" onClick={onSubmit} disabled={isSubmitting}>
-        {isSubmitting ? t`Claiming...` : t`Claim`}
+        {isSubmitting ? `Claiming...` : `Claim`}
       </Button>
     </Modal>
   );

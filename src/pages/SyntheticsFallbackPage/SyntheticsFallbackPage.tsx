@@ -1,5 +1,5 @@
 import Footer from "components/Footer/Footer";
-import { Trans } from "@lingui/macro";
+
 import { useEffect, useState } from "react";
 import { sleep } from "lib/sleep";
 import { ARBITRUM, ARBITRUM_GOERLI, AVALANCHE, AVALANCHE_FUJI, getChainName } from "config/chains";

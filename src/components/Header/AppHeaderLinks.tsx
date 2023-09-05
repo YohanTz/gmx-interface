@@ -1,6 +1,6 @@
 import React from "react";
 import { FiX } from "react-icons/fi";
-import { Trans } from "@lingui/macro";
+
 import { Link } from "react-router-dom";
 
 import { HeaderLink } from "./HeaderLink";

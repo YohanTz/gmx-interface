@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import ExchangeInfoRow from "components/Exchange/ExchangeInfoRow";
 import TokenSelector from "components/TokenSelector/TokenSelector";
 import Tooltip from "components/Tooltip/Tooltip";
@@ -106,7 +105,7 @@ export function CollateralSelectorRow(p: Props) {
             renderContent={() => <div className="MarketSelector-tooltip-content">{message}</div>}
           />
         ) : (
-          t`Collateral In`
+          `Collateral In`
         )
       }
       className="SwapBox-info-row"

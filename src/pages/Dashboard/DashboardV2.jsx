@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import TooltipComponent from "components/Tooltip/Tooltip";
 import { useState } from "react";
@@ -377,23 +376,23 @@ export default function DashboardV2() {
 
   let gmxDistributionData = [
     {
-      name: t`staked`,
+      name: `staked`,
       value: stakedPercent,
       color: "#4353fa",
     },
     {
-      name: t`in liquidity`,
+      name: `in liquidity`,
       value: liquidityPercent,
       color: "#0598fa",
     },
     {
-      name: t`not staked`,
+      name: `not staked`,
       value: notStakedPercent,
       color: "#5c0af5",
     },
   ];
 
-  const totalStatsStartDate = chainId === AVALANCHE ? t`06 Jan 2022` : t`01 Sep 2021`;
+  const totalStatsStartDate = chainId === AVALANCHE ? `06 Jan 2022` : `01 Sep 2021`;
 
   let stableGlp = 0;
   let totalGlp = 0;
@@ -465,7 +464,7 @@ export default function DashboardV2() {
   };
 
   return (
-    <SEO title={getPageTitle(t`Dashboard`)}>
+    <SEO title={getPageTitle(`Dashboard`)}>
       <div className="default-container DashboardV2 page-layout">
         <PageTitle
           title={`Stats`}

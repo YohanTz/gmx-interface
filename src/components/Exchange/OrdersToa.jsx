@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Trans, t } from "@lingui/macro";
+
 import Modal from "../Modal/Modal";
 import Checkbox from "../Checkbox/Checkbox";
 
@@ -19,12 +19,12 @@ export default function OrdersToa(props) {
 
   const getPrimaryText = () => {
     if (isPluginApproving) {
-      return t`Enabling Orders...`;
+      return `Enabling Orders...`;
     }
     if (!isChecked) {
-      return t`Accept terms to enable orders`;
+      return `Accept terms to enable orders`;
     }
-    return t`Enable Orders`;
+    return `Enable Orders`;
   };
 
   const isPrimaryEnabled = () => {

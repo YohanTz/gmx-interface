@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useChartPrices } from "domain/legacy";
 import { CHART_PERIODS, INCREASE, SWAP, USD_DECIMALS } from "lib/legacy";
 
-import { t } from "@lingui/macro";
 import TVChartContainer from "components/TVChartContainer/TVChartContainer";
 import { DEFAULT_PERIOD, availableNetworksForChart } from "components/TVChartContainer/constants";
 import { VersionSwitch } from "components/VersionSwitch/VersionSwitch";
@@ -113,8 +112,8 @@ export default function ExchangeTVChart(props) {
       .map((order) => {
         const indexToken = getToken(chainId, order.indexToken);
         const priceDecimal = getPriceDecimals(chainId, indexToken?.symbol);
-        const longOrShortText = order.isLong ? t`Long` : t`Short`;
-        const orderTypeText = order.type === INCREASE ? t`Inc.` : t`Dec.`;
+        const longOrShortText = order.isLong ? `Long` : `Short`;
+        const orderTypeText = order.type === INCREASE ? `Inc.` : `Dec.`;
         let tokenSymbol;
         if (indexToken && indexToken.symbol) {
           tokenSymbol = indexToken.isWrapped ? indexToken.baseSymbol : indexToken.symbol;
@@ -134,7 +133,7 @@ export default function ExchangeTVChart(props) {
     return positions
       .filter((p) => p.indexToken.address === chartToken.address)
       .map((position) => {
-        const longOrShortText = position.isLong ? t`Long` : t`Short`;
+        const longOrShortText = position.isLong ? `Long` : `Short`;
         const priceDecimal = getPriceDecimals(chainId, position.indexToken.symbol);
         const liquidationPrice = getLiquidationPrice({
           size: position.size,
@@ -147,11 +146,11 @@ export default function ExchangeTVChart(props) {
         return {
           open: {
             price: parseFloat(formatAmount(position.averagePrice, USD_DECIMALS, priceDecimal)),
-            title: t`Open ${position.indexToken.symbol} ${longOrShortText}`,
+            title: `Open ${position.indexToken.symbol} ${longOrShortText}`,
           },
           liquidation: {
             price: parseFloat(formatAmount(liquidationPrice, USD_DECIMALS, priceDecimal)),
-            title: t`Liq. ${position.indexToken.symbol} ${longOrShortText}`,
+            title: `Liq. ${position.indexToken.symbol} ${longOrShortText}`,
           },
         };
       });

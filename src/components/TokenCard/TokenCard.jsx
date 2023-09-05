@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/macro";
 import { useCallback } from "react";
 import { Link } from "react-router-dom";
 

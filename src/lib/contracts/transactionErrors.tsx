@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import { ToastifyDebug } from "components/ToastifyDebug/ToastifyDebug";
 import { getChainName } from "config/chains";
@@ -93,10 +92,10 @@ export function getErrorMessage(chainId: number, ex: TxError, txnMessage?: strin
       );
       break;
     case USER_DENIED:
-      failMsg = t`Transaction was cancelled.`;
+      failMsg = `Transaction was cancelled.`;
       break;
     case SLIPPAGE:
-      failMsg = t`The mark price has changed, consider increasing your Allowed Slippage by clicking on the "..." icon next to your address.`;
+      failMsg = `The mark price has changed, consider increasing your Allowed Slippage by clicking on the "..." icon next to your address.`;
       break;
     case RPC_ERROR:
       autoCloseToast = false;
@@ -122,7 +121,7 @@ export function getErrorMessage(chainId: number, ex: TxError, txnMessage?: strin
 
       failMsg = (
         <div>
-          {txnMessage || t`Transaction failed`}
+          {txnMessage || `Transaction failed`}
           <br />
           {message && <ToastifyDebug>{message}</ToastifyDebug>}
         </div>

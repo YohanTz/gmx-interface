@@ -19,7 +19,7 @@ import {
 } from "lib/legacy";
 
 import "./OrdersOverview.css";
-import { t } from "@lingui/macro";
+
 import { getTokenInfo } from "domain/tokens/utils";
 import { useInfoTokens } from "domain/tokens";
 import { formatAmount } from "lib/numbers";
@@ -37,9 +37,9 @@ export default function OrdersOverview() {
   const orders = useAllOrders(chainId, library);
   const stats = useAllOrdersStats(chainId);
   const ORDER_TYPE_LABELS = {
-    Increase: t`Increase`,
-    Decrease: t`Decrease`,
-    Swap: t`Swap`,
+    Increase: `Increase`,
+    Decrease: `Decrease`,
+    Swap: `Swap`,
   };
 
   const positionsForOrders = usePositionsForOrders(
@@ -174,7 +174,7 @@ export default function OrdersOverview() {
                 }
               } else {
                 invalidToken = true;
-                error = t`Invalid token fromToken: "${order.path0}" toToken: "${toTokenAddress}"`;
+                error = `Invalid token fromToken: "${order.path0}" toToken: "${toTokenAddress}"`;
               }
 
               return (
@@ -222,7 +222,7 @@ export default function OrdersOverview() {
               if (indexToken && collateralToken && (order.type === DECREASE || purchaseToken)) {
                 markPrice = order.triggerAboveThreshold ? indexToken.minPrice : indexToken.maxPrice;
               } else {
-                error = t`Invalid token indexToken: "${order.indexToken}" collateralToken: "${order.collateralToken}"`;
+                error = `Invalid token indexToken: "${order.indexToken}" collateralToken: "${order.collateralToken}"`;
                 if (order.type === "increase") {
                   error += ` purchaseToken: ${order.purchaseToken}`;
                 }
@@ -250,11 +250,11 @@ export default function OrdersOverview() {
                 if (positionsForOrders && key in positionsForOrders) {
                   const position = positionsForOrders[key];
                   if (!position) {
-                    error = t`No position`;
+                    error = `No position`;
                   } else if (order.sizeDelta.gt(position[0])) {
-                    error = t`Order size exceeds position`;
+                    error = `Order size exceeds position`;
                   } else if (order.sizeDelta.eq(0)) {
-                    error = t`Order size is 0`;
+                    error = `Order size is 0`;
                   }
                 }
               }
@@ -262,7 +262,7 @@ export default function OrdersOverview() {
                 <tr key={key}>
                   <td>{ORDER_TYPE_LABELS[order.type]}</td>
                   <td>
-                    {order.isLong ? t`Long` : t`Short`} {indexToken && indexToken.symbol}
+                    {order.isLong ? `Long` : `Short`} {indexToken && indexToken.symbol}
                   </td>
                   <td>
                     {type === INCREASE ? "+" : "-"}${formatAmount(order.sizeDelta, USD_DECIMALS, 2, true)}

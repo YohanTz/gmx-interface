@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { CardRow } from "components/CardRow/CardRow";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 import Tooltip from "components/Tooltip/Tooltip";

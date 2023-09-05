@@ -1,4 +1,3 @@
-import { Trans, plural, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import { ApproveTokenButton } from "components/ApproveTokenButton/ApproveTokenButton";
@@ -164,14 +163,14 @@ export function GmConfirmationBox({
     marketToken?.decimals
   );
 
-  const operationText = isDeposit ? t`Buy` : t`Sell`;
+  const operationText = isDeposit ? `Buy` : `Sell`;
 
   const isAllowanceLoaded = Boolean(tokensAllowanceData);
 
   const submitButtonState = (function getSubmitButtonState() {
     if (payTokenAddresses.length > 0 && !isAllowanceLoaded) {
       return {
-        text: t`Loading...`,
+        text: `Loading...`,
         disabled: true,
       };
     }
@@ -206,7 +205,7 @@ export function GmConfirmationBox({
 
     if (isSubmitting) {
       return {
-        text: isDeposit ? t`Buying GM...` : t`Selling GM...`,
+        text: isDeposit ? `Buying GM...` : `Selling GM...`,
         disabled: true,
       };
     }
@@ -227,8 +226,8 @@ export function GmConfirmationBox({
       };
     }
 
-    const operationText = isDeposit ? t`Buy` : `Sell`;
-    const text = t`Confirm ${operationText}`;
+    const operationText = isDeposit ? `Buy` : `Sell`;
+    const text = `Confirm ${operationText}`;
 
     return {
       text,

@@ -1,6 +1,5 @@
 import { FiX } from "react-icons/fi";
 import logoImg from "img/logo_GMX.svg";
-import { t } from "@lingui/macro";
 
 import "./Header.css";
 import { Link } from "react-router-dom";
@@ -19,24 +18,24 @@ type HomeLink = { label: string; link: string; isHomeLink?: boolean | false };
 export function HomeHeaderLinks({ small, clickCloseIcon, redirectPopupTimestamp, showRedirectModal }: Props) {
   const HOME_MENUS: HomeLink[] = [
     {
-      label: t`App`,
+      label: `App`,
       isHomeLink: true,
       link: "/trade",
     },
     {
-      label: t`Protocol`,
+      label: `Protocol`,
       link: "https://github.com/gmx-io",
     },
     {
-      label: t`Governance`,
+      label: `Governance`,
       link: "https://gov.gmx.io/",
     },
     {
-      label: t`Voting`,
+      label: `Voting`,
       link: "https://snapshot.org/#/gmx.eth",
     },
     {
-      label: t`Docs`,
+      label: `Docs`,
       link: "https://docs.gmx.io/",
     },
   ];

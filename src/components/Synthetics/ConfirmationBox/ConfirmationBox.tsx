@@ -1,4 +1,3 @@
-import { Plural, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import { ApproveTokenButton } from "components/ApproveTokenButton/ApproveTokenButton";
@@ -296,23 +295,23 @@ export function ConfirmationBox(p: Props) {
   const title = useMemo(() => {
     if (isMarket) {
       if (isSwap) {
-        return t`Confirm Swap`;
+        return `Confirm Swap`;
       }
 
-      return isLong ? t`Confirm Long` : t`Confirm Short`;
+      return isLong ? `Confirm Long` : `Confirm Short`;
     }
 
     if (isLimit) {
-      return t`Confirm Limit Order`;
+      return `Confirm Limit Order`;
     }
 
-    return t`Confirm Trigger Order`;
+    return `Confirm Trigger Order`;
   }, [isLimit, isLong, isMarket, isSwap]);
 
   const submitButtonState = useMemo(() => {
     if (isSubmitting) {
       return {
-        text: t`Creating Order...`,
+        text: `Creating Order...`,
         disabled: true,
       };
     }
@@ -325,16 +324,16 @@ export function ConfirmationBox(p: Props) {
     }
 
     if (needPayTokenApproval) {
-      return { text: t`Pending ${fromToken?.symbol} approval`, disabled: true };
+      return { text: `Pending ${fromToken?.symbol} approval`, disabled: true };
     }
 
     if (isHighPriceImpact && !isHighPriceImpactAccepted) {
-      return { text: t`Price Impact not yet acknowledged`, disabled: true };
+      return { text: `Price Impact not yet acknowledged`, disabled: true };
     }
 
     if (isIncrease && decreaseOrdersThatWillBeExecuted.length > 0 && !isTriggerWarningAccepted) {
       return {
-        text: t`Accept confirmation of trigger orders`,
+        text: `Accept confirmation of trigger orders`,
         disabled: true,
       };
     }
@@ -343,14 +342,14 @@ export function ConfirmationBox(p: Props) {
 
     if (isMarket) {
       if (isSwap) {
-        text = t`Swap`;
+        text = `Swap`;
       } else {
-        text = isLong ? t`Long` : t`Short`;
+        text = isLong ? `Long` : `Short`;
       }
     } else if (isLimit) {
-      text = t`Confirm Limit Order`;
+      text = `Confirm Limit Order`;
     } else {
-      text = t`Confirm Trigger Order`;
+      text = `Confirm Trigger Order`;
     }
 
     return {
@@ -411,7 +410,7 @@ export function ConfirmationBox(p: Props) {
       !executionFee ||
       typeof allowedSlippage !== "number"
     ) {
-      helperToast.error(t`Error submitting order`);
+      helperToast.error(`Error submitting order`);
       return Promise.resolve();
     }
 
@@ -443,7 +442,7 @@ export function ConfirmationBox(p: Props) {
       !marketInfo ||
       typeof allowedSlippage !== "number"
     ) {
-      helperToast.error(t`Error submitting order`);
+      helperToast.error(`Error submitting order`);
       return Promise.resolve();
     }
 
@@ -486,7 +485,7 @@ export function ConfirmationBox(p: Props) {
       !tokensData ||
       typeof allowedSlippage !== "number"
     ) {
-      helperToast.error(t`Error submitting order`);
+      helperToast.error(`Error submitting order`);
       return Promise.resolve();
     }
 
@@ -592,7 +591,7 @@ export function ConfirmationBox(p: Props) {
           </span>
           <div className="Confirmation-box-main-icon"></div>
           <div>
-            {isLong ? t`Long` : t`Short`}{" "}
+            {isLong ? `Long` : `Short`}{" "}
             {formatTokenAmountWithUsd(
               increaseAmounts?.sizeDeltaInTokens,
               increaseAmounts?.sizeDeltaUsd,
@@ -606,7 +605,7 @@ export function ConfirmationBox(p: Props) {
 
     return (
       <div className={cx("Confirmation-box-main ConfirmationBox-main")}>
-        <span>Decrease</span>&nbsp;{indexToken?.symbol} {isLong ? t`Long` : t`Short`}
+        <span>Decrease</span>&nbsp;{indexToken?.symbol} {isLong ? `Long` : `Short`}
       </div>
     );
   }
@@ -615,8 +614,8 @@ export function ConfirmationBox(p: Props) {
     return (
       <li key={order.key} className="font-sm">
         <p>
-          {isLimitOrderType(order.orderType) ? t`Increase` : t`Decrease`} {order.indexToken?.symbol}{" "}
-          {formatUsd(order.sizeDeltaUsd)} {order.isLong ? t`Long` : t`Short`} &nbsp;
+          {isLimitOrderType(order.orderType) ? `Increase` : `Decrease`} {order.indexToken?.symbol}{" "}
+          {formatUsd(order.sizeDeltaUsd)} {order.isLong ? `Long` : `Short`} &nbsp;
           {order.triggerThresholdType}
           {formatUsd(order.triggerPrice, {
             displayDecimals: toToken?.priceDecimals,
@@ -629,7 +628,7 @@ export function ConfirmationBox(p: Props) {
     );
   }
 
-  const longShortText = isLong ? t`Long` : t`Short`;
+  const longShortText = isLong ? `Long` : `Short`;
 
   function renderDifferentTokensWarning() {
     if (!isPosition || !fromToken || !toToken) {
@@ -704,7 +703,7 @@ export function ConfirmationBox(p: Props) {
               </span>
             </span>
             <span onClick={() => setIsLimitOrdersVisible((p) => !p)} className="view-orders">
-              ({isLimitOrdersVisible ? t`hide` : t`view`})
+              ({isLimitOrdersVisible ? `hide` : `view`})
             </span>
           </div>
           {isLimitOrdersVisible && <ul className="order-list">{existingLimitOrders.map(renderOrderItem)}</ul>}
@@ -775,8 +774,8 @@ export function ConfirmationBox(p: Props) {
       isLiquidityRisk = availableLiquidityUsd!.mul(riskThresholdBps).div(BASIS_POINTS_DIVISOR).lt(swapAmounts.usdOut);
 
       tooltipContent = isLiquidityRisk
-        ? t`There may not be sufficient liquidity to execute your order when the Min. Receive are met.`
-        : t`The order will only execute if the Min. Receive is met and there is sufficient liquidity.`;
+        ? `There may not be sufficient liquidity to execute your order when the Min. Receive are met.`
+        : `The order will only execute if the Min. Receive is met and there is sufficient liquidity.`;
     }
 
     if (isIncrease && increaseAmounts) {
@@ -788,8 +787,8 @@ export function ConfirmationBox(p: Props) {
         .lt(increaseAmounts.sizeDeltaUsd);
 
       tooltipContent = isLiquidityRisk
-        ? t`There may not be sufficient liquidity to execute your order when the price conditions are met.`
-        : t`The order will only execute if the price conditions are met and there is sufficient liquidity.`;
+        ? `There may not be sufficient liquidity to execute your order when the price conditions are met.`
+        : `The order will only execute if the price conditions are met and there is sufficient liquidity.`;
     }
 
     return (
@@ -970,7 +969,7 @@ export function ConfirmationBox(p: Props) {
 
           <ExchangeInfoRow
             className="SwapBox-info-row"
-            label={isMarket ? t`Price Impact` : t`Acceptable Price Impact`}
+            label={isMarket ? `Price Impact` : `Acceptable Price Impact`}
             value={
               <span className={cx({ positive: isMarket && increaseAmounts?.acceptablePriceDeltaBps?.gt(0) })}>
                 {formatPercentage(increaseAmounts?.acceptablePriceDeltaBps, {
@@ -1133,7 +1132,7 @@ export function ConfirmationBox(p: Props) {
                 position="right-bottom"
                 handle={formatTokensRatio(fromToken, toToken, triggerRatio)}
                 renderContent={() =>
-                  t`Limit Order Price to guarantee Min. Receive amount is updated in real time in the Orders tab after the order has been created.`
+                  `Limit Order Price to guarantee Min. Receive amount is updated in real time in the Orders tab after the order has been created.`
                 }
               />
             </ExchangeInfoRow>
@@ -1260,7 +1259,7 @@ export function ConfirmationBox(p: Props) {
           )}
 
           <ExchangeInfoRow
-            label={p.existingPosition?.sizeInUsd ? t`Size` : t`Decrease size`}
+            label={p.existingPosition?.sizeInUsd ? `Size` : `Decrease size`}
             isTop
             value={
               p.existingPosition?.sizeInUsd ? (

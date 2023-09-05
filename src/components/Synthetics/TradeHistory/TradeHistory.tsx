@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/macro";
 import { useTradeHistory } from "domain/synthetics/tradeHistory";
 import { useChainId } from "lib/chains";
 import { TradeHistoryRow } from "../TradeHistoryRow/TradeHistoryRow";

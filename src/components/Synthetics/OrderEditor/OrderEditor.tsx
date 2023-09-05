@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import cx from "classnames";
 import BuyInputSection from "components/BuyInputSection/BuyInputSection";
 import Modal from "components/Modal/Modal";
@@ -223,24 +222,24 @@ export function OrderEditor(p: Props) {
 
   function getError() {
     if (isSubmitting) {
-      return t`Updating Order...`;
+      return `Updating Order...`;
     }
 
     if (isSwapOrderType(p.order.orderType)) {
       if (!triggerRatio?.ratio?.gt(0) || !minOutputAmount.gt(0)) {
-        return t`Enter a ratio`;
+        return `Enter a ratio`;
       }
 
       if (minOutputAmount.eq(p.order.minOutputAmount)) {
-        return t`Enter a new ratio`;
+        return `Enter a new ratio`;
       }
 
       if (triggerRatio && !isRatioInverted && markRatio?.ratio.lt(triggerRatio.ratio)) {
-        return t`Price above Mark Price`;
+        return `Price above Mark Price`;
       }
 
       if (triggerRatio && isRatioInverted && markRatio?.ratio.gt(triggerRatio.ratio)) {
-        return t`Price below Mark Price`;
+        return `Price below Mark Price`;
       }
 
       return;
@@ -249,67 +248,67 @@ export function OrderEditor(p: Props) {
     const positionOrder = p.order as PositionOrderInfo;
 
     if (!markPrice) {
-      return t`Loading...`;
+      return `Loading...`;
     }
 
     if (!sizeDeltaUsd?.gt(0)) {
-      return t`Enter an amount`;
+      return `Enter an amount`;
     }
 
     if (!triggerPrice?.gt(0)) {
-      return t`Enter a price`;
+      return `Enter a price`;
     }
 
     if (sizeDeltaUsd?.eq(positionOrder.sizeDeltaUsd) && triggerPrice?.eq(positionOrder.triggerPrice!)) {
-      return t`Enter new amount or price`;
+      return `Enter new amount or price`;
     }
 
     if (isLimitOrderType(p.order.orderType)) {
       if (p.order.isLong) {
         if (triggerPrice?.gte(markPrice)) {
-          return t`Price above Mark Price`;
+          return `Price above Mark Price`;
         }
       } else {
         if (triggerPrice?.lte(markPrice)) {
-          return t`Price below Mark Price`;
+          return `Price below Mark Price`;
         }
       }
     }
 
     if (isTriggerDecreaseOrderType(p.order.orderType)) {
       if (!markPrice) {
-        return t`Loading...`;
+        return `Loading...`;
       }
 
       if (sizeDeltaUsd?.eq(p.order.sizeDeltaUsd || 0) && triggerPrice?.eq(positionOrder.triggerPrice || 0)) {
-        return t`Enter a new size or price`;
+        return `Enter a new size or price`;
       }
 
       if (existingPosition?.liquidationPrice) {
         if (existingPosition.isLong && triggerPrice?.lte(existingPosition?.liquidationPrice)) {
-          return t`Price below Liq. Price`;
+          return `Price below Liq. Price`;
         }
 
         if (!existingPosition.isLong && triggerPrice?.gte(existingPosition?.liquidationPrice)) {
-          return t`Price above Liq. Price`;
+          return `Price above Liq. Price`;
         }
       }
 
       if (p.order.isLong) {
         if (p.order.orderType === OrderType.LimitDecrease && triggerPrice?.lte(markPrice)) {
-          return t`Price below Mark Price`;
+          return `Price below Mark Price`;
         }
 
         if (p.order.orderType === OrderType.StopLossDecrease && triggerPrice?.gte(markPrice)) {
-          return t`Price above Mark Price`;
+          return `Price above Mark Price`;
         }
       } else {
         if (p.order.orderType === OrderType.LimitDecrease && triggerPrice?.gte(markPrice)) {
-          return t`Price above Mark Price`;
+          return `Price above Mark Price`;
         }
 
         if (p.order.orderType === OrderType.StopLossDecrease && triggerPrice?.lte(markPrice)) {
-          return t`Price below Mark Price`;
+          return `Price below Mark Price`;
         }
       }
     }
@@ -389,7 +388,7 @@ export function OrderEditor(p: Props) {
         {!isSwapOrderType(p.order.orderType) && (
           <>
             <BuyInputSection
-              topLeftLabel={isTriggerDecreaseOrderType(p.order.orderType) ? t`Close` : t`Size`}
+              topLeftLabel={isTriggerDecreaseOrderType(p.order.orderType) ? `Close` : `Size`}
               inputValue={sizeInputValue}
               onInputValueChange={(e) => setSizeInputValue(e.target.value)}
             >

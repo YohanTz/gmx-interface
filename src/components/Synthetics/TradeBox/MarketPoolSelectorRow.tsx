@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import ExchangeInfoRow from "components/Exchange/ExchangeInfoRow";
 import { PoolSelector } from "components/MarketSelector/PoolSelector";
 import Tooltip from "components/Tooltip/Tooltip";
@@ -168,7 +167,7 @@ export function MarketPoolSelectorRow(p: Props) {
             renderContent={() => <div className="MarketSelector-tooltip-content">{message}</div>}
           />
         ) : (
-          t`Pool`
+          `Pool`
         )
       }
       value={

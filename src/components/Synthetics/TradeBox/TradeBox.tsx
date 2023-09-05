@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import Button from "components/Button/Button";
@@ -197,16 +196,16 @@ export function TradeBox(p: Props) {
 
   const tradeTypeLabels = useMemo(() => {
     return {
-      [TradeType.Long]: t`Long`,
-      [TradeType.Short]: t`Short`,
-      [TradeType.Swap]: t`Swap`,
+      [TradeType.Long]: `Long`,
+      [TradeType.Short]: `Short`,
+      [TradeType.Swap]: `Swap`,
     };
   }, []);
 
   const tradeModeLabels = {
-    [TradeMode.Market]: t`Market`,
-    [TradeMode.Limit]: t`Limit`,
-    [TradeMode.Trigger]: t`Trigger`,
+    [TradeMode.Market]: `Market`,
+    [TradeMode.Limit]: `Limit`,
+    [TradeMode.Trigger]: `Trigger`,
   };
 
   const { chainId } = useChainId();
@@ -755,14 +754,14 @@ export function TradeBox(p: Props) {
 
     if (isMarket) {
       if (isSwap) {
-        return t`Swap ${fromToken?.symbol}`;
+        return `Swap ${fromToken?.symbol}`;
       } else {
         return `${tradeTypeLabels[tradeType!]} ${toToken?.symbol}`;
       }
     } else if (isLimit) {
-      return t`Create Limit order`;
+      return `Create Limit order`;
     } else {
-      return t`Create Trigger order`;
+      return `Create Trigger order`;
     }
   }, [error, fromToken?.symbol, isLimit, isMarket, isSwap, toToken?.symbol, tradeType, tradeTypeLabels]);
 

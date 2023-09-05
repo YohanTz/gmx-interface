@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import cx from "classnames";
 import ExchangeInfoRow from "components/Exchange/ExchangeInfoRow";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
@@ -42,7 +41,7 @@ export function GmFees(p: Props) {
                   {p.swapFee && (
                     <>
                       <StatsTooltipRow
-                        label={p.isDeposit ? t`Buy Fee` : t`Sell Fee`}
+                        label={p.isDeposit ? `Buy Fee` : `Sell Fee`}
                         value={formatDeltaUsd(p.swapFee.deltaUsd, p.swapFee.bps)!}
                         showDollar={false}
                       />

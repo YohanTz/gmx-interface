@@ -21,7 +21,6 @@ import {
   WALLET_LINK_LOCALSTORAGE_PREFIX,
 } from "config/localStorage";
 import { helperToast } from "../helperToast";
-import { t } from "@lingui/macro";
 
 import { Web3ReactManagerFunctions } from "@web3-react/core/dist/types";
 import { UserRejectedRequestError, WalletConnectConnector } from "./WalletConnectConnector";
@@ -247,7 +246,7 @@ export const switchNetwork = async (chainId: number, active?: boolean) => {
       method: "wallet_switchEthereumChain",
       params: [{ chainId: chainIdHex }],
     });
-    helperToast.success(t`Connected to ${getChainName(chainId)}`);
+    helperToast.success(`Connected to ${getChainName(chainId)}`);
     return getChainName(chainId);
   } catch (ex) {
     // https://docs.metamask.io/guide/rpc-api.html#other-rpc-methods
@@ -273,7 +272,7 @@ export const getWalletConnectHandler = (
     setActivatingConnector(walletConnect);
     activate(walletConnect, (ex) => {
       if (ex instanceof UnsupportedChainIdError) {
-        helperToast.error(t`Unsupported chain. Switch to Arbitrum network on your wallet and try again`);
+        helperToast.error(`Unsupported chain. Switch to Arbitrum network on your wallet and try again`);
         // eslint-disable-next-line no-console
         console.warn(ex);
       } else if (!(ex instanceof UserRejectedRequestError)) {

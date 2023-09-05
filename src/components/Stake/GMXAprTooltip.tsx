@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 import { BigNumber } from "ethers";
 import { formatKeyAmount } from "lib/numbers";

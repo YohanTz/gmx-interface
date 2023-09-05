@@ -29,7 +29,7 @@ import { useLocalStorageSerializeKey } from "lib/localStorage";
 import { SLIPPAGE_BPS_KEY } from "config/localStorage";
 import { bigNumberify, expandDecimals, formatAmount, formatPercentage } from "lib/numbers";
 import { getPriceDecimals, getToken, getWrappedToken } from "config/tokens";
-import { Plural, t } from "@lingui/macro";
+
 import Button from "components/Button/Button";
 import FeesTooltip from "./FeesTooltip";
 import { getTokenInfo, getUsd } from "domain/tokens";
@@ -174,12 +174,12 @@ export default function ConfirmationBox(props) {
 
   const getTitle = () => {
     if (!isMarketOrder) {
-      return t`Confirm Limit Order`;
+      return `Confirm Limit Order`;
     }
     if (isSwap) {
-      return t`Confirm Swap`;
+      return `Confirm Swap`;
     }
-    return isLong ? t`Confirm Long` : t`Confirm Short`;
+    return isLong ? `Confirm Long` : `Confirm Short`;
   };
 
   const title = getTitle();
@@ -231,18 +231,18 @@ export default function ConfirmationBox(props) {
     if (!isSwap && hasExistingPosition && !isMarketOrder) {
       const { delta, hasProfit } = calculatePositionDelta(triggerPriceUsd, existingPosition);
       if (hasProfit && delta.eq(0)) {
-        return t`Invalid price, see warning`;
+        return `Invalid price, see warning`;
       }
     }
     if (isMarketOrder && hasPendingProfit && !isProfitWarningAccepted) {
-      return t`Forfeit profit not checked`;
+      return `Forfeit profit not checked`;
     }
     return false;
   };
 
   const getPrimaryText = () => {
     if (decreaseOrdersThatWillBeExecuted.length > 0 && !isTriggerWarningAccepted) {
-      return t`Accept confirmation of trigger orders`;
+      return `Accept confirmation of trigger orders`;
     }
 
     if (!isPendingConfirmation) {
@@ -254,7 +254,7 @@ export default function ConfirmationBox(props) {
       if (isSwap) {
         return title;
       }
-      const action = isMarketOrder ? (isLong ? t`Long` : t`Short`) : t`Create Order`;
+      const action = isMarketOrder ? (isLong ? `Long` : `Short`) : `Create Order`;
 
       if (
         isMarketOrder &&
@@ -263,22 +263,22 @@ export default function ConfirmationBox(props) {
         existingPosition.delta.eq(0) &&
         existingPosition.pendingDelta.gt(0)
       ) {
-        return isLong ? t`Forfeit profit and ${action}` : t`Forfeit profit and Short`;
+        return isLong ? `Forfeit profit and ${action}` : `Forfeit profit and Short`;
       }
 
-      return isMarketOrder && MIN_PROFIT_TIME > 0 ? t`Accept minimum and ${action}` : action;
+      return isMarketOrder && MIN_PROFIT_TIME > 0 ? `Accept minimum and ${action}` : action;
     }
 
     if (!isMarketOrder) {
-      return t`Creating Order...`;
+      return `Creating Order...`;
     }
     if (isSwap) {
-      return t`Swapping...`;
+      return `Swapping...`;
     }
     if (isLong) {
-      return t`Longing...`;
+      return `Longing...`;
     }
-    return t`Shorting...`;
+    return `Shorting...`;
   };
 
   const isPrimaryEnabled = () => {
@@ -394,7 +394,7 @@ export default function ConfirmationBox(props) {
       4,
       true
     );
-    const longOrShortText = existingOrder.isLong ? t`Long` : t`Short`;
+    const longOrShortText = existingOrder.isLong ? `Long` : `Short`;
     if (existingOrders?.length > 1) {
       return (
         <div>
@@ -405,7 +405,7 @@ export default function ConfirmationBox(props) {
               </span>
             </span>
             <span onClick={() => setIsLimitOrdersVisible((p) => !p)} className="view-orders">
-              ({isLimitOrdersVisible ? t`hide` : t`view`})
+              ({isLimitOrdersVisible ? `hide` : `view`})
             </span>
           </div>
           {isLimitOrdersVisible && (
@@ -419,7 +419,7 @@ export default function ConfirmationBox(props) {
                 return (
                   <li key={id} className="font-sm">
                     <p>
-                      {type === INCREASE ? t`Increase` : t`Decrease`} {indexToken.symbol} {isLong ? t`Long` : t`Short`}{" "}
+                      {type === INCREASE ? `Increase` : `Decrease`} {indexToken.symbol} {isLong ? `Long` : `Short`}{" "}
                       &nbsp;{triggerPricePrefix} ${formatAmount(triggerPrice, USD_DECIMALS, 2, true)}
                     </p>
                     <button onClick={() => onCancelOrderClick(order)}>
@@ -467,15 +467,15 @@ export default function ConfirmationBox(props) {
             return (
               <li key={id} className="font-sm">
                 <p>
-                  {type === INCREASE ? t`Increase` : t`Decrease`} {indexToken.symbol} {isLong ? t`Long` : t`Short`}
+                  {type === INCREASE ? `Increase` : `Decrease`} {indexToken.symbol} {isLong ? `Long` : `Short`}
                   &nbsp;{triggerPricePrefix} ${formatAmount(triggerPrice, USD_DECIMALS, 2, true)}
                 </p>
                 <button
                   onClick={() =>
                     cancelDecreaseOrder(chainId, library, index, {
-                      successMsg: t`Order cancelled`,
-                      failMsg: t`Cancel failed`,
-                      sentMsg: t`Cancel submitted`,
+                      successMsg: `Order cancelled`,
+                      failMsg: `Cancel failed`,
+                      sentMsg: `Cancel submitted`,
                       pendingTxns,
                       setPendingTxns,
                     })
@@ -541,7 +541,7 @@ export default function ConfirmationBox(props) {
         </span>
         <div className="Confirmation-box-main-icon"></div>
         <div>
-          {isLong ? t`Long` : t`Short`}&nbsp;
+          {isLong ? `Long` : `Short`}&nbsp;
           {formatAmount(toAmount, toToken.decimals, 4, true)} <TokenWithIcon symbol={toToken.symbol} displaySize={20} />{" "}
           (${formatAmount(toUsdMax, USD_DECIMALS, 2, true)})
         </div>
@@ -610,8 +610,8 @@ export default function ConfirmationBox(props) {
           }
           renderContent={() =>
             isLiquidityRisk
-              ? t`There may not be sufficient liquidity to execute your order when the price conditions are met`
-              : t`The order will only execute if the price conditions are met and there is sufficient liquidity`
+              ? `There may not be sufficient liquidity to execute your order when the price conditions are met`
+              : `The order will only execute if the price conditions are met and there is sufficient liquidity`
           }
         />
       </ExchangeInfoRow>

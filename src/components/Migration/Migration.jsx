@@ -29,7 +29,6 @@ import {
   parseValue,
 } from "lib/numbers";
 import ExternalLink from "components/ExternalLink/ExternalLink";
-import { t } from "@lingui/macro";
 
 const { MaxUint256, AddressZero } = ethers.constants;
 
@@ -142,10 +141,10 @@ function MigrationModal(props) {
 
   const getError = () => {
     if (!amount || amount.eq(0)) {
-      return t`Enter an amount`;
+      return `Enter an amount`;
     }
     if (maxAmount && amount.gt(maxAmount)) {
-      return t`Max amount exceeded`;
+      return `Max amount exceeded`;
     }
   };
 
@@ -182,7 +181,7 @@ function MigrationModal(props) {
       .catch((e) => {
         // eslint-disable-next-line no-console
         console.error(e);
-        helperToast.error(t`Migration failed`);
+        helperToast.error(`Migration failed`);
       })
       .finally(() => {
         setIsMigrating(false);
@@ -212,18 +211,18 @@ function MigrationModal(props) {
       return error;
     }
     if (isApproving) {
-      return t`Approving...`;
+      return `Approving...`;
     }
     if (needApproval && isPendingApproval) {
-      return t`Waiting for Approval`;
+      return `Waiting for Approval`;
     }
     if (needApproval) {
-      return t`Approve ${token.name}`;
+      return `Approve ${token.name}`;
     }
     if (isMigrating) {
-      return t`Migrating...`;
+      return `Migrating...`;
     }
-    return t`Migrate`;
+    return `Migrate`;
   };
 
   return (

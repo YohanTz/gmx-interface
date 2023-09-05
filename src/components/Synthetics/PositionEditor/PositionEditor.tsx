@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import Token from "abis/Token.json";
 import { ApproveTokenButton } from "components/ApproveTokenButton/ApproveTokenButton";
@@ -278,11 +277,11 @@ export function PositionEditor(p: Props) {
     }
 
     if (needCollateralApproval) {
-      return t`Pending ${collateralToken?.symbol} approval`;
+      return `Pending ${collateralToken?.symbol} approval`;
     }
 
     if (isSubmitting) {
-      return t`Creating Order...`;
+      return `Creating Order...`;
     }
   }, [
     account,
@@ -414,8 +413,8 @@ export function PositionEditor(p: Props) {
   );
 
   const operationLabels = {
-    [Operation.Deposit]: t`Deposit`,
-    [Operation.Withdraw]: t`Withdraw`,
+    [Operation.Deposit]: `Deposit`,
+    [Operation.Withdraw]: `Withdraw`,
   };
 
   return (
@@ -426,7 +425,7 @@ export function PositionEditor(p: Props) {
         setIsVisible={onClose}
         label={
           <span>
-            Edit {position?.isLong ? t`Long` : t`Short`} {position?.indexToken?.symbol}
+            Edit {position?.isLong ? `Long` : `Short`} {position?.indexToken?.symbol}
           </span>
         }
         allowContentTouchMove

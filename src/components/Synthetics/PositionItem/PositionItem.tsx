@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import cx from "classnames";
 import PositionDropdown from "components/Exchange/PositionDropdown";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
@@ -234,13 +233,13 @@ export function PositionItem(p: Props) {
 
     if (!p.position.liquidationPrice) {
       if (!p.position.isLong && p.position.collateralAmount.gte(p.position.sizeInTokens)) {
-        liqPriceWarning = t`Since your position's Collateral is ${p.position.collateralToken.symbol} with a value larger than the Position Size, the Collateral value will increase to cover any negative PnL.`;
+        liqPriceWarning = `Since your position's Collateral is ${p.position.collateralToken.symbol} with a value larger than the Position Size, the Collateral value will increase to cover any negative PnL.`;
       } else if (
         p.position.isLong &&
         p.position.collateralToken.isStable &&
         p.position.collateralUsd.gte(p.position.sizeInUsd)
       ) {
-        liqPriceWarning = t`Since your position's Collateral is ${p.position.collateralToken.symbol} with a value larger than the Position Size, the Collateral value will cover any negative PnL.`;
+        liqPriceWarning = `Since your position's Collateral is ${p.position.collateralToken.symbol} with a value larger than the Position Size, the Collateral value will cover any negative PnL.`;
       }
     }
 
@@ -395,14 +394,14 @@ export function PositionItem(p: Props) {
               {formatLeverage(p.position.leverage) || "..."}&nbsp;
             </span>
             <span className={cx({ positive: p.position.isLong, negative: !p.position.isLong })}>
-              {p.position.isLong ? t`Long` : t`Short`}
+              {p.position.isLong ? `Long` : `Short`}
             </span>
           </div>
         </td>
         <td>
           {/* netValue */}
           {p.position.isOpening ? (
-            t`Opening...`
+            `Opening...`
           ) : (
             <>
               {renderNetValue()}
@@ -432,7 +431,7 @@ export function PositionItem(p: Props) {
         <td className="clickable" onClick={() => p.onSelectPositionClick?.()}>
           {/* entryPrice */}
           {p.position.isOpening
-            ? t`Opening...`
+            ? `Opening...`
             : formatUsd(p.position.entryPrice, {
                 displayDecimals: indexPriceDecimals,
               })}
@@ -498,7 +497,7 @@ export function PositionItem(p: Props) {
                   negative: !p.position.isLong,
                 })}
               >
-                {p.position.isLong ? t`Long` : t`Short`}
+                {p.position.isLong ? `Long` : `Short`}
               </span>
             </div>
             {p.position.pendingUpdate && <ImSpinner2 className="spin position-loading-icon" />}

@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 
 import "./Actions.scss";
 
-import { Trans } from "@lingui/macro";
 import { OrderList } from "components/Synthetics/OrderList/OrderList";
 import { PositionList } from "components/Synthetics/PositionList/PositionList";
 import { TradeHistory } from "components/Synthetics/TradeHistory/TradeHistory";

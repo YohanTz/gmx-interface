@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import { getContract } from "config/contracts";
@@ -120,7 +119,7 @@ export default function GlpSwap(props) {
   const history = useHistory();
   const isMetamaskMobile = useIsMetamaskMobile();
   const swapLabel = isBuying ? "BuyGlp" : "SellGlp";
-  const tabLabel = isBuying ? t`Buy GLP` : t`Sell GLP`;
+  const tabLabel = isBuying ? `Buy GLP` : `Sell GLP`;
   const { active, library, account } = useWeb3React();
   const { chainId } = useChainId();
   const tokens = getV1Tokens(chainId);
@@ -460,19 +459,19 @@ export default function GlpSwap(props) {
 
   const getError = () => {
     if (IS_NETWORK_DISABLED[chainId]) {
-      if (isBuying) return [t`GLP buy disabled, pending ${getChainName(chainId)} upgrade`];
-      return [t`GLP sell disabled, pending ${getChainName(chainId)} upgrade`];
+      if (isBuying) return [`GLP buy disabled, pending ${getChainName(chainId)} upgrade`];
+      return [`GLP sell disabled, pending ${getChainName(chainId)} upgrade`];
     }
 
     if (!isBuying && inCooldownWindow) {
-      return [t`Redemption time not yet reached`];
+      return [`Redemption time not yet reached`];
     }
 
     if (!swapAmount || swapAmount.eq(0)) {
-      return [t`Enter an amount`];
+      return [`Enter an amount`];
     }
     if (!glpAmount || glpAmount.eq(0)) {
-      return [t`Enter an amount`];
+      return [`Enter an amount`];
     }
 
     if (isBuying) {
@@ -484,21 +483,21 @@ export default function GlpSwap(props) {
         swapAmount &&
         swapAmount.gt(swapTokenInfo.balance)
       ) {
-        return [t`Insufficient ${swapTokenInfo.symbol} balance`];
+        return [`Insufficient ${swapTokenInfo.symbol} balance`];
       }
 
       if (swapTokenInfo.maxUsdgAmount && swapTokenInfo.usdgAmount && swapUsdMin) {
         const usdgFromAmount = adjustForDecimals(swapUsdMin, USD_DECIMALS, USDG_DECIMALS);
         const nextUsdgAmount = swapTokenInfo.usdgAmount.add(usdgFromAmount);
         if (swapTokenInfo.maxUsdgAmount.gt(0) && nextUsdgAmount.gt(swapTokenInfo.maxUsdgAmount)) {
-          return [t`${swapTokenInfo.symbol} pool exceeded, try different token`, true];
+          return [`${swapTokenInfo.symbol} pool exceeded, try different token`, true];
         }
       }
     }
 
     if (!isBuying) {
       if (maxSellAmount && glpAmount && glpAmount.gt(maxSellAmount)) {
-        return [t`Insufficient GLP balance`];
+        return [`Insufficient GLP balance`];
       }
 
       const swapTokenInfo = getTokenInfo(infoTokens, swapTokenAddress);
@@ -508,7 +507,7 @@ export default function GlpSwap(props) {
         swapAmount &&
         swapAmount.gt(swapTokenInfo.availableAmount)
       ) {
-        return [t`Insufficient liquidity`];
+        return [`Insufficient liquidity`];
       }
     }
 
@@ -544,31 +543,31 @@ export default function GlpSwap(props) {
 
   const getPrimaryText = () => {
     if (!active) {
-      return t`Connect Wallet`;
+      return `Connect Wallet`;
     }
     const [error, modal] = getError();
     if (error && !modal) {
       return error;
     }
     if (isBuying && isSwapTokenCapReached) {
-      return t`Max Capacity for ${swapToken.symbol} Reached`;
+      return `Max Capacity for ${swapToken.symbol} Reached`;
     }
 
     if (needApproval && isWaitingForApproval) {
-      return t`Waiting for Approval`;
+      return `Waiting for Approval`;
     }
     if (isApproving) {
-      return t`Approving ${swapToken.symbol}...`;
+      return `Approving ${swapToken.symbol}...`;
     }
     if (needApproval) {
-      return t`Approve ${swapToken.symbol}`;
+      return `Approve ${swapToken.symbol}`;
     }
 
     if (isSubmitting) {
-      return isBuying ? t`Buying...` : t`Selling...`;
+      return isBuying ? `Buying...` : `Selling...`;
     }
 
-    return isBuying ? t`Buy GLP` : t`Sell GLP`;
+    return isBuying ? `Buy GLP` : `Sell GLP`;
   };
 
   const approveFromToken = () => {
@@ -598,9 +597,9 @@ export default function GlpSwap(props) {
 
     callContract(chainId, contract, method, params, {
       value,
-      sentMsg: t`Buy submitted.`,
-      failMsg: t`Buy failed.`,
-      successMsg: t`${formatAmount(glpAmount, 18, 4, true)} GLP bought with ${formatAmount(
+      sentMsg: `Buy submitted.`,
+      failMsg: `Buy failed.`,
+      successMsg: `${formatAmount(glpAmount, 18, 4, true)} GLP bought with ${formatAmount(
         swapAmount,
         swapTokenInfo.decimals,
         4,
@@ -625,9 +624,9 @@ export default function GlpSwap(props) {
       swapTokenAddress === AddressZero ? [glpAmount, minOut, account] : [swapTokenAddress, glpAmount, minOut, account];
 
     callContract(chainId, contract, method, params, {
-      sentMsg: t`Sell submitted!`,
-      failMsg: t`Sell failed.`,
-      successMsg: t`${formatAmount(glpAmount, 18, 4, true)} GLP sold for ${formatAmount(
+      sentMsg: `Sell submitted!`,
+      failMsg: `Sell failed.`,
+      successMsg: `${formatAmount(glpAmount, 18, 4, true)} GLP sold for ${formatAmount(
         swapAmount,
         swapTokenInfo.decimals,
         4,
@@ -666,8 +665,8 @@ export default function GlpSwap(props) {
     }
   };
 
-  let payLabel = t`Pay`;
-  let receiveLabel = t`Receive`;
+  let payLabel = `Pay`;
+  let receiveLabel = `Receive`;
   let payBalance = "$0.00";
   let receiveBalance = "$0.00";
   if (isBuying) {
@@ -689,7 +688,7 @@ export default function GlpSwap(props) {
   const selectToken = (token) => {
     setAnchorOnSwapAmount(false);
     setSwapTokenAddress(token.address);
-    helperToast.success(t`${token.symbol} selected in order form`);
+    helperToast.success(`${token.symbol} selected in order form`);
   };
 
   let feePercentageText = formatAmount(feeBasisPoints, 2, 2, true, "-");
@@ -701,7 +700,7 @@ export default function GlpSwap(props) {
   const nativeTokenSymbol = getNativeToken(chainId).symbol;
 
   const onSwapOptionChange = (opt) => {
-    if (opt === t`Sell GLP`) {
+    if (opt === `Sell GLP`) {
       switchSwapOption("redeem");
     } else {
       switchSwapOption();
@@ -782,7 +781,7 @@ export default function GlpSwap(props) {
                     )})`}
                     position="right-bottom"
                     renderContent={() =>
-                      t`${formatAmount(reservedAmount, 18, 4, true)} GLP have been reserved for vesting.`
+                      `${formatAmount(reservedAmount, 18, 4, true)} GLP have been reserved for vesting.`
                     }
                   />
                 </div>
@@ -836,7 +835,7 @@ export default function GlpSwap(props) {
             }}
           >
             <Tab
-              options={[t`Buy GLP`, t`Sell GLP`]}
+              options={[`Buy GLP`, `Sell GLP`]}
               option={tabLabel}
               onChange={onSwapOptionChange}
               className="Exchange-swap-option-tabs"
@@ -942,7 +941,7 @@ export default function GlpSwap(props) {
 
             <div>
               <div className="Exchange-info-row">
-                <div className="Exchange-info-label">{isFeesHigh ? t`WARNING: High Fees` : t`Fees`}</div>
+                <div className="Exchange-info-label">{isFeesHigh ? `WARNING: High Fees` : `Fees`}</div>
                 <div className="align-right fee-block">
                   {isBuying && (
                     <Tooltip
@@ -1227,7 +1226,7 @@ export default function GlpSwap(props) {
                       className={cx("w-full", isBuying ? "buying" : "selling")}
                       onClick={() => selectToken(token)}
                     >
-                      {isBuying ? t`Buy with ${token.symbol}` : t`Sell for ${token.symbol}`}
+                      {isBuying ? `Buy with ${token.symbol}` : `Sell for ${token.symbol}`}
                     </Button>
                   </td>
                 </tr>
@@ -1394,7 +1393,7 @@ export default function GlpSwap(props) {
                   <div className="App-card-row">
                     <div>
                       {tokenFeeBps ? (
-                        t`Fees`
+                        `Fees`
                       ) : (
                         <Tooltip
                           handle={`Fees`}

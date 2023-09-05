@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import Button from "components/Button/Button";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import Pagination from "components/Pagination/Pagination";
@@ -267,7 +266,7 @@ function AffiliatesStats({
               <p className="title">
                 <span>Referral Codes</span>{" "}
                 <span className="sub-title">
-                  {affiliateTierInfo && t`Tier ${getTierIdDisplay(tierId)} (${currentRebatePercentage}% rebate)`}
+                  {affiliateTierInfo && `Tier ${getTierIdDisplay(tierId)} (${currentRebatePercentage}% rebate)`}
                 </span>
               </p>
               <Button variant="secondary" onClick={open}>
@@ -437,12 +436,12 @@ function AffiliatesStats({
 
                     if (rebate.typeId === RebateDistributionType.Rebate) {
                       if (rebate.tokens[0] === esGmxAddress) {
-                        rebateType = t`V1 esGMX`;
+                        rebateType = `V1 esGMX`;
                       } else {
-                        rebateType = t`V1 Airdrop`;
+                        rebateType = `V1 Airdrop`;
                       }
                     } else if (rebate.typeId === RebateDistributionType.Claim) {
-                      rebateType = t`V2 Claim`;
+                      rebateType = `V2 Claim`;
                     }
 
                     const amountsByTokens = rebate.tokens.reduce((acc, tokenAddress, i) => {

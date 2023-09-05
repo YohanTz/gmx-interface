@@ -13,7 +13,6 @@ import RewardRouter from "abis/RewardRouter.json";
 
 import "./CompleteAccountTransfer.css";
 
-import { Trans, t } from "@lingui/macro";
 import { callContract } from "lib/contracts";
 import { helperToast } from "lib/helperToast";
 import { useChainId } from "lib/chains";
@@ -36,10 +35,10 @@ export default function CompleteAccountTransfer(props) {
 
   const getError = () => {
     if (!account) {
-      return t`Wallet is not connected`;
+      return `Wallet is not connected`;
     }
     if (!isCorrectAccount) {
-      return t`Incorrect Account`;
+      return `Incorrect Account`;
     }
   };
 
@@ -59,7 +58,7 @@ export default function CompleteAccountTransfer(props) {
     if (error) {
       return error;
     }
-    return t`Complete Transfer`;
+    return `Complete Transfer`;
   };
 
   const onClickPrimary = () => {
@@ -68,8 +67,8 @@ export default function CompleteAccountTransfer(props) {
     const contract = new ethers.Contract(rewardRouterAddress, RewardRouter.abi, library.getSigner());
 
     callContract(chainId, contract, "acceptTransfer", [sender], {
-      sentMsg: t`Transfer submitted!`,
-      failMsg: t`Transfer failed.`,
+      sentMsg: `Transfer submitted!`,
+      failMsg: `Transfer failed.`,
       setPendingTxns,
     })
       .then(async (res) => {

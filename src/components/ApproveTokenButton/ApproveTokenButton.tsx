@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import { getWrappedToken } from "config/tokens";
 import { approveTokens } from "domain/tokens";

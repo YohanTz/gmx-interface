@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { groupBy } from "lodash";
 import Button from "components/Button/Button";
 import {

@@ -303,16 +303,16 @@ function FullApp() {
   const saveAndCloseSettings = () => {
     const slippage = parseFloat(slippageAmount);
     if (isNaN(slippage)) {
-      helperToast.error(t`Invalid slippage value`);
+      helperToast.error(`Invalid slippage value`);
       return;
     }
     if (slippage > 5) {
-      helperToast.error(t`Slippage should be less than 5%`);
+      helperToast.error(`Slippage should be less than 5%`);
       return;
     }
     const basisPoints = roundToTwoDecimals((slippage * BASIS_POINTS_DIVISOR) / 100);
     if (parseInt(basisPoints) !== parseFloat(basisPoints)) {
-      helperToast.error(t`Max slippage precision is 0.01%`);
+      helperToast.error(`Max slippage precision is 0.01%`);
       return;
     }
 
@@ -321,13 +321,13 @@ function FullApp() {
     if (settings.shouldUseExecutionFeeBuffer) {
       const executionFeeBuffer = parseFloat(executionFeeBufferBps);
       if (isNaN(executionFeeBuffer) || executionFeeBuffer < 0) {
-        helperToast.error(t`Invalid execution fee buffer value`);
+        helperToast.error(`Invalid execution fee buffer value`);
         return;
       }
       const nextExecutionBufferFeeBps = roundToTwoDecimals((executionFeeBuffer * BASIS_POINTS_DIVISOR) / 100);
 
       if (parseInt(nextExecutionBufferFeeBps) !== parseFloat(nextExecutionBufferFeeBps)) {
-        helperToast.error(t`Max execution fee buffer precision is 0.01%`);
+        helperToast.error(`Max execution fee buffer precision is 0.01%`);
         return;
       }
 

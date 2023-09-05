@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import { getExplorerUrl } from "config/chains";
 import { BigNumber, Contract } from "ethers";
@@ -46,7 +45,7 @@ export async function callContract(
 
     if (!opts.hideSentMsg) {
       const txUrl = getExplorerUrl(chainId) + "tx/" + res.hash;
-      const sentMsg = opts.sentMsg || t`Transaction sent.`;
+      const sentMsg = opts.sentMsg || `Transaction sent.`;
 
       helperToast.success(
         <div>
@@ -60,7 +59,7 @@ export async function callContract(
     }
 
     if (opts.setPendingTxns) {
-      const message = opts.hideSuccessMsg ? undefined : opts.successMsg || t`Transaction completed!`;
+      const message = opts.hideSuccessMsg ? undefined : opts.successMsg || `Transaction completed!`;
       const pendingTxn = {
         hash: res.hash,
         message,

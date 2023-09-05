@@ -5,7 +5,7 @@ import { useWeb3React } from "@web3-react/core";
 import ERC721 from "abis/ERC721.json";
 
 import "./NftWallet.css";
-import { t } from "@lingui/macro";
+
 import { callContract } from "lib/contracts";
 import { useChainId } from "lib/chains";
 
@@ -20,22 +20,22 @@ export default function NftWallet() {
 
   function getTransferError() {
     if (!active) {
-      return t`Wallet not connected`;
+      return `Wallet not connected`;
     }
     if (!receiver || receiver.length === 0) {
-      return t`Enter Receiver Address`;
+      return `Enter Receiver Address`;
     }
     if (!ethers.utils.isAddress(receiver)) {
-      return t`Invalid Receiver Address`;
+      return `Invalid Receiver Address`;
     }
     if (!nftAddress || nftAddress.length === 0) {
-      return t`Enter NFT Address`;
+      return `Enter NFT Address`;
     }
     if (!ethers.utils.isAddress(nftAddress)) {
-      return t`Invalid NFT Address`;
+      return `Invalid NFT Address`;
     }
     if (!nftId || nftId.toString().length === 0) {
-      return t`Enter NFT ID`;
+      return `Enter NFT ID`;
     }
   }
 
@@ -45,9 +45,9 @@ export default function NftWallet() {
       return transferError;
     }
     if (isSubmitting) {
-      return t`Tranferring...`;
+      return `Tranferring...`;
     }
-    return t`Transfer NFT`;
+    return `Transfer NFT`;
   }
 
   function isPrimaryEnabled() {
@@ -58,8 +58,8 @@ export default function NftWallet() {
     setIsSubmitting(true);
     const contract = new ethers.Contract(nftAddress, ERC721.abi, library.getSigner());
     callContract(chainId, contract, "transferFrom", [account, receiver, nftId], {
-      sentMsg: t`Transfer submitted!`,
-      failMsg: t`Transfer failed.`,
+      sentMsg: `Transfer submitted!`,
+      failMsg: `Transfer failed.`,
     }).finally(() => {
       setIsSubmitting(false);
     });

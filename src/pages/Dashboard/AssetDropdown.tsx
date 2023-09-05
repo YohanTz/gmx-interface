@@ -7,7 +7,6 @@ import nansenPortfolioIcon from "img/nansen_portfolio.svg";
 import { FiChevronDown } from "react-icons/fi";
 import "./AssetDropdown.css";
 
-import { t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import { getIcon } from "config/icons";
 import { getTokenBySymbol } from "config/tokens";

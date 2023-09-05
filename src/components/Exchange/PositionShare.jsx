@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { t } from "@lingui/macro";
+
 import { toJpeg } from "html-to-image";
 import { BiCopy } from "react-icons/bi";
 import { RiFileDownloadLine } from "react-icons/ri";
@@ -60,7 +60,7 @@ function PositionShare({ setIsPositionShareModalOpen, isPositionShareModalOpen, 
           setUploadedImageInfo(imageInfo);
         } catch {
           setUploadedImageInfo(null);
-          setUploadedImageError(t`Image generation error, please refresh and try again.`);
+          setUploadedImageError(`Image generation error, please refresh and try again.`);
         }
       }
     })();
@@ -79,7 +79,7 @@ function PositionShare({ setIsPositionShareModalOpen, isPositionShareModalOpen, 
     if (!uploadedImageInfo) return;
     const url = getShareURL(uploadedImageInfo, userAffiliateCode);
     copyToClipboard(url);
-    helperToast.success(t`Link copied to clipboard.`);
+    helperToast.success(`Link copied to clipboard.`);
   }
   return (
     <Modal

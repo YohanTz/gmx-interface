@@ -5,7 +5,7 @@ import Modal from "../Modal/Modal";
 import { get1InchSwapUrl } from "config/links";
 import { getLowestFeeTokenForBuyGlp, InfoTokens, Token } from "domain/tokens";
 import { getNativeToken } from "config/tokens";
-import { t } from "@lingui/macro";
+
 import ExternalLink from "components/ExternalLink/ExternalLink";
 
 const { AddressZero } = ethers.constants;
@@ -52,7 +52,7 @@ export default function SwapErrorModal({
     setLowestFeeToken(lowestFeeTokenInfo);
   }, [chainId, glpAmount, glpPrice, usdgSupply, totalTokenWeights, infoTokens, swapUsdMin, swapToken.address]);
 
-  const label = t`${swapToken?.symbol} Capacity Reached`;
+  const label = `${swapToken?.symbol} Capacity Reached`;
 
   if (lowestFeeToken && swapUsdMin && swapUsdMin.gt(lowestFeeToken.amountLeftToDeposit)) {
     return (

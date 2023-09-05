@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import Modal from "components/Modal/Modal";
 import { MarketInfo, MarketsInfoData, getTotalClaimableFundingUsd } from "domain/synthetics/markets";
@@ -129,7 +128,7 @@ export function ClaimModal(p: Props) {
       <div className="ConfirmationBox-main text-center">Claim {formatUsd(totalClaimableFundingUsd)}</div>
       <div className="ClaimModal-content">{markets.map(renderMarketSection)}</div>
       <Button className="w-full" variant="primary-action" onClick={onSubmit} disabled={isSubmitting}>
-        {isSubmitting ? t`Claiming...` : t`Claim`}
+        {isSubmitting ? `Claiming...` : `Claim`}
       </Button>
     </Modal>
   );

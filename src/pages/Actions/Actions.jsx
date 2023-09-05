@@ -17,7 +17,6 @@ import OrdersList from "components/Exchange/OrdersList";
 import TradeHistory from "components/Exchange/TradeHistory";
 import Reader from "abis/Reader.json";
 
-import { Trans, t } from "@lingui/macro";
 import { getServerBaseUrl } from "config/backend";
 import { contractFetcher } from "lib/contracts";
 import { useInfoTokens } from "domain/tokens";
@@ -110,11 +109,11 @@ export default function Actions({ savedIsPnlInLeverage, savedShowPnlAfterFees })
               return (
                 <div className="TradeHistory-row App-box App-box-border" key={index}>
                   <div>
-                    {token.symbol} {pnlRow.data.isLong ? t`Long` : t`Short`} <span>Profit</span>:{" "}
+                    {token.symbol} {pnlRow.data.isLong ? `Long` : `Short`} <span>Profit</span>:{" "}
                     {formatAmount(pnlRow.data.profit, USD_DECIMALS, 2, true)} USD
                   </div>
                   <div>
-                    {token.symbol} {pnlRow.data.isLong ? t`Long` : t`Short`} <span>Loss</span>:{" "}
+                    {token.symbol} {pnlRow.data.isLong ? `Long` : `Short`} <span>Loss</span>:{" "}
                     {formatAmount(pnlRow.data.loss, USD_DECIMALS, 2, true)} USD
                   </div>
                 </div>

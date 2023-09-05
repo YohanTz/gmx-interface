@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/macro";
 import { useChainId } from "lib/chains";
 import { useState } from "react";
 import { useClaimCollateralHistory } from "domain/synthetics/claimHistory";

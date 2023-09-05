@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { useWeb3React } from "@web3-react/core";
 import cx from "classnames";
 import Button from "components/Button/Button";
@@ -118,8 +117,8 @@ export function PositionSeller(p: Props) {
   const prevIsVisible = usePrevious(isVisible);
 
   const ORDER_OPTION_LABELS = {
-    [OrderOption.Market]: t`Market`,
-    [OrderOption.Trigger]: t`Trigger`,
+    [OrderOption.Market]: `Market`,
+    [OrderOption.Trigger]: `Trigger`,
   };
 
   const [orderOption, setOrderOption] = useState(OrderOption.Market);
@@ -289,11 +288,11 @@ export function PositionSeller(p: Props) {
     }
 
     if (isHighPriceImpact && !isHighPriceImpactAccepted) {
-      return t`Price Impact not yet acknowledged`;
+      return `Price Impact not yet acknowledged`;
     }
 
     if (isSubmitting) {
-      return t`Creating Order...`;
+      return `Creating Order...`;
     }
   }, [
     account,
@@ -392,7 +391,7 @@ export function PositionSeller(p: Props) {
         setIsVisible={p.onClose}
         label={
           <span>
-            Close {p.position?.isLong ? t`Long` : t`Short`} {p.position?.indexToken?.symbol}
+            Close {p.position?.isLong ? `Long` : `Short`} {p.position?.indexToken?.symbol}
           </span>
         }
         allowContentTouchMove
@@ -666,7 +665,7 @@ export function PositionSeller(p: Props) {
                 disabled={Boolean(error) && !p.shouldDisableValidation}
                 onClick={onSubmit}
               >
-                {error || t`Close`}
+                {error || `Close`}
               </Button>
             </div>
           </>

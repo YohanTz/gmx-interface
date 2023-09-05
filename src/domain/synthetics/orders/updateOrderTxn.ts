@@ -1,5 +1,5 @@
 import { Web3Provider } from "@ethersproject/providers";
-import { t } from "@lingui/macro";
+
 import ExchangeRouter from "abis/ExchangeRouter.json";
 import { getContract } from "config/contracts";
 import { BigNumber, ethers } from "ethers";
@@ -60,9 +60,9 @@ export function updateOrderTxn(chainId: number, library: Web3Provider, p: Update
 
   return callContract(chainId, exchangeRouter, "multicall", [encodedPayload], {
     value: p.executionFee?.gt(0) ? p.executionFee : undefined,
-    sentMsg: t`Updating order`,
-    successMsg: t`Update order executed`,
-    failMsg: t`Failed to update order`,
+    sentMsg: `Updating order`,
+    successMsg: `Update order executed`,
+    failMsg: `Failed to update order`,
     setPendingTxns,
   });
 }

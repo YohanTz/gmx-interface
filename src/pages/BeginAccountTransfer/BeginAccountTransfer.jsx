@@ -16,8 +16,6 @@ import RewardRouter from "abis/RewardRouter.json";
 
 import { FaCheck, FaTimes } from "react-icons/fa";
 
-import { Trans, t } from "@lingui/macro";
-
 import "./BeginAccountTransfer.css";
 import { callContract, contractFetcher } from "lib/contracts";
 import { approveTokens } from "domain/tokens";
@@ -129,32 +127,32 @@ export default function BeginAccountTransfer(props) {
 
   const getError = () => {
     if (!account) {
-      return t`Wallet is not connected`;
+      return `Wallet is not connected`;
     }
     if (hasVestedGmx) {
-      return t`Vested GMX not withdrawn`;
+      return `Vested GMX not withdrawn`;
     }
     if (hasVestedGlp) {
-      return t`Vested GLP not withdrawn`;
+      return `Vested GLP not withdrawn`;
     }
     if (!receiver || receiver.length === 0) {
-      return t`Enter Receiver Address`;
+      return `Enter Receiver Address`;
     }
     if (!ethers.utils.isAddress(receiver)) {
-      return t`Invalid Receiver Address`;
+      return `Invalid Receiver Address`;
     }
     if (hasStakedGmx || hasStakedGlp) {
-      return t`Invalid Receiver`;
+      return `Invalid Receiver`;
     }
     if ((parsedReceiver || "").toString().toLowerCase() === (account || "").toString().toLowerCase()) {
-      return t`Self-transfer not supported`;
+      return `Self-transfer not supported`;
     }
 
     if (
       (parsedReceiver || "").length > 0 &&
       (parsedReceiver || "").toString().toLowerCase() === (pendingReceiver || "").toString().toLowerCase()
     ) {
-      return t`Transfer already initiated`;
+      return `Transfer already initiated`;
     }
   };
 
@@ -178,16 +176,16 @@ export default function BeginAccountTransfer(props) {
       return error;
     }
     if (needApproval) {
-      return t`Approve GMX`;
+      return `Approve GMX`;
     }
     if (isApproving) {
-      return t`Approving...`;
+      return `Approving...`;
     }
     if (isTransferring) {
-      return t`Transferring`;
+      return `Transferring`;
     }
 
-    return t`Begin Transfer`;
+    return `Begin Transfer`;
   };
 
   const onClickPrimary = () => {
@@ -206,8 +204,8 @@ export default function BeginAccountTransfer(props) {
     const contract = new ethers.Contract(rewardRouterAddress, RewardRouter.abi, library.getSigner());
 
     callContract(chainId, contract, "signalTransfer", [parsedReceiver], {
-      sentMsg: t`Transfer submitted!`,
-      failMsg: t`Transfer failed.`,
+      sentMsg: `Transfer submitted!`,
+      failMsg: `Transfer failed.`,
       setPendingTxns,
     })
       .then(async (res) => {

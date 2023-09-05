@@ -20,7 +20,7 @@ import { getExplorerUrl } from "config/chains";
 import { bigNumberify, formatAmount } from "lib/numbers";
 import { formatDateTime } from "lib/dates";
 import StatsTooltipRow from "../StatsTooltip/StatsTooltipRow";
-import { t } from "@lingui/macro";
+
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import Button from "components/Button/Button";
 import { getPriceDecimals } from "config/tokens";
@@ -29,8 +29,8 @@ const { AddressZero } = ethers.constants;
 
 function getPositionDisplay(increase, indexToken, isLong, sizeDelta) {
   const symbol = indexToken ? (indexToken.isWrapped ? indexToken.baseSymbol : indexToken.symbol) : "";
-  const positionTypeText = increase ? t`Increase` : t`Decrease`;
-  const longOrShortText = isLong ? t`Long` : t`Short`;
+  const positionTypeText = increase ? `Increase` : `Decrease`;
+  const longOrShortText = isLong ? `Long` : `Short`;
   return (
     <>
       {positionTypeText} {symbol} {longOrShortText} {increase ? "+" : "-"}
@@ -43,22 +43,22 @@ function getOrderActionTitle(action) {
   let actionDisplay;
 
   if (action.startsWith("Create")) {
-    actionDisplay = t`Create`;
+    actionDisplay = `Create`;
   } else if (action.startsWith("Cancel")) {
-    actionDisplay = t`Cancel`;
+    actionDisplay = `Cancel`;
   } else {
-    actionDisplay = t`Update`;
+    actionDisplay = `Update`;
   }
 
-  return t`${actionDisplay} Order`;
+  return `${actionDisplay} Order`;
 }
 
 function renderLiquidationTooltip(liquidationData, label) {
   const minCollateral = liquidationData.size.mul(BASIS_POINTS_DIVISOR).div(MAX_LEVERAGE);
   const text =
     liquidationData.type === "full"
-      ? t`This position was liquidated as the max leverage of 100x was exceeded.`
-      : t`Max leverage of 100x was exceeded, the remaining collateral after deducting losses and fees have been sent back to your account:`;
+      ? `This position was liquidated as the max leverage of 100x was exceeded.`
+      : `Max leverage of 100x was exceeded, the remaining collateral after deducting losses and fees have been sent back to your account:`;
   return (
     <Tooltip
       position="left-top"
@@ -150,7 +150,7 @@ export default function TradeHistory(props) {
     (trade) => {
       const tradeData = trade.data;
       const params = JSON.parse(tradeData.params);
-      const longOrShortText = params?.isLong ? t`Long` : t`Short`;
+      const longOrShortText = params?.isLong ? `Long` : `Short`;
       const defaultMsg = "";
 
       if (tradeData.action === "BuyUSDG") {
@@ -208,7 +208,7 @@ export default function TradeHistory(props) {
           );
         }
 
-        return t`Request increase ${indexToken.symbol} ${longOrShortText}, +${formatAmount(
+        return `Request increase ${indexToken.symbol} ${longOrShortText}, +${formatAmount(
           params.sizeDelta,
           USD_DECIMALS,
           2,
@@ -236,7 +236,7 @@ export default function TradeHistory(props) {
           );
         }
 
-        return t`Request decrease ${indexToken.symbol} ${longOrShortText}, -${formatAmount(
+        return `Request decrease ${indexToken.symbol} ${longOrShortText}, -${formatAmount(
           params.sizeDelta,
           USD_DECIMALS,
           2,
@@ -334,7 +334,7 @@ export default function TradeHistory(props) {
             </span>
           );
         }
-        return t`Increase ${indexToken.symbol} ${longOrShortText}, +${formatAmount(
+        return `Increase ${indexToken.symbol} ${longOrShortText}, +${formatAmount(
           params.sizeDelta,
           USD_DECIMALS,
           2,
@@ -371,15 +371,15 @@ export default function TradeHistory(props) {
         if (isLiquidation && liquidationData) {
           return (
             <>
-              {renderLiquidationTooltip(liquidationData, t`Partial Liquidation`)}&nbsp;
+              {renderLiquidationTooltip(liquidationData, `Partial Liquidation`)}&nbsp;
               {indexToken.symbol} {longOrShortText}, -{formatAmount(params.sizeDelta, USD_DECIMALS, 2, true)} USD,{" "}
               {indexToken.symbol}&nbsp; Price: ${formatAmount(params.price, USD_DECIMALS, indexTokenPriceDecimal, true)}{" "}
               USD
             </>
           );
         }
-        const actionDisplay = isLiquidation ? t`Partially Liquidated` : t`Decreased`;
-        return t`${actionDisplay} ${indexToken.symbol} ${longOrShortText},
+        const actionDisplay = isLiquidation ? `Partially Liquidated` : `Decreased`;
+        return `${actionDisplay} ${indexToken.symbol} ${longOrShortText},
         -${formatAmount(params.sizeDelta, USD_DECIMALS, 2, true)} USD,
         ${indexToken.symbol} Price: ${formatAmount(params.price, USD_DECIMALS, indexTokenPriceDecimal, true)} USD
       `;
@@ -395,14 +395,14 @@ export default function TradeHistory(props) {
         if (liquidationData) {
           return (
             <span>
-              {renderLiquidationTooltip(liquidationData, t`Liquidated`)}&nbsp; {indexToken.symbol} {longOrShortText}, -
+              {renderLiquidationTooltip(liquidationData, `Liquidated`)}&nbsp; {indexToken.symbol} {longOrShortText}, -
               {formatAmount(params.size, USD_DECIMALS, 2, true)} USD,&nbsp;
               {indexToken.symbol} Price: ${formatAmount(params.markPrice, USD_DECIMALS, indexTokenPriceDecimal, true)}{" "}
               USD
             </span>
           );
         }
-        return t`
+        return `
         Liquidated ${indexToken.symbol} ${longOrShortText},
         -${formatAmount(params.size, USD_DECIMALS, 2, true)} USD,
         ${indexToken.symbol} Price: ${formatAmount(params.markPrice, USD_DECIMALS, indexTokenPriceDecimal, true)} USD
@@ -415,8 +415,8 @@ export default function TradeHistory(props) {
         if (!indexToken) {
           return defaultMsg;
         }
-        const longShortDisplay = order.isLong ? t`Long` : t`Short`;
-        const orderTypeText = order.type === INCREASE ? t`Increase` : t`Decrease`;
+        const longShortDisplay = order.isLong ? `Long` : `Short`;
+        const orderTypeText = order.type === INCREASE ? `Increase` : `Decrease`;
         const executionPriceDisplay = formatAmount(order.executionPrice, USD_DECIMALS, 2, true);
         const sizeDeltaDisplay = `${order.type === "Increase" ? "+" : "-"}${formatAmount(
           order.sizeDelta,

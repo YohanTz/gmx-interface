@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-import { Trans, t } from "@lingui/macro";
+
 import { ethers } from "ethers";
 import { BsArrowRight } from "react-icons/bs";
 
@@ -73,7 +73,7 @@ export default function PositionEditor(props) {
   const [isApproving, setIsApproving] = useState(false);
   const [isSwapping, setIsSwapping] = useState(false);
   const prevIsVisible = usePrevious(isVisible);
-  const longOrShortText = position?.isLong ? t`Long` : t`Short`;
+  const longOrShortText = position?.isLong ? `Long` : `Short`;
   const positionPriceDecimal = getPriceDecimals(chainId, position?.indexToken?.symbol);
 
   const routerAddress = getContract(chainId, "Router");
@@ -113,7 +113,7 @@ export default function PositionEditor(props) {
   let depositFeeUSD;
 
   if (position) {
-    title = t`Edit ${longOrShortText} ${position.indexToken.symbol}`;
+    title = `Edit ${longOrShortText} ${position.indexToken.symbol}`;
     collateralToken = position.collateralToken;
     fundingFee = getFundingFee(position);
 
@@ -191,39 +191,39 @@ export default function PositionEditor(props) {
 
   const getError = () => {
     if (IS_NETWORK_DISABLED[chainId]) {
-      if (isDeposit) return [t`Deposit disabled, pending ${getChainName(chainId)} upgrade`];
-      return [t`Withdraw disabled, pending ${getChainName(chainId)} upgrade`];
+      if (isDeposit) return [`Deposit disabled, pending ${getChainName(chainId)} upgrade`];
+      return [`Withdraw disabled, pending ${getChainName(chainId)} upgrade`];
     }
 
     if (!fromAmount) {
-      return [t`Enter an amount`];
+      return [`Enter an amount`];
     }
 
     if (fromAmount.lte(0)) {
-      return [t`Amount should be greater than zero`];
+      return [`Amount should be greater than zero`];
     }
 
     if (!isDeposit && fromAmount) {
       if (position.collateralAfterFee.sub(fromAmount).lt(MIN_ORDER_USD)) {
-        return [t`Min residual collateral: 10 USD`];
+        return [`Min residual collateral: 10 USD`];
       }
     }
 
     if (!isDeposit && fromAmount && nextLiquidationPrice) {
       if (position.isLong && position.markPrice.lt(nextLiquidationPrice)) {
-        return [t`Invalid liq. price`, ErrorDisplayType.Tooltip, ErrorCode.InvalidLiqPrice];
+        return [`Invalid liq. price`, ErrorDisplayType.Tooltip, ErrorCode.InvalidLiqPrice];
       }
       if (!position.isLong && position.markPrice.gt(nextLiquidationPrice)) {
-        return [t`Invalid liq. price`, ErrorDisplayType.Tooltip, ErrorCode.InvalidLiqPrice];
+        return [`Invalid liq. price`, ErrorDisplayType.Tooltip, ErrorCode.InvalidLiqPrice];
       }
     }
 
     if (nextLeverageExcludingPnl && nextLeverageExcludingPnl.lt(1.1 * BASIS_POINTS_DIVISOR)) {
-      return [t`Min leverage: 1.1x`];
+      return [`Min leverage: 1.1x`];
     }
 
     if (nextLeverage && nextLeverage.gt(MAX_ALLOWED_LEVERAGE)) {
-      return [t`Max leverage: ${(MAX_ALLOWED_LEVERAGE / BASIS_POINTS_DIVISOR).toFixed(1)}x`];
+      return [`Max leverage: ${(MAX_ALLOWED_LEVERAGE / BASIS_POINTS_DIVISOR).toFixed(1)}x`];
     }
 
     if (fromAmount && isDeposit && nextLiquidationPrice) {
@@ -232,16 +232,16 @@ export default function PositionEditor(props) {
         : nextLiquidationPrice.lte(position.markPrice);
 
       if (isInvalidLiquidationPrice) {
-        return [t`Invalid liq. price`, ErrorDisplayType.Tooltip, ErrorCode.InsufficientDepositAmount];
+        return [`Invalid liq. price`, ErrorDisplayType.Tooltip, ErrorCode.InsufficientDepositAmount];
       }
     }
 
     if (position.hasProfit) {
       if (nextCollateral.lte(position.closingFee.add(LIQUIDATION_FEE))) {
-        return isDeposit ? [t`Deposit not enough to cover fees`] : [t`Leftover Collateral not enough to cover fees`];
+        return isDeposit ? [`Deposit not enough to cover fees`] : [`Leftover Collateral not enough to cover fees`];
       }
       if (nextLeverageExcludingPnl && nextLeverageExcludingPnl.gt(MAX_LEVERAGE)) {
-        return [t`Max leverage without PnL: ${(MAX_LEVERAGE / BASIS_POINTS_DIVISOR).toFixed(1)}x`];
+        return [`Max leverage without PnL: ${(MAX_LEVERAGE / BASIS_POINTS_DIVISOR).toFixed(1)}x`];
       }
     }
 
@@ -273,35 +273,35 @@ export default function PositionEditor(props) {
     }
     if (isSwapping) {
       if (isDeposit) {
-        return t`Depositing...`;
+        return `Depositing...`;
       }
-      return t`Withdrawing...`;
+      return `Withdrawing...`;
     }
 
     if (isApproving) {
-      return t`Approving ${position.collateralToken.symbol}...`;
+      return `Approving ${position.collateralToken.symbol}...`;
     }
     if (needApproval) {
-      return t`Approve ${position.collateralToken.symbol}`;
+      return `Approve ${position.collateralToken.symbol}`;
     }
 
     if (needPositionRouterApproval && isWaitingForPositionRouterApproval) {
-      return t`Enabling Leverage`;
+      return `Enabling Leverage`;
     }
 
     if (isPositionRouterApproving) {
-      return t`Enabling Leverage...`;
+      return `Enabling Leverage...`;
     }
 
     if (needPositionRouterApproval) {
-      return t`Enable Leverage`;
+      return `Enable Leverage`;
     }
 
     if (isDeposit) {
-      return t`Deposit`;
+      return `Deposit`;
     }
 
-    return t`Withdraw`;
+    return `Withdraw`;
   };
 
   const resetForm = () => {
@@ -358,18 +358,18 @@ export default function PositionEditor(props) {
 
     if (shouldRaiseGasError(getTokenInfo(infoTokens, collateralTokenAddress), fromAmount)) {
       setIsSwapping(false);
-      helperToast.error(t`Leave at least ${formatAmount(DUST_BNB, 18, 3)} ETH for gas`);
+      helperToast.error(`Leave at least ${formatAmount(DUST_BNB, 18, 3)} ETH for gas`);
       return;
     }
 
     const contract = new ethers.Contract(positionRouterAddress, PositionRouter.abi, library.getSigner());
     callContract(chainId, contract, method, params, {
       value,
-      sentMsg: t`Deposit submitted.`,
-      successMsg: t`Requested deposit of ${formatAmount(fromAmount, position.collateralToken.decimals, 4)} ${
+      sentMsg: `Deposit submitted.`,
+      successMsg: `Requested deposit of ${formatAmount(fromAmount, position.collateralToken.decimals, 4)} ${
         position.collateralToken.symbol
       } into ${position.indexToken.symbol} ${longOrShortText}.`,
-      failMsg: t`Deposit failed.`,
+      failMsg: `Deposit failed.`,
       setPendingTxns,
     })
       .then(async (res) => {
@@ -423,11 +423,11 @@ export default function PositionEditor(props) {
     const contract = new ethers.Contract(positionRouterAddress, PositionRouter.abi, library.getSigner());
     callContract(chainId, contract, method, params, {
       value: minExecutionFee,
-      sentMsg: t`Withdrawal submitted.`,
-      successMsg: t`Requested withdrawal of ${formatAmount(fromAmount, USD_DECIMALS, 2)} USD from ${
+      sentMsg: `Withdrawal submitted.`,
+      successMsg: `Requested withdrawal of ${formatAmount(fromAmount, USD_DECIMALS, 2)} USD from ${
         position.indexToken.symbol
       } ${longOrShortText}.`,
-      failMsg: t`Withdrawal failed.`,
+      failMsg: `Withdrawal failed.`,
       setPendingTxns,
     })
       .then(async (res) => {
@@ -465,8 +465,8 @@ export default function PositionEditor(props) {
 
     if (needPositionRouterApproval) {
       approvePositionRouter({
-        sentMsg: isDeposit ? t`Enable deposit sent.` : t`Enable withdraw sent.`,
-        failMsg: isDeposit ? t`Enable deposit failed.` : t`Enable withdraw failed.`,
+        sentMsg: isDeposit ? `Enable deposit sent.` : `Enable withdraw sent.`,
+        failMsg: isDeposit ? `Enable deposit failed.` : `Enable withdraw failed.`,
       });
       return;
     }
@@ -480,12 +480,12 @@ export default function PositionEditor(props) {
   };
 
   const EDIT_OPTIONS_LABELS = {
-    [DEPOSIT]: t`Deposit`,
-    [WITHDRAW]: t`Withdraw`,
+    [DEPOSIT]: `Deposit`,
+    [WITHDRAW]: `Withdraw`,
   };
   const ERROR_TOOLTIP_MSG = {
-    [ErrorCode.InvalidLiqPrice]: t`Liquidation price would cross mark price.`,
-    [ErrorCode.InsufficientDepositAmount]: t`Deposit amount is insufficient to bring leverage below the max allowed leverage of 100x`,
+    [ErrorCode.InvalidLiqPrice]: `Liquidation price would cross mark price.`,
+    [ErrorCode.InsufficientDepositAmount]: `Deposit amount is insufficient to bring leverage below the max allowed leverage of 100x`,
   };
 
   function renderPrimaryButton() {
@@ -530,7 +530,7 @@ export default function PositionEditor(props) {
                 <BuyInputSection
                   inputValue={fromValue}
                   onInputValueChange={(e) => setFromValue(e.target.value)}
-                  topLeftLabel={isDeposit ? t`Deposit` : t`Withdraw`}
+                  topLeftLabel={isDeposit ? `Deposit` : `Withdraw`}
                   topLeftValue={
                     convertedAmountFormatted
                       ? `${convertedAmountFormatted} ${isDeposit ? "USD" : position.collateralToken.symbol}`

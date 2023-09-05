@@ -17,7 +17,7 @@ import Modal from "components/Modal/Modal";
 import Footer from "components/Footer/Footer";
 
 import "./Stake.css";
-import { t } from "@lingui/macro";
+
 import { CHAIN_ID, getExplorerUrl } from "config/chains";
 import { contractFetcher } from "lib/contracts";
 import { approveTokens } from "domain/tokens";
@@ -319,10 +319,10 @@ function StakeModal(props) {
 
   const getError = () => {
     if (!amount || amount.eq(0)) {
-      return t`Enter an amount`;
+      return `Enter an amount`;
     }
     if (maxAmount && amount.gt(maxAmount)) {
-      return t`Max amount exceeded`;
+      return `Max amount exceeded`;
     }
   };
 
@@ -357,7 +357,7 @@ function StakeModal(props) {
       .catch((e) => {
         // eslint-disable-next-line no-console
         console.error(e);
-        helperToast.error(t`Stake failed`);
+        helperToast.error(`Stake failed`);
       })
       .finally(() => {
         setIsStaking(false);
@@ -384,15 +384,15 @@ function StakeModal(props) {
       return error;
     }
     if (isApproving) {
-      return t`Approving ${stakingTokenSymbol}...`;
+      return `Approving ${stakingTokenSymbol}...`;
     }
     if (needApproval) {
-      return t`Approve ${stakingTokenSymbol}`;
+      return `Approve ${stakingTokenSymbol}`;
     }
     if (isStaking) {
-      return t`Staking...`;
+      return `Staking...`;
     }
-    return t`Stake`;
+    return `Stake`;
   };
 
   return (
@@ -441,10 +441,10 @@ function UnstakeModal(props) {
 
   const getError = () => {
     if (!amount) {
-      return t`Enter an amount`;
+      return `Enter an amount`;
     }
     if (amount.gt(maxAmount)) {
-      return t`Max amount exceeded`;
+      return `Max amount exceeded`;
     }
   };
 
@@ -468,7 +468,7 @@ function UnstakeModal(props) {
       .catch((e) => {
         // eslint-disable-next-line no-console
         console.error(e);
-        helperToast.error(t`Unstake failed`);
+        helperToast.error(`Unstake failed`);
       })
       .finally(() => {
         setIsUnstaking(false);
@@ -492,9 +492,9 @@ function UnstakeModal(props) {
       return error;
     }
     if (isUnstaking) {
-      return t`Unstaking...`;
+      return `Unstaking...`;
     }
-    return t`Unstake`;
+    return `Unstake`;
   };
 
   return (
@@ -681,15 +681,15 @@ export default function StakeV1() {
 
   const claim = (farmAddress, rewards) => {
     if (!active || !account) {
-      helperToast.error(t`Wallet not yet connected`);
+      helperToast.error(`Wallet not yet connected`);
       return;
     }
     if (chainId !== CHAIN_ID) {
-      helperToast.error(t`Incorrect Network`);
+      helperToast.error(`Incorrect Network`);
       return;
     }
     if (!rewards || rewards.eq(0)) {
-      helperToast.error(t`No rewards to claim yet`);
+      helperToast.error(`No rewards to claim yet`);
       return;
     }
 
@@ -710,7 +710,7 @@ export default function StakeV1() {
       .catch((e) => {
         // eslint-disable-next-line no-console
         console.error(e);
-        helperToast.error(t`Claim failed`);
+        helperToast.error(`Claim failed`);
       });
   };
 

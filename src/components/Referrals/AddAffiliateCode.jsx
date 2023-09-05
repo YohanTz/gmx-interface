@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Trans, t } from "@lingui/macro";
+
 import cx from "classnames";
 import { getCodeError, getReferralCodeTakenStatus, getSampleReferrarStat } from "./referralsHelper";
 import { useWeb3React } from "@web3-react/core";
@@ -86,13 +86,13 @@ export function AffiliateCodeForm({
 
   function getButtonError() {
     if (!debouncedReferralCode) {
-      return t`Enter a code`;
+      return `Enter a code`;
     }
     if (referralCodeCheckStatus === "taken") {
-      return t`Code already taken`;
+      return `Code already taken`;
     }
     if (referralCodeCheckStatus === "checking") {
-      return t`Checking code...`;
+      return `Checking code...`;
     }
 
     return false;
@@ -106,10 +106,10 @@ export function AffiliateCodeForm({
     }
 
     if (isProcessing) {
-      return t`Creating...`;
+      return `Creating...`;
     }
 
-    return t`Create`;
+    return `Create`;
   }
   function isPrimaryEnabled() {
     if (buttonError) {
@@ -140,7 +140,7 @@ export function AffiliateCodeForm({
         if (receipt.status === 1) {
           recentlyAddedCodes.push(getSampleReferrarStat(referralCode, ownerOnOtherNetwork, account));
 
-          helperToast.success(t`Referral code created!`);
+          helperToast.success(`Referral code created!`);
           setRecentlyAddedCodes(recentlyAddedCodes);
           setReferralCode("");
         }

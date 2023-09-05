@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import ExternalLink from "components/ExternalLink/ExternalLink";
 import StatsTooltipRow from "components/StatsTooltip/StatsTooltipRow";
 import Tooltip from "components/Tooltip/Tooltip";
@@ -14,12 +13,12 @@ type FeeType = "open" | "close" | "swap" | "borrow" | "deposit" | "execution";
 
 function getFeeLabel(type: FeeType) {
   const labels = {
-    close: t`Close Fee`,
-    open: t`Open Fee`,
-    swap: t`Swap Fee`,
-    borrow: t`Borrow Fee`,
-    deposit: t`Deposit Fee`,
-    execution: t`Execution Fee`,
+    close: `Close Fee`,
+    open: `Open Fee`,
+    swap: `Swap Fee`,
+    borrow: `Borrow Fee`,
+    deposit: `Deposit Fee`,
+    execution: `Execution Fee`,
   };
   return labels[type];
 }

@@ -1,4 +1,3 @@
-import { t } from "@lingui/macro";
 import { getHighExecutionFee } from "config/chains";
 import { NATIVE_TOKEN_ADDRESS } from "config/tokens";
 import { TokensData, convertToUsd, getTokenData } from "domain/synthetics/tokens";
@@ -29,7 +28,7 @@ export function getExecutionFee(
   const isFeeHigh = feeUsd.gt(expandDecimals(getHighExecutionFee(chainId), USD_DECIMALS));
 
   const warning = isFeeHigh
-    ? t`The network cost to send transactions is high at the moment, please check the "Max Execution Fee" value before proceeding.`
+    ? `The network cost to send transactions is high at the moment, please check the "Max Execution Fee" value before proceeding.`
     : undefined;
 
   return {

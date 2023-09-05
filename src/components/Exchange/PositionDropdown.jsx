@@ -1,5 +1,5 @@
 import { Menu } from "@headlessui/react";
-import { Trans } from "@lingui/macro";
+
 import "./PositionDropdown.css";
 import { HiDotsVertical } from "react-icons/hi";
 import { AiOutlineEdit } from "react-icons/ai";

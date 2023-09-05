@@ -1,4 +1,3 @@
-import { Trans, t } from "@lingui/macro";
 import { PositionItem } from "components/Synthetics/PositionItem/PositionItem";
 import { OrdersInfoData, PositionOrderInfo, isOrderForPosition } from "domain/synthetics/orders";
 import { PositionsInfoData } from "domain/synthetics/positions";
@@ -30,7 +29,7 @@ export function PositionList(p: Props) {
     <div>
       {positions.length === 0 && (
         <div className="Exchange-empty-positions-list-note App-card small">
-          {p.isLoading ? t`Loading...` : t`No open positions`}
+          {p.isLoading ? `Loading...` : `No open positions`}
         </div>
       )}
       <div className="Exchange-list small">
@@ -84,7 +83,7 @@ export function PositionList(p: Props) {
             <tr>
               <td colSpan={15}>
                 <div className="Exchange-empty-positions-list-note">
-                  {p.isLoading ? t`Loading...` : t`No open positions`}
+                  {p.isLoading ? `Loading...` : `No open positions`}
                 </div>
               </td>
             </tr>
